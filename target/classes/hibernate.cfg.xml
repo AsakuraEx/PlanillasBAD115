@@ -4,8 +4,8 @@
    <session-factory>
      <property name="connection.driver_class">oracle.jdbc.OracleDriver</property>
     <property name="connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
-     <property name="connection.username">francisco</property>
-     <property name="connection.password">francisco</property>
+     <property name="connection.username">usuario</property>
+     <property name="connection.password">usuario</property>
     <property name="dialect">org.hibernate.dialect.OracleDialect</property>
     <property name="hibernate.show_sql">true</property>
 

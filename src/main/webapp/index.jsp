@@ -13,35 +13,17 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>BIENVENIDO A TU SISTEMA DE PLANILLAS SIP</h1>
-        
-        <%
-            
-            //DEMOSTRACION: ELIMINAR LAS PLECAS (//) EN LA INSTRUCCION QUE SE DESEA PROBAR
-            
-            //INSTRUCCION QUE INGRESA UN VALOR EN LA BASE DE DATOS
-            String sexo = new SexoController().createSexo("Femenino");
-            
-            //INSTRUCCION QUE ELIMINA UN VALOR EN LA BASE DE DATOS
-            //String sexo = new SexoController().deleteSexo(1);
-            
-            //INSTRUCCION QUE ACTUALIZA UN VALOR EN LA BASE DE DATOS
-            //String sexo = new SexoController().updateSexo(1, "Masculino");
-            
-            //INSTRUCCION QUE MUESTRA UN VALOR DE LA BASE DE DATOS (OCUPAR UN FOR O WHILE PARA MOSTRAR LA LISTA)
-            String sexo1 = new SexoController().getSexo(1);
-            String sexo2 = new SexoController().getSexo(2);
-        %>
-        <strong><%=sexo%><strong>
-        <br>
-        <br>
-        <h3>Registros de la tabla sexo</h3>
-        <%=sexo1%>
-        <br>
-        <br>
-        <%=sexo2%>
-        <br>
-        <br>
-        
+        <header>
+            <h1>Sistema de Planillas (SIP)</h1>
+            <h2>Menu:</h2>
+            <nav>
+                <ul>
+                    <li><a href="index.jsp">Inicio</a></li>
+                    <li><a href="empresa/empresa_index.jsp">Empresas</a></li>
+                </ul>
+            </nav>
+            <hr>
+        </header>
+       
     </body>
 </html>

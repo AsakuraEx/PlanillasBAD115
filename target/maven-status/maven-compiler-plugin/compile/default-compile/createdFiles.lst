@@ -4,3 +4,5 @@ Models\Sexo.class
 Controllers\EmpleadoController.class
 Models\Empleado.class
 com\group01\planillasg1\resources\JavaEE8Resource.class
+Controllers\EmpresaController.class
+Models\Empresa.class
