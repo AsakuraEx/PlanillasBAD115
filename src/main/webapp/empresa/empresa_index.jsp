@@ -67,6 +67,7 @@
                     </form>
                     <form action="empresa_delete.jsp" method="POST">
                         <input type="hidden" name="id" value="<%= empresa.getId_empresa() %>">
+                        <input type="hidden" name="habilitado" value="0">
                         <input type="submit" value="Eliminar">
                     </form>
                 </td>

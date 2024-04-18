@@ -57,7 +57,7 @@ public class EmpresaController {
         
         try{
             session.beginTransaction();
-            Query<Empresa> query = session.createQuery("FROM Empresa", Empresa.class);
+            Query<Empresa> query = session.createQuery("FROM Empresa WHERE habilitado='1'", Empresa.class);
             empresas = query.getResultList();
             session.getTransaction().commit();
         }
@@ -68,31 +68,6 @@ public class EmpresaController {
 
         }
         return empresas;
-    }
-    
-    public void delete(int id){
-        //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
-        SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Empresa.class).buildSessionFactory();
-        //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
-        Session session = sessionFactory.openSession();
-        
-        //Intenta lo siguiente...
-        try{
-            //Inicia una transaccion el objeto session
-            session.beginTransaction();
-            //Elimina el registro con el parametro id
-            Empresa empresa = session.get(Empresa.class, id);
-            session.delete(empresa);
-            //Obtiene la transaccion en memoria y guarda los valores en la base de datos
-            session.getTransaction().commit();
-            //Se cierra la conexion a la base de datos
-            sessionFactory.close();
-            
-        } catch(Exception e){
-            //En caso de error imprime la pila de errores
-            e.printStackTrace();
-        }
-       
     }
     
     public Empresa search(int id){
@@ -140,6 +115,56 @@ public class EmpresaController {
         }    
     
     }
+    
+        public void delete(Empresa empresa){
+    
+        //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
+        SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Empresa.class).buildSessionFactory();
+        //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
+        Session session = sessionFactory.openSession();
+        
+        try{
+            
+            session.beginTransaction();
+            session.update(empresa);
+            session.getTransaction().commit();
+            sessionFactory.close();
+           
+        }catch(Exception e){
+            e.printStackTrace();
+        }    
+    
+    }
+    
+    
+    /*  
+    
+    BORRADO TOTAL DE LA BASE DE DATOS
+    
+    public void delete(int id){
+        //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
+        SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Empresa.class).buildSessionFactory();
+        //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
+        Session session = sessionFactory.openSession();
+        
+        //Intenta lo siguiente...
+        try{
+            //Inicia una transaccion el objeto session
+            session.beginTransaction();
+            //Elimina el registro con el parametro id
+            Empresa empresa = session.get(Empresa.class, id);
+            session.delete(empresa);
+            //Obtiene la transaccion en memoria y guarda los valores en la base de datos
+            session.getTransaction().commit();
+            //Se cierra la conexion a la base de datos
+            sessionFactory.close();
+            
+        } catch(Exception e){
+            //En caso de error imprime la pila de errores
+            e.printStackTrace();
+        }
+       
+    } */
     
 }
         

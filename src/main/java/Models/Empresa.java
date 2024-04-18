@@ -45,6 +45,9 @@ public class Empresa {
     
     @Column(name="paginaweb")
     private String paginaweb;
+
+    @Column(name="habilitado")    
+    private String habilitado;
     
         public int getId_empresa() {
         return id_empresa;
@@ -110,10 +113,20 @@ public class Empresa {
         this.paginaweb = paginaweb;
     }
 
+    public String getHabilitado() {
+        return habilitado;
+    }
+
+    public void setHabilitado(String habilitado) {
+        this.habilitado = habilitado;
+    }
+    
+
     public Empresa() {
     }
 
-    public Empresa(int id,String nombreempresa, String correoempresa, String direccion, String nic, String nit, String telefono, String paginaweb) {
+    public Empresa(int id_empresa, String nombreempresa, String correoempresa, String direccion, String nic, String nit, String telefono, String paginaweb, String habilitado) {
+        this.id_empresa = id_empresa;
         this.nombreempresa = nombreempresa;
         this.correoempresa = correoempresa;
         this.direccion = direccion;
@@ -121,7 +134,11 @@ public class Empresa {
         this.nit = nit;
         this.telefono = telefono;
         this.paginaweb = paginaweb;
+        this.habilitado = habilitado;
     }
+
+
+    
 
     @Override
     public String toString() {

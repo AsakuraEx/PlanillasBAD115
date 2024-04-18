@@ -42,7 +42,7 @@
             <input type="text" name="nic">
             
             <label>NIT:</label>
-            <input type="text" name="nit" pattern="\d{4}-\d{6}-\d{3}-\d{1}">
+            <input type="text" name="nit" pattern="\d{4}-\d{6}-\d{3}-\d{1}" placeholder="####-######-###-#">
             
             <label>Telefono:</label>
             <input type="text" name="telefono" pattern="\d{4}-\d{4}" placeholder="####-####">

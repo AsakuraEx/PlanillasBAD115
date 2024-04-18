@@ -53,7 +53,7 @@
             <input type="text" name="nic" value="<%= empresa.getNic() %>">
             
             <label>NIT:</label>
-            <input type="text" name="nit" pattern="\d{4}-\d{6}-\d{3}-\d{1}" value="<%= empresa.getNit() %>">
+            <input type="text" name="nit" pattern="\d{4}-\d{6}-\d{3}-\d{1}" value="<%= empresa.getNit() %>" placeholder="####-######-###-#">
             
             <label>Telefono:</label>
             <input type="text" name="telefono" pattern="\d{4}-\d{4}" placeholder="####-####" value="<%= empresa.getTelefono() %>">

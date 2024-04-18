@@ -36,7 +36,7 @@
             empresa.setNit(nit);
             empresa.setTelefono(telefono);
             empresa.setPaginaweb(paginaweb);
-
+            empresa.setHabilitado("1");
             
             EmpresaController controller = new EmpresaController();
             controller.update(empresa);
