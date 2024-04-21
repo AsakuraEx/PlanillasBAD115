@@ -15,10 +15,11 @@
            String nit = request.getParameter("nit");
            String telefono = request.getParameter("telefono");
            String paginaweb = request.getParameter("paginaweb");
+           String habilitado = "1";
 
            //Crear instancia del controlador y llamar al metodo create para guardar la informacion
            EmpresaController controller = new EmpresaController();
-           boolean insercion = controller.create(nombre, correo, direccion, telefono, nic, nit, paginaweb);
+           boolean insercion = controller.create(nombre, correo, direccion, telefono, nic, nit, paginaweb, habilitado);
         %>
 <!DOCTYPE html>
 <html>

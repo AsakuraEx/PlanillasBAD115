@@ -15,7 +15,7 @@ import org.hibernate.cfg.Configuration;
  */
 public class EmpresaController {
     
-    public boolean create(String nombre, String correo, String direccion, String telefono, String nic, String nit, String paginaweb){
+    public boolean create(String nombre, String correo, String direccion, String telefono, String nic, String nit, String paginaweb, String habilitado){
        
         //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
         SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Empresa.class).buildSessionFactory();
@@ -31,6 +31,7 @@ public class EmpresaController {
             empresa.setNic(nic);
             empresa.setNit(nit);
             empresa.setPaginaweb(paginaweb);
+            empresa.setHabilitado(habilitado);
             
             System.out.print(empresa.toString());
             
