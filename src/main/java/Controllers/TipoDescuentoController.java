@@ -49,7 +49,7 @@ public class TipoDescuentoController {
 
         try {
             session.beginTransaction();
-            Query<TipoDescuento> query = session.createQuery("FROM TipoDescuento WHERE habilitado='1'", TipoDescuento.class);
+            Query<TipoDescuento> query = session.createQuery("FROM TipoDescuento", TipoDescuento.class);
             tiposdescuentos = query.getResultList();
             session.getTransaction().commit();
         } catch (Exception e) {
