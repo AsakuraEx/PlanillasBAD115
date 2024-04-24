@@ -1,7 +1,7 @@
 <%-- 
-    Document   : empresa_index
-    Created on : 18 abr 2024, 10:01:31 a.m.
-    Author     : frane
+    Document   : create_tipoingreso
+    Created on : 23 abr 2024, 8:27:48 a.m.
+    Author     : Juanjo
 --%>
 
 <%@page import="java.util.List"%>

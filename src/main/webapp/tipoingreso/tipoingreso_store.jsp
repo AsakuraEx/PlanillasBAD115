@@ -1,6 +1,6 @@
 <%-- 
-    Document   : tipoingreso_store
-    Created on : 21 abr 2024, 9:54:35 p. m.
+    Document   : create_tipoingreso
+    Created on : 23 abr 2024, 8:27:48 a.m.
     Author     : Juanjo
 --%>
 

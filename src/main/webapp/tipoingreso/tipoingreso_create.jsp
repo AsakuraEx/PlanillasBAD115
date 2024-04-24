@@ -1,7 +1,7 @@
 <%-- 
     Document   : create_tipoingreso
-    Created on : 18 abr 2024, 7:27:48 a.m.
-    Author     : frane
+    Created on : 23 abr 2024, 8:27:48 a.m.
+    Author     : Juanjo
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

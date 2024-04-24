@@ -63,5 +63,68 @@ public class TipoIngresoController {
         }
         return tipoingreso;
     }
+      public void update(TipoIngreso tipoingreso){
+    
+        //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
+        SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(TipoIngreso.class).buildSessionFactory();
+        //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
+        Session session = sessionFactory.openSession();
+        
+        try{
+            
+            session.beginTransaction();
+            session.update(tipoingreso);
+            session.getTransaction().commit();
+            sessionFactory.close();
+           
+        }catch(Exception e){
+            e.printStackTrace();
+        }    
+    
+    }
 
+    public TipoIngreso search(int id){
+    
+        //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
+        SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(TipoIngreso.class).buildSessionFactory();
+        //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
+        Session session = sessionFactory.openSession();
+        TipoIngreso tipoingreso = null;
+        //Intenta lo siguiente...
+        try{
+            //Inicia una transaccion el objeto session
+            session.beginTransaction();
+            //Elimina el registro con el parametro id
+            tipoingreso = session.get(TipoIngreso.class, id);
+            //Obtiene la transaccion en memoria y guarda los valores en la base de datos
+            session.getTransaction().commit();
+            //Se cierra la conexion a la base de datos
+            sessionFactory.close();
+            
+        } catch(Exception e){
+            //En caso de error imprime la pila de errores
+            e.printStackTrace();
+        }
+        
+        return tipoingreso;
+    }
+        public void delete(TipoIngreso tipoingreso){
+    
+        //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
+        SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(TipoIngreso.class).buildSessionFactory();
+        //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
+        Session session = sessionFactory.openSession();
+        
+        try{
+            
+            session.beginTransaction();
+            session.delete(tipoingreso);
+            session.getTransaction().commit();
+            sessionFactory.close();
+           
+        }catch(Exception e){
+            e.printStackTrace();
+        }    
+    
+    }
 }
