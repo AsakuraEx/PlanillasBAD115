@@ -6,7 +6,9 @@ Models\Empleado.class
 com\group01\planillasg1\resources\JavaEE8Resource.class
 Controllers\EmpresaController.class
 com\group01\planillasg1\JAXRSConfiguration.class
+Controllers\TipoDescuentoController.class
 Models\Unidadorganizativa.class
+Models\TipoDescuento.class
 Controllers\TipoIngresoController.class
 Models\TipoIngreso.class
 Models\Empresa.class

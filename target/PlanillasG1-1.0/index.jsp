@@ -26,6 +26,7 @@
                     <li><a href="unidadorganizativa/unidadorganizativa_index.jsp">Unidades Organizativas</a></li>
 
                     <li><a href="tipoingreso/tipoingreso_index.jsp">Tipoingreso</a></li>
+                    <li><a href="tipodescuento/tipodescuento_index.jsp">Tipos de descuentos</a></li>
 
                 </ul>
             </nav>
