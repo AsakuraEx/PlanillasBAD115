@@ -53,7 +53,7 @@
                         List<Empresa> empresas = controllerEmpresa.mostrarEmpresas();
                         
                         for(Empresa empresa : empresas){
-                            if(empresa.getHabilitado() != "1"){
+                            if(Integer.parseInt(empresa.getHabilitado()) == 1){
                     %>
                     <% String selected = (empresa.getId_empresa() == unidad.getId_empresa())? "selected" : " ";  %>
                     <option value="<%= empresa.getId_empresa() %>" <%=selected %>><%= empresa.getNombreempresa() %></option>
