@@ -23,6 +23,7 @@
                 <ul>
                     <li><a href="index.jsp">Inicio</a></li>
                     <li><a href="empresa_index.jsp">Empresas</a></li>
+                    <li><a href="../unidadorganizativa/unidadorganizativa_index.jsp">Unidades Organizativas</a></li>
                 </ul>
             </nav>
             <hr>
