@@ -43,22 +43,22 @@
             <%
     
                 TipoIngresoController controller = new TipoIngresoController();
-                List<TipoIngreso> tiposingreso = controller.mostrarTipoIngreso();
+                List<TipoIngreso> ingresos = controller.mostrarTipoIngreso();
 
-                for(TipoIngreso tipoIngreso : tiposingreso){
+                for(TipoIngreso ingreso : ingresos){
             %>
         <tr>
 
-            <td><%= tipoIngreso.getId_tipoingreso() %></td>
-            <td><%= tipoIngreso.getNombretipoingreso() %></td>
-            <td><%= tipoIngreso.getHabilitado() %></td>
+            <td><%=ingreso.getId_tipoingreso() %></td>
+            <td><%=ingreso.getNombretipoingreso() %></td>
+            <td><%=ingreso.getHabilitado() %></td>
             <td>
                 <form action="tipoingreso_edit.jsp" method="POST">
-                    <input type="hidden" name="id" value="<%= tipoIngreso.getId_tipoingreso() %>">
+                    <input type="hidden" name="id" value="<%=ingreso.getId_tipoingreso() %>">
                     <input type="submit" value="Editar">
                 </form>
                 <form action="tipoingreso_delete.jsp" method="POST">
-                    <input type="hidden" name="id" value="<%= tipoIngreso.getId_tipoingreso() %>">
+                    <input type="hidden" name="id" value="<%=ingreso.getId_tipoingreso() %>">
                     <input type="hidden" name="habilitado" value="0">
                     <input type="submit" value="Eliminar">
                 </form>

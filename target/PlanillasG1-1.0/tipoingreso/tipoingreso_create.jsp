@@ -27,14 +27,14 @@
     
     <h3>Formulario de Creación de Tipo de Ingreso</h3>
     <br>
-    <form action="tipoIngresoStore.jsp" method="post">
+    <form action="tipoingreso_store.jsp" method="post">
         <label>Nombre del Tipo de Ingreso:</label>
         <input type="text" name="nombretipoingreso" required>
         
         <label>Habilitado:</label>
         <select name="habilitado">
-            <option value="Sí">Sí</option>
-            <option value="No">No</option>
+            <option value="1">Sí</option>
+            <option value="0">No</option>
         </select>
         
         <button type="submit">Guardar</button>

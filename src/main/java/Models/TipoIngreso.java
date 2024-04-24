@@ -16,17 +16,15 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TipoIngreso")
-public class TipoIngreso {
-        public TipoIngreso (){
+public class TipoIngreso {   
     
-    }    
     @Id
-    @Column(name = "id_tipoingreso", nullable = false)
+    @Column(name="id_tipoingreso", nullable = false)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "autoincremental_gen")
-    @SequenceGenerator(name = "autoincremental_gen", sequenceName = "autoincremental", allocationSize = 1)
+    @SequenceGenerator(name="autoincremental_gen", sequenceName= "autoincremental", allocationSize = 1)
     private int id_tipoingreso;
     
-    @Column(name = "nombretipoingreso")
+    @Column(name="nombretipoingreso")
     private String nombretipoingreso;
     
     @Column(name="habilitado")    
@@ -56,9 +54,8 @@ public class TipoIngreso {
         this.habilitado = habilitado;
     }
 
-    @Override
-    public String toString() {
-        return "TipoIngreso{" + "id_tipoingreso=" + id_tipoingreso + ", nombretipoingreso=" + nombretipoingreso + ", habilitado=" + habilitado + '}';
+    public TipoIngreso() {
+        
     }
 
     public TipoIngreso(int id_tipoingreso, String nombretipoingreso, String habilitado) {
@@ -67,4 +64,11 @@ public class TipoIngreso {
         this.habilitado = habilitado;
     }
 
+    @Override
+    public String toString() {
+        return "TipoIngreso{" + "id_tipoingreso=" + id_tipoingreso + ", nombretipoingreso=" + nombretipoingreso + ", habilitado=" + habilitado + '}';
+    }
+
+   
+    
 }

@@ -12,13 +12,10 @@
     String habilitado = request.getParameter("habilitado");
 
     // Crear instancia del controlador y llamar al método para guardar la información
-   p TipoIngresoController controller = new TipoIngresoController(nombreTipoIngreso, habilitado);
+    TipoIngresoController controller = new TipoIngresoController();
     //controller.tipoIngresoStore(new TipoIngreso(nombreTipoIngreso, habilitado));
-    boolean insercion = tipoIngresoStore();
+    boolean insercion = controller.create(nombreTipoIngreso, habilitado);
     
-
-    // Redirigir a la página de listado de tipos de ingreso
-    response.sendRedirect("tipoIngresoList.jsp");
 %>
 
 <!DOCTYPE html>
@@ -28,6 +25,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <% 
+        
+            response.sendRedirect("tipoingreso_index.jsp");
+
+        %>
     </body> 
 </html>
