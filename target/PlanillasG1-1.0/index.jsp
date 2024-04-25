@@ -27,6 +27,7 @@
 
                     <li><a href="tipoingreso/tipoingreso_index.jsp">Tipoingreso</a></li>
                     <li><a href="tipodescuento/tipodescuento_index.jsp">Tipos de descuentos</a></li>
+                    <li><a href="profesion/profesion_index.jsp">Profesiones</a></li>
 
                 </ul>
             </nav>
