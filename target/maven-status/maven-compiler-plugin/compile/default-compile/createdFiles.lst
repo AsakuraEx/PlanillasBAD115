@@ -1,3 +1,4 @@
+Controllers\ProfesionController.class
 Controllers\SexoController.class
 Models\Sexo.class
 Controllers\EmpleadoController.class
@@ -7,6 +8,7 @@ com\group01\planillasg1\resources\JavaEE8Resource.class
 Controllers\EmpresaController.class
 Controllers\PuestoController.class
 com\group01\planillasg1\JAXRSConfiguration.class
+Models\Profesion.class
 Controllers\TipoDescuentoController.class
 Models\Unidadorganizativa.class
 Models\TipoDescuento.class
