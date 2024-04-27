@@ -27,6 +27,7 @@
 
                     <li><a href="tipoingreso/tipoingreso_index.jsp">Tipoingreso</a></li>
                     <li><a href="tipodescuento/tipodescuento_index.jsp">Tipos de descuentos</a></li>
+                    <li><a href="depunidadorganizativa/depuni_index.jsp">Departamentos de unidades organizativas</a></li>
 
                     <li><a href="puesto/puesto_index.jsp">Puestos</a></li>
 
