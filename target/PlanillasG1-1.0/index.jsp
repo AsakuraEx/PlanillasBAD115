@@ -22,17 +22,13 @@
                 <ul>
                     <li><a href="index.jsp">Inicio</a></li>
                     <li><a href="empresa/empresa_index.jsp">Empresas</a></li>
-
                     <li><a href="unidadorganizativa/unidadorganizativa_index.jsp">Unidades Organizativas</a></li>
-
                     <li><a href="tipoingreso/tipoingreso_index.jsp">Tipoingreso</a></li>
                     <li><a href="tipodescuento/tipodescuento_index.jsp">Tipos de descuentos</a></li>
                     <li><a href="depunidadorganizativa/depuni_index.jsp">Departamentos de unidades organizativas</a></li>
-
                     <li><a href="puesto/puesto_index.jsp">Puestos</a></li>
-
                     <li><a href="profesion/profesion_index.jsp">Profesiones</a></li>
-
+                    <li><a href="empleado/empleado_index.jsp">Empleados</a></li>
 
                 </ul>
             </nav>
