@@ -18,14 +18,14 @@ import org.hibernate.query.Query;
  */
 public class EmpleadoController {
     
-    public void create(String primernombre, String segundonombre, String primerapellido, String segundoapellido, String apellidocasada, LocalDate fechanacimiento, double salario, String correopersonal, String correoinstitucional, int id_sexo, int id_estadocivil, int id_profesion, int id_puesto, int id_municipio, String habilitado, String nup, String nit, String numeroisss){
+    public Empleado create(String primernombre, String segundonombre, String primerapellido, String segundoapellido, String apellidocasada, LocalDate fechanacimiento, double salario, String correopersonal, String correoinstitucional, int id_sexo, int id_estadocivil, int id_profesion, int id_puesto, int id_municipio, String habilitado, String nup, String nit, String numeroisss){
        
         //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
         SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Empleado.class).buildSessionFactory();
         //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
         Session session = sessionFactory.openSession();
         
-        try{
+     
             Empleado empleado = new Empleado();
             empleado.setPrimernombre(primernombre);
             empleado.setSegundonombre(segundonombre);
@@ -59,10 +59,8 @@ public class EmpleadoController {
             session.getTransaction().commit();
             sessionFactory.close();
            
+            return empleado;
 
-        }catch(Exception e){
-            e.printStackTrace();
-        }
         
     }
     

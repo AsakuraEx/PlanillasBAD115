@@ -4,6 +4,8 @@
     Author     : frane
 --%>
 
+<%@page import="Controllers.DocumentoController"%>
+<%@page import="Models.Empleado"%>
 <%@page import="Controllers.EmpleadoController"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="Controllers.UnidadorgController"%>
@@ -36,13 +38,16 @@
             String nit = request.getParameter("nit");
             String nup = request.getParameter("nup");
             String numeroisss = request.getParameter("numeroisss");
-            
+            int id_tipodoc = Integer.parseInt(request.getParameter("id_tipodocumento"));
+            String ndocumento = request.getParameter("ndocumento"); 
             //Crear el registro en la base de datos
             EmpleadoController controller = new EmpleadoController();
-            controller.create(primernombre, segundonombre, primerapellido, segundoapellido, apellidocasada, fechanacimiento, salario, correopersonal,
+            Empleado empleado = new Empleado();
+            empleado = controller.create(primernombre, segundonombre, primerapellido, segundoapellido, apellidocasada, fechanacimiento, salario, correopersonal,
             correoinstitucional, id_sexo, id_estadocivil, id_profesion, id_puesto, id_municipio, habilitado, nup, nit, numeroisss);
             
-            
+            DocumentoController controllerDoc = new DocumentoController();
+            controllerDoc.create(empleado,id_tipodoc, ndocumento, habilitado);
             
             response.sendRedirect("empleado_index.jsp");
         %>

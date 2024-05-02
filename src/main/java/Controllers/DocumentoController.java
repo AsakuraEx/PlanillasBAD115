@@ -2,6 +2,7 @@
 package Controllers;
 
 import Models.Documento;
+import Models.Empleado;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,7 +11,7 @@ import org.hibernate.query.Query;
 
 public class DocumentoController {
     
-    public void create(int empleado, int tipodocumento, String ndocumento, String habilitado){
+    public void create(Empleado empleado, int tipodocumento, String ndocumento, String habilitado){
         //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
         SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Documento.class).buildSessionFactory();
         //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
@@ -18,7 +19,7 @@ public class DocumentoController {
                                       
         try{
             Documento documento = new Documento();
-            documento.setId_empleado(empleado);
+            documento.setId_empleado(empleado.getId_empleado());
             documento.setId_tipodocumento(tipodocumento);
             documento.setNumerodocumento(ndocumento);
             documento.setHabilitado(habilitado);

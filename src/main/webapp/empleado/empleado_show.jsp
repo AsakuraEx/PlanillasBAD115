@@ -169,6 +169,14 @@
                     <td>Municipio</td>
                     <td><%=municipio.getNombremunicipio() %></td>
                 </tr>
+                <tr>
+                    <td>Tipo de documento</td>
+                    <td><%=municipio.getNombremunicipio() %></td>
+                </tr>
+                <tr>
+                    <td>N° de documento<td>
+                    <td><%=municipio.getNombremunicipio() %></td>
+                </tr>
             </tbody>
         </table>
                 
