@@ -1,4 +1,5 @@
 Controllers\ProfesionController.class
+Controllers\PresupuestoController.class
 Controllers\EmpleadoController.class
 Controllers\EmpresaController.class
 Models\DepUnidadOrgani.class

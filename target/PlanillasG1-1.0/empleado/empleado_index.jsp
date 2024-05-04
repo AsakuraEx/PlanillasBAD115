@@ -43,9 +43,7 @@
             <%
                 EmpleadoController controllerEmpleado = new EmpleadoController();
                 List<Empleado> empleados = controllerEmpleado.mostrarEmpleados();   
-                
-                DocumentoController controllerdoc = new DocumentoController();
-                Lis<>
+
             %>
             <tbody>
                 <%
@@ -106,7 +104,6 @@
                             <input type="submit" value="Borrar">
                         </form>  
                             
-                            foreach id_empleado=id_documento 
                             
                         <form action="empleado_show.jsp" method="POST">
                             <input type="hidden" name="id" value="<%= empleado.getId_empleado() %>">

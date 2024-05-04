@@ -26,11 +26,12 @@
                     <li><a href="tipoingreso/tipoingreso_index.jsp">Tipoingreso</a></li>
                     <li><a href="tipodescuento/tipodescuento_index.jsp">Tipos de descuentos</a></li>
                     <li><a href="depunidadorganizativa/depuni_index.jsp">Departamentos de unidades organizativas</a></li>
+                    <li><a href="presupuesto/presupuesto_index.jsp">Presupuestos por departamentos</a></li>
                     <li><a href="puesto/puesto_index.jsp">Puestos</a></li>
                     <li><a href="profesion/profesion_index.jsp">Profesiones</a></li>
                     <li><a href="empleado/empleado_index.jsp">Empleados</a></li>
                     <li><a href="documento/documento_index.jsp">Documentos</a></li>
-
+                    
                 </ul>
             </nav>
             <hr>
