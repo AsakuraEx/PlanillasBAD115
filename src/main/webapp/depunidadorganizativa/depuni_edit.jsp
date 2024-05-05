@@ -37,7 +37,7 @@
         </header>
         
         <main>
-            <h3>Crear departamento para unidad organizativa</h3>
+            <h3>Editar departamento para unidad organizativa</h3>
             <br>
             <form action="depuni_update.jsp" method="post">
                 <label>Nombre:</label>

@@ -15,7 +15,9 @@ Controllers\TipoIngresoController.class
 Models\Puesto.class
 Models\TipoDocumento.class
 Models\Documento.class
+Controllers\SeccionesUnidadOrganiController.class
 Controllers\SexoController.class
+Models\SeccionesUnidadOrgani.class
 Models\Sexo.class
 Controllers\UnidadorgController.class
 Models\Empleado.class

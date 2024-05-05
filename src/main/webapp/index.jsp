@@ -32,6 +32,7 @@
                     <li><a href="empleado/empleado_index.jsp">Empleados</a></li>
                     <li><a href="documento/documento_index.jsp">Documentos</a></li>
                     <li><a href="areaunidadorganizativa/areauni_index.jsp">Areas de Departamento</a></li>
+                    <li><a href="seccionesunidadorganizativa/secuni_index.jsp">Secciones de Areas</a></li>
                 </ul>
             </nav>
             <hr>
