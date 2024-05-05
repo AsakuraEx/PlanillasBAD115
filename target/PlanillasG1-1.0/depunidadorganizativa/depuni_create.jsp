@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Unidades Organizativas</title>
+        <title>Departamentos de Unidades Organizativas</title>
     </head>
     <body>
         <header>
@@ -21,21 +21,20 @@
             <nav>
                 <ul>
                     <li><a href="index.jsp">Inicio</a></li>
-                    <li><a href="../empresa/empresa_index.jsp">Empresas</a></li>
-                    <li><a href="unidadorganizativa_index.jsp">Unidades Organizativas</a></li>
+                    <li><a href="depuni_index.jsp">Departamentos de Unidades Organizativas</a></li>
                 </ul>
             </nav>
             <hr>
         </header>
         
         <main>
-            <h3>Crear dep de la unidad organizativa</h3>
+            <h3>Creacion de departamento</h3>
             <br>
             <form action="depuni_store.jsp" method="post">
                 <label>Nombre:</label>
                 <input type="text" name="nombredeporg" required>
 
-                <label>Empresa:</label>
+                <label>Unidad:</label>
                 <select name="id_unidadorg" required>
                     <option value="">Selecciona una unidad organizativa...</option>
                     <% 

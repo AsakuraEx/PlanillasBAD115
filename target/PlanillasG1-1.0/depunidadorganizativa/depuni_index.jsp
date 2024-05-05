@@ -28,9 +28,9 @@
             </nav>
             <hr>
         </header>        
-        <h1>Unidades Organizativas</h1>
+        <h1>Departamentos de Unidades Organizativas</h1>
         <br>
-        <a href="depuni_create.jsp"><button>Crear nueva unidad organizativa</button></a>
+        <a href="depuni_create.jsp"><button>Crear nuevo departamento</button></a>
         <br><br>
         <table border="1">
             <thead>
@@ -70,7 +70,7 @@
                     <td><%=mensaje %></td>
                     <td>
                         <form action="depuni_edit.jsp" method="POST">
-                            <input type="hidden" name="id" value="<%= unidad.getId_unidadorg() %>">
+                            <input type="hidden" name="id" value="<%= unidad.getId_deporg() %>">
                             <input type="submit" value="Editar">
                         </form>                    
                     </td>

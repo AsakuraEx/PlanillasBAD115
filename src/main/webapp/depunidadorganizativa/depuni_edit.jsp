@@ -21,7 +21,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Unidades Organizativas</title>
+        <title>Departamentos de Unidades Organizativas</title>
     </head>
     <body>
         <header>
@@ -30,15 +30,14 @@
             <nav>
                 <ul>
                     <li><a href="index.jsp">Inicio</a></li>
-                    <li><a href="../empresa/empresa_index.jsp">Empresas</a></li>
-                    <li><a href="../depunidadorganizativa/depuni_index.jsp">Unidades Organizativas</a></li>
+                    <li><a href="../depunidadorganizativa/depuni_index.jsp"> Departamentos de Unidades Organizativas</a></li>
                 </ul>
             </nav>
             <hr>
         </header>
         
         <main>
-            <h3>Crear unidad organizativa</h3>
+            <h3>Crear departamento para unidad organizativa</h3>
             <br>
             <form action="depuni_update.jsp" method="post">
                 <label>Nombre:</label>
