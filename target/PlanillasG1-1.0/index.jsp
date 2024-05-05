@@ -33,6 +33,7 @@
                     <li><a href="documento/documento_index.jsp">Documentos</a></li>
                     <li><a href="areaunidadorganizativa/areauni_index.jsp">Areas de Departamento</a></li>
                     <li><a href="seccionesunidadorganizativa/secuni_index.jsp">Secciones de Areas</a></li>
+                     <li><a href="SubSeccion/SubSecc_index.jsp">Subsecciones</a></li>
                 </ul>
             </nav>
             <hr>

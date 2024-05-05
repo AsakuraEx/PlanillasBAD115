@@ -70,45 +70,7 @@ public class DepUnidadOrganiController {
         }
         return unidades;
     }
-    /*public List<DepUnidadOrgani> mostrarUnidades(){
-                    //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
-            SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(DepUnidadOrgani.class).buildSessionFactory();
-            //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
-            Session session = sessionFactory.openSession();
-            List<DepUnidadOrgani> unidades = null;
 
-            try{
-                session.beginTransaction();
-                Query<DepUnidadOrgani> query = session.createQuery("FROM DepUnidadOrgani WHERE habilitado='1'", DepUnidadOrgani.class);
-                unidades = query.getResultList();
-                session.getTransaction().commit();
-                
-            }catch(Exception e){
-                e.printStackTrace();
-
-            }finally{
-                sessionFactory.close();            
-            }
-            return unidades;
-    }*/
-     /*public List<DepUnidadOrgani> mostrarUnidades() {
-    SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(DepUnidadOrgani.class).buildSessionFactory();
-    Session session = sessionFactory.openSession();
-    List<DepUnidadOrgani> unidades = new ArrayList<>(); // Inicializa como lista vacía
-
-    try {
-        session.beginTransaction();
-        Query<DepUnidadOrgani> query = session.createQuery("FROM DepUnidadOrgani", DepUnidadOrgani.class);
-        unidades = query.getResultList();
-        session.getTransaction().commit();
-    } catch (Exception e) {
-        e.printStackTrace();
-    } finally {
-        sessionFactory.close();
-    }
-    return unidades;
-}*/
-    
     public DepUnidadOrgani search(int id){
     
         //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml

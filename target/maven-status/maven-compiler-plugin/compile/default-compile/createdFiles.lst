@@ -6,6 +6,7 @@ Controllers\EmpleadoController.class
 Controllers\EmpresaController.class
 Models\DepUnidadOrgani.class
 com\group01\planillasg1\JAXRSConfiguration.class
+Controllers\SubSeccionesUnidadOrganiController.class
 Models\Mes.class
 Models\Profesion.class
 Controllers\DocumentoController.class
@@ -30,6 +31,7 @@ Controllers\DepartamentoController.class
 Controllers\EstadoCivilController.class
 Controllers\MesController.class
 Controllers\TipoDescuentoController.class
+Models\SubSeccionesUnidadOrgani.class
 Controllers\MunicipioController.class
 Models\Unidadorganizativa.class
 Models\TipoDescuento.class

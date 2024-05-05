@@ -4,10 +4,12 @@ C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Models\EstadoCivi
 C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Controllers\PuestoController.java
 C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Models\DepUnidadOrgani.java
 C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Models\Municipio.java
+C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Controllers\SubSeccionesUnidadOrganiController.java
 C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Models\Documento.java
 C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\com\group01\planillasg1\resources\JavaEE8Resource.java
 C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Models\Presupuesto.java
 C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Controllers\PresupuestoController.java
+C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Controllers\SeccionesUnidadOrganiController.java
 C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Controllers\ProfesionController.java
 C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Models\Puesto.java
 C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Controllers\DocumentoController.java
@@ -20,9 +22,11 @@ C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Controllers\AreaU
 C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Controllers\MesController.java
 C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Models\Unidadorganizativa.java
 C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Controllers\EmpleadoController.java
+C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Models\SubSeccionesUnidadOrgani.java
 C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Models\Departamento.java
 C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Controllers\DepartamentoController.java
 C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Controllers\EmpresaController.java
+C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Models\SeccionesUnidadOrgani.java
 C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Controllers\TipoIngresoController.java
 C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Models\TipoDocumento.java
 C:\Users\Juanjo\Documents\GitHub\PlanillasBAD115\src\main\java\Models\Mes.java
