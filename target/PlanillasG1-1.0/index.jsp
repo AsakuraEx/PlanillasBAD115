@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="./css/output.css">
 </head>
 <body>
-    <header class="bg-[#80BF96]">
+    <header class="bg-[#80BF96] shadow-md">
 
 
         <div class="relative top-0 left-0 z-10 container grid justify-center items-center text-center text-white
@@ -63,8 +63,6 @@
             </div>
             
         </div>
-
-
 
     </header>
 
