@@ -153,8 +153,7 @@ public class EmpleadoController {
         }catch(Exception e){
             e.printStackTrace();
              return null; // 
-        }    
-    
+        }       
     }
         
 }

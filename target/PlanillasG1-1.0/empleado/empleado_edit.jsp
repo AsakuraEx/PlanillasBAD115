@@ -248,32 +248,39 @@
                         
                     <div class="flex flex-col gap-2 px-4">
                         <label for="id_tipodocumento">Tipo de Documento:</label>
-                        <select class="border rounded-lg py-1 px-4 w-full" name="id_tipodocumento" required>
-                            <option value=""> </option>
-                            <%
-                            DocumentoController controllerDoc = new DocumentoController();
-                            List<Documento> documentos = controllerDoc.mostrarDocumentos(empleado.getId_empleado());
+                        <select class="border rounded-lg py-1 px-4 w-full" name="id_tipodocumento" required onchange="handleDocumentoFormat()">
+                        <option value="">Seleccione un tipo de documento</option>
+                        <% 
+                        DocumentoController controllerDoc = new DocumentoController();
+                        List<Documento> documentos = controllerDoc.mostrarDocumentos(empleado.getId_empleado());
 
-                            TipoDocumentoController controllerTipodoc = new TipoDocumentoController();
-                            List<TipoDocumento> tipoDocs = controllerTipodoc.mostrarTipoDocumento(); 
+                        TipoDocumentoController controllerTipodoc = new TipoDocumentoController();
+                        List<TipoDocumento> tipoDocs = controllerTipodoc.mostrarTipoDocumento(); // Obtener todos los tipos de documentos
 
-                            for (TipoDocumento tipoDoc : tipoDocs) {
+                        for (TipoDocumento tipoDoc : tipoDocs) {
+                            boolean encontrado = false; // Variable para rastrear si se ha encontrado el tipo de documento del empleado
+                            for (Documento documento : documentos) {
+                                if (tipoDoc.getId_tipodocumento() == documento.getId_tipodocumento()) {
+                                    encontrado = true; // Se ha encontrado el tipo de documento del empleado
+                                    %>
+                                    <option value="<%= documento.getId_tipodocumento() %>" selected>
+                                        <%= tipoDoc.getNombretipodocumento() %>
+                                    </option>
+                                    <% 
+                                    break; // Una vez que se ha seleccionado el tipo de documento del empleado, se sale del bucle interno
+                                }
+                            }
+                            // Si el tipo de documento no se ha encontrado, lo agregamos como una opción no seleccionada
+                            if (!encontrado) {
                                 %>
                                 <option value="<%= tipoDoc.getId_tipodocumento() %>">
+                                    <%= tipoDoc.getNombretipodocumento() %>
+                                </option>
                                 <% 
-                                for (Documento documento : documentos) {
-                                    if (tipoDoc.getId_tipodocumento() == documento.getId_tipodocumento()) {
-                                %>
-                                        <option value="<%= documento.getId_tipodocumento() %>" selected>
-                                            <%= tipoDoc.getNombretipodocumento() %>
-                                        </option>
-                                <% 
-                                        break; 
-                                    }
-                                } 
-                                %>
-                            <% } %>
-                        </select>
+                            }
+                        } 
+                        %>
+                    </select>
                     </div>
                     
            
@@ -304,7 +311,7 @@
                                 for (Documento documento : documentos1) {
                                     if (tipoDoc.getId_tipodocumento() == documento.getId_tipodocumento()) {
                             %>
-                                        <input type="text" class="border rounded-lg py-1 px-4 w-full" name="ndocumento" value="<%= documento.getNumerodocumento() %>" required>
+                                        <input type="text" class="border rounded-lg py-1 px-4 w-full" name="ndocumento" id="ndocumento" value="<%= documento.getNumerodocumento() %>" required>
                             <%
                                         break; // Una vez que se ha encontrado el documento, sal del bucle
                                     }
