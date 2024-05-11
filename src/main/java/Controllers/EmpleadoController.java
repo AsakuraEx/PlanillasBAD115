@@ -133,7 +133,7 @@ public class EmpleadoController {
     
     }    
 
-    public void update(Empleado empleado){
+    public Empleado update(Empleado empleado){
     
         //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
         SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Empleado.class).buildSessionFactory();
@@ -145,10 +145,14 @@ public class EmpleadoController {
             session.beginTransaction();
             session.update(empleado);
             session.getTransaction().commit();
+            // Cargar el objeto actualizado desde la base de datos
+            Empleado empleadoActualizado = session.get(Empleado.class, empleado.getId_empleado());
             sessionFactory.close();
+            return empleadoActualizado; // Devuelve el objeto actualizado
            
         }catch(Exception e){
             e.printStackTrace();
+             return null; // 
         }    
     
     }

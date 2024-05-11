@@ -36,8 +36,8 @@ public class DocumentoController {
         } 
     }
     
-    public List<Documento> mostrarDocumentos(){
-                    //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
+    public List<Documento> mostrarDocumentos(int idEmpleado){
+                    
             SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Documento.class).buildSessionFactory();
             //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
             Session session = sessionFactory.openSession();
@@ -45,7 +45,8 @@ public class DocumentoController {
 
             try{
                 session.beginTransaction();
-                Query<Documento> query = session.createQuery("FROM Documento", Documento.class);
+                Query<Documento> query = session.createQuery("FROM Documento WHERE id_empleado = :idEmpleado ORDER BY id_tipodocumento ASC", Documento.class);
+                query.setParameter("idEmpleado", idEmpleado);
                 documentos = query.getResultList();
                 session.getTransaction().commit();
                 
@@ -56,44 +57,51 @@ public class DocumentoController {
                 sessionFactory.close();            
             }
             return documentos;
-    }
+    } 
     
-    public Documento search(int id){
     
-        //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
+    public Documento search(int idEmpleado, int idTipoDocumento) {
+
+        // Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
         SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Documento.class).buildSessionFactory();
-        //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
+        // Se abre la sesion con la base de datos (en cualquier operacion CRUD)
         Session session = sessionFactory.openSession();
         Documento doc = null;
-        //Intenta lo siguiente...
-        try{
-            //Inicia una transaccion el objeto session
+        // Intenta lo siguiente...
+        try {
+            // Inicia una transaccion el objeto session
             session.beginTransaction();
-            //Elimina el registro con el parametro id
-            doc = session.get(Documento.class, id);
-            //Obtiene la transaccion en memoria y guarda los valores en la base de datos
+            // Crea una consulta HQL para obtener el documento de un empleado específico
+            Query query = session.createQuery("FROM Documento WHERE id_empleado = :idEmpleado AND id_tipodocumento = :idTipoDocumento");
+            query.setParameter("idEmpleado", idEmpleado);
+            query.setParameter("idTipoDocumento", idTipoDocumento);
+            // Ejecuta la consulta y obtiene el resultado (debería ser un solo documento)
+            doc = (Documento) query.uniqueResult();
+            // Obtiene la transaccion en memoria y guarda los valores en la base de datos
             session.getTransaction().commit();
-            //Se cierra la conexion a la base de datos
-            sessionFactory.close();
-            
-        } catch(Exception e){
-            //En caso de error imprime la pila de errores
+        } catch (Exception e) {
+            // En caso de error imprime la pila de errores
             e.printStackTrace();
+        } finally {
+            // Se cierra la conexion a la base de datos
+            session.close();
+            sessionFactory.close();
         }
-        
+
         return doc;
-    }    
+    }
     
-    public void update(Documento doc){
+    public void update(Empleado emp, Documento doc){
     
         //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
-        SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Documento.class).buildSessionFactory();
+        SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Empleado.class).addAnnotatedClass(Documento.class).buildSessionFactory();
         //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
         Session session = sessionFactory.openSession();
         
         try{
             
             session.beginTransaction();
+            session.update(emp); // Actualización de objeto Empleado
             session.update(doc);
             session.getTransaction().commit();
             sessionFactory.close();
@@ -101,6 +109,5 @@ public class DocumentoController {
         }catch(Exception e){
             e.printStackTrace();
         }    
-    
     } 
 }
