@@ -65,6 +65,7 @@
             empleado.setNit(nit);
             empleado.setNumeroisss(numeroisss);
             empleado.setNup(nup);
+            
             int id_tipodocumento = Integer.parseInt(request.getParameter("id_tipodocumento"));
             String ndocumento = request.getParameter("ndocumento");   
             

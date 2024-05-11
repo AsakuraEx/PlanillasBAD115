@@ -91,23 +91,40 @@ public class DocumentoController {
         return doc;
     }
     
-    public void update(Empleado emp, Documento doc){
-    
-        //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
+    public void update(Empleado emp, Documento doc) {
+        // Generar un objeto SessionFactory para cargar la configuración hibernate.cfg.xml
         SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Empleado.class).addAnnotatedClass(Documento.class).buildSessionFactory();
-        //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
+        // Abrir la sesión con la base de datos (en cualquier operación CRUD)
         Session session = sessionFactory.openSession();
-        
-        try{
-            
+
+        try {
             session.beginTransaction();
-            session.update(emp); // Actualización de objeto Empleado
-            session.update(doc);
+
+            // Verificar si el documento está asociado al empleado proporcionado
+            Query query = session.createQuery("FROM Documento d WHERE d.id_empleado = :id_empleado");
+            query.setParameter("id_empleado", emp.getId_empleado());
+            Documento documentoAsociado = (Documento) query.uniqueResult();
+
+            if (documentoAsociado != null) {
+                // Actualizar el documento
+                documentoAsociado.setId_tipodocumento(doc.getId_tipodocumento());
+                documentoAsociado.setNumerodocumento(doc.getNumerodocumento());
+                session.update(documentoAsociado);
+            } else {
+            }
+
+            // Actualizar el objeto Empleado
+            session.update(emp);
+
             session.getTransaction().commit();
-            sessionFactory.close();
-           
-        }catch(Exception e){
+        } catch (Exception e) {
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
             e.printStackTrace();
-        }    
+        } finally {
+            session.close();
+            sessionFactory.close();
+        }
     } 
 }
