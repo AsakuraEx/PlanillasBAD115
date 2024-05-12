@@ -50,7 +50,7 @@
             <input type="checkbox" id="descuentoLeyCheckbox" name="descuentoLey" value="1" <%=checked1 %> >
             <input type="hidden" name="descuentoLey" value="0" >
 
-            <label>Monto de descuento:</label>
+            <label id="descuentoLabel">Monto de descuento:</label>
             <input type="text" id="porcentajeInput" name="porcentaje" value="<%= tipodescuento.getPorcentaje() %>" >
             
             <% 
@@ -72,25 +72,28 @@
 </html>
 
 <script>
-    // Obtener el checkbox y el input
+    // Obtener el checkbox, el label y el input
     var descuentoLeyCheckbox = document.getElementById("descuentoLeyCheckbox");
+    var descuentoLabel = document.getElementById("descuentoLabel");
     var porcentajeInput = document.getElementById("porcentajeInput");
 
-    // Función para habilitar o deshabilitar el input según el estado del checkbox
-    function toggleInput() {
+    // Función para mostrar u ocultar el label y el input según el estado del checkbox
+    function toggleDescuento() {
         if (descuentoLeyCheckbox.checked) {
-            porcentajeInput.disabled = false;
+            descuentoLabel.style.display = "inline-block";
+            porcentajeInput.style.display = "inline-block";
         } else {
-            porcentajeInput.disabled = true;
-            
+            descuentoLabel.style.display = "none";
+            porcentajeInput.style.display = "none";
+            // Asignar un valor por defecto de 0.0 al input cuando se oculta
+            porcentajeInput.value = "0.0";
         }
     }
 
     // Llamar a la función una vez para establecer el estado inicial
-    toggleInput();
+    toggleDescuento();
 
     // Agregar un listener para detectar cambios en el checkbox
-    descuentoLeyCheckbox.addEventListener("change", toggleInput);
+    descuentoLeyCheckbox.addEventListener("change", toggleDescuento);
 </script>
-
 
