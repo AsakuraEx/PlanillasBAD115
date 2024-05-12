@@ -38,19 +38,36 @@
             <input type="text" name="nombretipodesc" value="<%= tipodescuento.getNombretipodesc() %>" required>
             
             <% 
-                    String checked;
-                    if(Integer.parseInt(tipodescuento.getHabilitado()) == 1){
-                        checked = "checked";
-                    }else{
-                        checked = " ";
-                    } 
-                %>
-                <label>Habilitado:</label>
-                <input type="checkbox" name="habilitado" value="1" <%=checked %>>
-                <input type="hidden" name="habilitado" value="0">
-                
-                <button type="submit">Guardar</button>
+                String checked1;
+                if(Integer.parseInt(tipodescuento.getDescuentoLey()) == 1){
+                    checked1 = "checked";
+                }else{
+                    checked1 = " ";
+                } 
+            %>
+            <label>¿Es descuento de Ley?</label>
+            <input type="checkbox" name="descuentoLey" value="1" <%=checked1 %> >
+            <input type="hidden" name="descuentoLeyHidden" value="0" <%=checked1 %>>
+
+            <label>Monto de descuento:</label>
+            <input type="text" id="porcentajeInput" name="porcentaje" value="<%= tipodescuento.getPorcentaje() %>" >
+            
+            <% 
+                String checked;
+                if(Integer.parseInt(tipodescuento.getHabilitado()) == 1){
+                    checked = "checked";
+                }else{
+                    checked = " ";
+                } 
+            %>
+            <label>Habilitado:</label>
+            <input type="checkbox" name="habilitado" value="1" <%=checked %>>
+            <input type="hidden" name="habilitado" value="0">
+
+            <button type="submit">Guardar</button>
         </form>        
         
     </body>
 </html>
+
+

@@ -13,7 +13,7 @@ import org.hibernate.cfg.Configuration;
 
 public class TipoDescuentoController {
 
-    public boolean create(String nombretipodesc, String habilitado) {
+    public boolean create(String nombretipodesc, String descLey, float porcentaje, String habilitado) {
 
         //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
         SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(TipoDescuento.class).buildSessionFactory();
@@ -23,6 +23,8 @@ public class TipoDescuentoController {
         try {
             TipoDescuento tipodescuento = new TipoDescuento();
             tipodescuento.setNombretipodesc(nombretipodesc);
+            tipodescuento.setDescuentoLey(descLey);
+            tipodescuento.setPorcentaje(porcentaje);
             tipodescuento.setHabilitado(habilitado);
 
             System.out.print(tipodescuento.toString());

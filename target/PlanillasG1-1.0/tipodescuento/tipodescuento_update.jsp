@@ -14,11 +14,21 @@
 
             int id = Integer.parseInt(request.getParameter("id"));           
             nombre = request.getParameter("nombretipodesc");
+            String descuentoLey = request.getParameter("descuentoLey"); 
+            String porcentajeStr = request.getParameter("porcentaje");
+            float porcentaje = 0.0f; // Valor predeterminado en caso de que no se pueda convertir a float
+
+            if (porcentajeStr != null && !porcentajeStr.isEmpty()) {
+                porcentaje = Float.parseFloat(porcentajeStr);
+            }
+                            
             habilitado = request.getParameter("habilitado");
             
             TipoDescuento tipodescuento = new TipoDescuento();
             tipodescuento.setId_tipodescuento(id);
             tipodescuento.setNombretipodesc(nombre);
+            tipodescuento.setDescuentoLey(descuentoLey);
+            tipodescuento.setPorcentaje(porcentaje);
             tipodescuento.setHabilitado(habilitado);
             
             
@@ -26,8 +36,7 @@
             controller.update(tipodescuento);
             
             response.sendRedirect("tipodescuento_index.jsp");
-            
-        
+   
         %>
     </body>
 </html>

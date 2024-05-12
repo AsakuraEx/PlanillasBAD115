@@ -29,6 +29,8 @@
         <table border="1">
             <tr>
                 <th>Nombre del tipo de descuento</th>
+                <th>Descuento de Ley</th>
+                <th>Porcentaje</th>
                 <th>Estado</th>
                 <th>Accion</th>
             </tr>
@@ -36,21 +38,32 @@
 
                 TipoDescuentoController controller = new TipoDescuentoController();
                 List<TipoDescuento> tiposdescuentos = controller.mostrarTipoDescuento();
-                String mensaje;
+                String m1, m2;
                 for (TipoDescuento tipodescuento : tiposdescuentos) {
             %>
             <tr>
 
                 <td><%= tipodescuento.getNombretipodesc()%></td>
+                
+                <%
+                    if (Integer.parseInt(tipodescuento.getDescuentoLey() ) == 1 ) {
+                        m1 = "Sí";
+                    } else {
+                        m1 = "No";
+                    };
+                %>
+                <td><%=m1%></td>
+                
+                <td><%= tipodescuento.getPorcentaje() %></td>
 
                 <%
                     if (Integer.parseInt(tipodescuento.getHabilitado()) == 1) {
-                        mensaje = "Habilitado";
+                        m2 = "Habilitado";
                     } else {
-                        mensaje = "Deshabilitado";
+                        m2 = "Deshabilitado";
                     };
                 %>
-                <td><%=mensaje%></td>
+                <td><%=m2%></td>
 
                 <td>
                     <form action="tipodescuento_edit.jsp" method="POST">
