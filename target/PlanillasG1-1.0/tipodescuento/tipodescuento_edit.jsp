@@ -45,9 +45,10 @@
                     checked1 = " ";
                 } 
             %>
+
             <label>¿Es descuento de Ley?</label>
-            <input type="checkbox" name="descuentoLey" value="1" <%=checked1 %> >
-            <input type="hidden" name="descuentoLeyHidden" value="0" <%=checked1 %>>
+            <input type="checkbox" id="descuentoLeyCheckbox" name="descuentoLey" value="1" <%=checked1 %> >
+            <input type="hidden" name="descuentoLey" value="0" >
 
             <label>Monto de descuento:</label>
             <input type="text" id="porcentajeInput" name="porcentaje" value="<%= tipodescuento.getPorcentaje() %>" >
@@ -69,5 +70,27 @@
         
     </body>
 </html>
+
+<script>
+    // Obtener el checkbox y el input
+    var descuentoLeyCheckbox = document.getElementById("descuentoLeyCheckbox");
+    var porcentajeInput = document.getElementById("porcentajeInput");
+
+    // Función para habilitar o deshabilitar el input según el estado del checkbox
+    function toggleInput() {
+        if (descuentoLeyCheckbox.checked) {
+            porcentajeInput.disabled = false;
+        } else {
+            porcentajeInput.disabled = true;
+            
+        }
+    }
+
+    // Llamar a la función una vez para establecer el estado inicial
+    toggleInput();
+
+    // Agregar un listener para detectar cambios en el checkbox
+    descuentoLeyCheckbox.addEventListener("change", toggleInput);
+</script>
 
 
