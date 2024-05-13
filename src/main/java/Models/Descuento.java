@@ -41,26 +41,22 @@ public class Descuento {
 
     @Column(name = "habilitado")
     private String habilitado;
-    
-    @Column(name = "DESCUENTOLEY")
-    private String DESCUENTOLEY;
 
     public Descuento() {
     }
 
-    public Descuento(int ID_DESCUENTO, LocalDate FECHADESCUENTO, float DESCUENTO, int ID_TIPODESCUENTO, int ID_EMPLEADO, String habilitado, String DESCUENTOLEY) {
+    public Descuento(int ID_DESCUENTO, LocalDate FECHADESCUENTO, float DESCUENTO, int ID_TIPODESCUENTO, int ID_EMPLEADO, String habilitado) {
         this.ID_DESCUENTO = ID_DESCUENTO;
         this.FECHADESCUENTO = FECHADESCUENTO;
         this.DESCUENTO = DESCUENTO;
         this.ID_TIPODESCUENTO = ID_TIPODESCUENTO;
         this.ID_EMPLEADO = ID_EMPLEADO;
         this.habilitado = habilitado;
-        this.DESCUENTOLEY = DESCUENTOLEY;
     }
 
     @Override
     public String toString() {
-        return "Descuento{" + "ID_DESCUENTO=" + ID_DESCUENTO + ", FECHADESCUENTO=" + FECHADESCUENTO + ", DESCUENTO=" + DESCUENTO + ", ID_TIPODESCUENTO=" + ID_TIPODESCUENTO + ", ID_EMPLEADO=" + ID_EMPLEADO + ", habilitado=" + habilitado + ", DESCUENTOLEY=" + DESCUENTOLEY + '}';
+        return "Descuento{" + "ID_DESCUENTO=" + ID_DESCUENTO + ", FECHADESCUENTO=" + FECHADESCUENTO + ", DESCUENTO=" + DESCUENTO + ", ID_TIPODESCUENTO=" + ID_TIPODESCUENTO + ", ID_EMPLEADO=" + ID_EMPLEADO + ", habilitado=" + habilitado + '}';
     }
 
     public int getID_DESCUENTO() {
@@ -111,13 +107,6 @@ public class Descuento {
         this.habilitado = habilitado;
     }
 
-    public String getDESCUENTOLEY() {
-        return DESCUENTOLEY;
-    }
-
-    public void setDESCUENTOLEY(String DESCUENTOLEY) {
-        this.DESCUENTOLEY = DESCUENTOLEY;
-    }
 
    
     

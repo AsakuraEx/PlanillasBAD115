@@ -4,7 +4,9 @@
     Author     : frane
 --%>
 
+<%@page import="Controllers.EmpleadoController"%>
 <%@page import="Models.TipoDescuento"%>
+<%@page import="Models.Empleado"%>
 <%@page import="Controllers.TipoDescuentoController"%>
 <%@page import="java.util.List"%>
 <%@page import="Models.Descuento"%>
@@ -12,9 +14,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    int id = Integer.parseInt(request.getParameter("id"));
+    int id2 = Integer.parseInt(request.getParameter("id2"));
     DescuentoController controller = new DescuentoController();
-    Descuento desc = controller.search(id);
+    Descuento desc = controller.search(id2);
+    
+    int id = Integer.parseInt(request.getParameter("id"));
+    Empleado empleado = new Empleado();
+    EmpleadoController controller2 = new EmpleadoController();
+    empleado = controller2.search(id);
 %>
 
 <!DOCTYPE html>
@@ -48,8 +55,9 @@
                 %>
                 
                 <label>Nombre:</label>
-                <input type="text" name="nombretipodesc" value="<%= tipo1.getNombretipodesc() %>" required>
-                <input type="hidden" name="id" value="<%=desc.getID_DESCUENTO() %>">
+                <input type="text" name="nombretipodesc" value="<%= tipo1.getNombretipodesc() %> " required>
+                <input type="hidden" name="id2" value="<%=desc.getID_DESCUENTO() %>">
+                <input type="hidden" name="id" value="<%= empleado.getId_empleado() %>">
 
                 <label>Monto:</label>
                 <input type="text" name="DESCUENTO" value="<%= desc.getDESCUENTO() %>" required>

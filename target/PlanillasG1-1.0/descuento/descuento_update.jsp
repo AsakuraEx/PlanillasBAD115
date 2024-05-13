@@ -18,22 +18,27 @@
         
             String habilitado;
 
+            int id2 = Integer.parseInt(request.getParameter("id2"));
             int id = Integer.parseInt(request.getParameter("id"));
-            double DESCUENTO = Double.parseDouble(request.getParameter("DESCUENTO"));          
+            float DESCUENTO = Float.parseFloat(request.getParameter("DESCUENTO"));         
             habilitado = request.getParameter("habilitado");
             
+            
             Descuento descu = new Descuento();
-            descu.setID_DESCUENTO(id);
+            descu.setID_DESCUENTO(id2);
             descu.setDESCUENTO(DESCUENTO);
-            descu.setHabilitado(habilitado);
-            
-            
+            descu.setID_EMPLEADO(id);
+            descu.setHabilitado(habilitado);    
             DescuentoController controller = new DescuentoController();
             controller.update(descu);
-            
-            response.sendRedirect("descuento2_index.jsp");
-            
+            //response.sendRedirect("descuento2_index.jsp");
+            // Guardar el objeto descuento en el request
+            request.setAttribute("descuentoActualizado", descu.getID_EMPLEADO());
         
+            // Redireccionar a la página de destino
+            request.getRequestDispatcher("descuento2_index.jsp").forward(request, response);
+            
         %>
+
     </body>
 </html>

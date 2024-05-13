@@ -4,7 +4,7 @@
  */
 package Controllers;
 
-import Models.TipoDescuento;
+
 import Models.Descuento;
 import java.time.LocalDate;
 import java.util.List;
@@ -32,7 +32,6 @@ public class DescuentoController {
             descuento.setDESCUENTO(DESCUENTO);
             descuento.setID_TIPODESCUENTO(ID_TIPODESCUENTO);
             descuento.setID_EMPLEADO(ID_EMPLEADO);
-            descuento.setDESCUENTOLEY(ley);
             descuento.setHabilitado(habilitado);
                                 
             session.beginTransaction();
@@ -115,14 +114,14 @@ public class DescuentoController {
     
     }
     
-        public List<Descuento> mostrarDescuentosPorEmpleado(int empleado) {
+public List<Descuento> mostrarDescuentosPorEmpleado(int empleado) {
     SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Descuento.class).buildSessionFactory();
     Session session = sessionFactory.openSession();
     List<Descuento> descuentos = null;
 
     try {
         session.beginTransaction();
-        Query<Descuento> query = session.createQuery("FROM Descuento WHERE id_empleado = :empleado", Descuento.class);
+        Query<Descuento> query = session.createQuery("FROM Descuento WHERE ID_EMPLEADO = :empleado", Descuento.class);
         query.setParameter("empleado", empleado);
         descuentos = query.getResultList();
         session.getTransaction().commit();
@@ -135,6 +134,5 @@ public class DescuentoController {
     
     return descuentos;
 }
-
-     
+   
 }
