@@ -31,11 +31,9 @@
         <label>Nombre del Tipo de Ingreso:</label>
         <input type="text" name="nombretipoingreso" required>
         
-        <label>Habilitado:</label>
-        <select name="habilitado">
-            <option value="1">Sí</option>
-            <option value="0">No</option>
-        </select>
+    <label>Habilitado:</label>
+        <input type="checkbox" name="habilitado" value="1">
+        <input type="hidden" name="habilitado" value="0">
         
         <button type="submit">Guardar</button>
     </form>        

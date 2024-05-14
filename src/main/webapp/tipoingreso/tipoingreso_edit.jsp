@@ -43,11 +43,20 @@
             <label>Nombre del Tipo de Ingreso:</label>
             <input type="text" name="nombretipoingreso" value="<%= tipoingreso.getNombretipoingreso() %>" required>
             
-            <label>Estado:</label>
-            <input type="" name="habilitado" value="<%= tipoingreso.getHabilitado() %>">
+            <% 
+                String checked;
+                if(Integer.parseInt(tipoingreso.getHabilitado()) == 1){
+                    checked = "checked";
+                }else{
+                    checked = " ";
+                } 
+            %>
+            <label>Habilitado:</label>
+            <input type="checkbox" name="habilitado" value="1" <%=checked %>>
+            <input type="hidden" name="habilitado" value="0">
             
             
-            <button type="submit">Actualizar</button>
+            <button type="submit">Guardar</button>
         </form>        
         
     </body>

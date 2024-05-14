@@ -35,23 +35,27 @@
     
     <table border="1">
         <tr>
-            <th>ID</th>
             <th>Nombre</th>
-            <th>Habilitado</th>
+            <th>Estado</th>
             <th>Acción</th>
         </tr>
             <%
     
                 TipoIngresoController controller = new TipoIngresoController();
                 List<TipoIngreso> ingresos = controller.mostrarTipoIngreso();
-
+                String m1;
                 for(TipoIngreso ingreso : ingresos){
             %>
         <tr>
-
-            <td><%=ingreso.getId_tipoingreso() %></td>
             <td><%=ingreso.getNombretipoingreso() %></td>
-            <td><%=ingreso.getHabilitado() %></td>
+                <%
+                    if (Integer.parseInt(ingreso.getHabilitado()) == 1) {
+                        m1 = "Habilitado";
+                    } else {
+                        m1 = "Deshabilitado";
+                    };
+                %>
+                <td><%=m1%></td>
             <td>
                 <form action="tipoingreso_edit.jsp" method="POST">
                     <input type="hidden" name="id" value="<%=ingreso.getId_tipoingreso() %>">
@@ -60,7 +64,6 @@
                 <form action="tipoingreso_delete.jsp" method="POST">
                     <input type="hidden" name="id" value="<%=ingreso.getId_tipoingreso() %>">
                     <input type="hidden" name="habilitado" value="0">
-                    <input type="submit" value="Eliminar">
                 </form>
             </td>
         </tr>

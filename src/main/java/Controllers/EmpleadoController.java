@@ -6,6 +6,7 @@ package Controllers;
 
 import Models.Descuento;
 import Models.Empleado;
+import Models.Ingreso;
 import java.time.LocalDate;
 import java.util.List;
 import org.hibernate.Session;
@@ -176,4 +177,27 @@ public class EmpleadoController {
 
         return sumaDescuentos;
     }
+       
+    public double sumarIngresosEmpleado(int idEmpleado) {
+        SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Ingreso.class).buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        double sumaIngresos = 0.0;
+
+        try {
+            session.beginTransaction();
+            Query query = session.createQuery("select sum(ingreso) from Ingreso where id_empleado = :idEmpleado");
+            query.setParameter("idEmpleado", idEmpleado);
+            sumaIngresos = (Double) query.uniqueResult();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+            sessionFactory.close();
+        }
+
+        return sumaIngresos;
+    }
+       
+
 }

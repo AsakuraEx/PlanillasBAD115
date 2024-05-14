@@ -5,6 +5,7 @@ Controllers\AreaUnidadOrganiController.class
 Controllers\PresupuestoController.class
 Controllers\EmpleadoController.class
 Controllers\EmpresaController.class
+Controllers\IngresoController.class
 Models\DepUnidadOrgani.class
 com\group01\planillasg1\JAXRSConfiguration.class
 Controllers\SubSeccionesUnidadOrganiController.class
@@ -27,6 +28,7 @@ Models\Empleado.class
 Models\EstadoCivil.class
 com\group01\planillasg1\resources\JavaEE8Resource.class
 Models\Presupuesto.class
+Models\Ingreso.class
 Controllers\PuestoController.class
 Controllers\DepUnidadOrganiController.class
 Controllers\DepartamentoController.class
