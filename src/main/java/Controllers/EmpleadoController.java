@@ -4,6 +4,7 @@
  */
 package Controllers;
 
+import Models.Descuento;
 import Models.Empleado;
 import java.time.LocalDate;
 import java.util.List;
@@ -133,7 +134,7 @@ public class EmpleadoController {
     
     }    
 
-    public void update(Empleado empleado){
+    public Empleado update(Empleado empleado){
     
         //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
         SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Empleado.class).buildSessionFactory();
@@ -145,12 +146,34 @@ public class EmpleadoController {
             session.beginTransaction();
             session.update(empleado);
             session.getTransaction().commit();
+            // Cargar el objeto actualizado desde la base de datos
+            Empleado empleadoActualizado = session.get(Empleado.class, empleado.getId_empleado());
             sessionFactory.close();
+            return empleadoActualizado; // Devuelve el objeto actualizado
            
         }catch(Exception e){
             e.printStackTrace();
-        }    
-    
+             return null; // 
+        }       
     }
-        
+       public float sumarDescuentosEmpleado(int idEmpleado) {
+        SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Descuento.class).buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        float sumaDescuentos=0 ;
+
+        try {
+            session.beginTransaction();
+            Query query = session.createQuery("SELECT SUM(d.descuento) FROM Descuento d WHERE d.id_empleado = :idEmpleado");
+            query.setParameter("idEmpleado", idEmpleado);
+            sumaDescuentos = (float) query.uniqueResult();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+            sessionFactory.close();
+        }
+
+        return sumaDescuentos;
+    }
 }

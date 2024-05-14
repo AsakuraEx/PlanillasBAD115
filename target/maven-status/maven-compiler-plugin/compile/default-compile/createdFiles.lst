@@ -1,4 +1,5 @@
 Controllers\ProfesionController.class
+Models\Descuento.class
 Models\AreaUnidadOrgani.class
 Controllers\AreaUnidadOrganiController.class
 Controllers\PresupuestoController.class
@@ -20,6 +21,7 @@ Controllers\SeccionesUnidadOrganiController.class
 Controllers\SexoController.class
 Models\SeccionesUnidadOrgani.class
 Models\Sexo.class
+Controllers\DescuentoController.class
 Controllers\UnidadorgController.class
 Models\Empleado.class
 Models\EstadoCivil.class

@@ -4,6 +4,10 @@
     Author     : frane
 --%>
 
+<%@page import="Models.Documento"%>
+<%@page import="Controllers.DocumentoController"%>
+<%@page import="Models.TipoDocumento"%>
+<%@page import="Controllers.TipoDocumentoController"%>
 <%@page import="Models.Empleado"%>
 <%@page import="Models.Departamento"%>
 <%@page import="Controllers.DepartamentoController"%>
@@ -241,7 +245,45 @@
                             %>                    
                         </select>                
                     </div>
-                                
+                        
+                    <div class="flex flex-col gap-2 px-4">
+                        <label for="id_tipodocumento">Tipo de Documento:</label>
+                        <select class="border rounded-lg py-1 px-4 w-full" name="id_tipodocumento" required onchange="handleDocumentoFormat()">
+                        <option value="">Seleccione un tipo de documento</option>
+                        <% 
+                        DocumentoController controllerDoc = new DocumentoController();
+                        List<Documento> documentos = controllerDoc.mostrarDocumentos(empleado.getId_empleado());
+
+                        TipoDocumentoController controllerTipodoc = new TipoDocumentoController();
+                        List<TipoDocumento> tipoDocs = controllerTipodoc.mostrarTipoDocumento(); // Obtener todos los tipos de documentos
+
+                        for (TipoDocumento tipoDoc : tipoDocs) {
+                            boolean encontrado = false; // Variable para rastrear si se ha encontrado el tipo de documento del empleado
+                            for (Documento documento : documentos) {
+                                if (tipoDoc.getId_tipodocumento() == documento.getId_tipodocumento()) {
+                                    encontrado = true; // Se ha encontrado el tipo de documento del empleado
+                                    %>
+                                    <option value="<%= documento.getId_tipodocumento() %>" selected>
+                                        <%= tipoDoc.getNombretipodocumento() %>
+                                    </option>
+                                    <% 
+                                    break; // Una vez que se ha seleccionado el tipo de documento del empleado, se sale del bucle interno
+                                }
+                            }
+                            // Si el tipo de documento no se ha encontrado, lo agregamos como una opción no seleccionada
+                            if (!encontrado) {
+                                %>
+                                <option value="<%= tipoDoc.getId_tipodocumento() %>">
+                                    <%= tipoDoc.getNombretipodocumento() %>
+                                </option>
+                                <% 
+                            }
+                        } 
+                        %>
+                    </select>
+                    </div>
+                    
+           
                     <div class="inline-flex px-4 items-center gap-3">
                         <label class="py-6">Habilitado:</label>
                         <%
@@ -256,13 +298,32 @@
                         <input type="hidden" name="habilitado" value="0">                
                     </div>
                           
+                     <div class="flex flex-col gap-2 px-4">
+                        <label for="id_tipodocumento">N° de documento:</label>
+                        <%
+                            DocumentoController controllerDoc1 = new DocumentoController();
+                            List<Documento> documentos1 = controllerDoc1.mostrarDocumentos(empleado.getId_empleado());
+
+                            TipoDocumentoController controllerTipodoc1 = new TipoDocumentoController();
+                            List<TipoDocumento> tipoDocs1 = controllerTipodoc1.mostrarTipoDocumento(); 
+
+                            for (TipoDocumento tipoDoc : tipoDocs1) {
+                                for (Documento documento : documentos1) {
+                                    if (tipoDoc.getId_tipodocumento() == documento.getId_tipodocumento()) {
+                            %>
+                                        <input type="text" class="border rounded-lg py-1 px-4 w-full" name="ndocumento" id="ndocumento" value="<%= documento.getNumerodocumento() %>" required>
+                            <%
+                                        break; // Una vez que se ha encontrado el documento, sal del bucle
+                                    }
+                                }
+                            }
+                        %>
+                    </div>
+                    
                     <div class="flex flex-col gap-2 px-4 md:col-span-2 md:flex-row md:mx-auto md:my-4">
 
-                        <button class="bg-[#80BF96] hover:bg-[#629c76] py-2 px-4 text-center rounded-md font-bold text-white md:w-32" type="submit">Guardar</button>
-                        <button class="font-bold bg-[#f2f2f2] px-4 py-2 rounded-md text-black hover:bg-[#d4d4d4] hover:text-black md:w-32" type="reset">Limpiar</button>
-
+                        <button class="bg-[#80BF96] hover:bg-[#629c76] py-2 px-4 text-center rounded-md font-bold text-white md:w-32" type="submit">Actualizar</button>
                     </div>
-
                 </form>
                 
                 <div class="md:mx-auto flex justify-center py-12">
@@ -277,3 +338,54 @@
 
     </body>
 </html>
+<script>
+function handleDocumentoFormat() {
+    var select = document.getElementsByName("id_tipodocumento")[0];
+    var input = document.getElementById("ndocumento");
+    var selectedOption = select.options[select.selectedIndex].text;
+    
+    // Reset input value
+    input.value = "";
+    
+    // Set format based on selectedOption
+    switch (selectedOption) {
+        case "Selecciona un tipo de documento...":
+            input.placeholder = "Selecciona un tipo de documento";
+            input.pattern = "[0-9]{8}-[0-9]";
+            break;
+        case "Documento Único Identidad":
+            input.placeholder = "########-#";
+            input.pattern = "[0-9]{8}-[0-9]";
+            break;
+        case "Pasaporte":
+            input.placeholder = "L#######";
+            input.pattern = "[A-Za-z][0-9]{7}";
+            break;
+        case "Carné Trabajo":
+            input.placeholder = "Ingrese el número de documento";
+            input.pattern = ".+";
+            break; 
+        case "Otros":
+            input.placeholder = "Ingrese el número de documento";
+            input.pattern = ".+";
+            break; 
+        case "Carné de Residencia":
+            input.placeholder = "############";
+            input.pattern = "[0-9]{12}";
+            break;
+        case "Ninguno":
+            input.placeholder = "Ingrese el número de documento";
+            input.pattern = ".+";
+            input.required = false; // Hacer que el campo no sea obligatorio
+            break;
+        case "Número de Identificación Tributaria":
+            input.placeholder = "####-######-###-#";
+            input.pattern = "\d{4}-\d{6}-\d{3}-\d{1}";
+            break;
+        default:
+            input.placeholder = "Ingrese el número de documento";
+            input.pattern = ".+"; // Any character at least once
+            break;
+    }
+}
+</script>

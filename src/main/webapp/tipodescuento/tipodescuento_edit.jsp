@@ -38,19 +38,62 @@
             <input type="text" name="nombretipodesc" value="<%= tipodescuento.getNombretipodesc() %>" required>
             
             <% 
-                    String checked;
-                    if(Integer.parseInt(tipodescuento.getHabilitado()) == 1){
-                        checked = "checked";
-                    }else{
-                        checked = " ";
-                    } 
-                %>
-                <label>Habilitado:</label>
-                <input type="checkbox" name="habilitado" value="1" <%=checked %>>
-                <input type="hidden" name="habilitado" value="0">
-                
-                <button type="submit">Guardar</button>
+                String checked1;
+                if(Integer.parseInt(tipodescuento.getDescuentoLey()) == 1){
+                    checked1 = "checked";
+                }else{
+                    checked1 = " ";
+                } 
+            %>
+
+            <label>¿Es descuento de Ley?</label>
+            <input type="checkbox" id="descuentoLeyCheckbox" name="descuentoLey" value="1" <%=checked1 %> >
+            <input type="hidden" name="descuentoLey" value="0" >
+
+            <label id="descuentoLabel">Monto de descuento:</label>
+            <input type="text" id="porcentajeInput" name="porcentaje" value="<%= tipodescuento.getPorcentaje() %>" >
+            
+            <% 
+                String checked;
+                if(Integer.parseInt(tipodescuento.getHabilitado()) == 1){
+                    checked = "checked";
+                }else{
+                    checked = " ";
+                } 
+            %>
+            <label>Habilitado:</label>
+            <input type="checkbox" name="habilitado" value="1" <%=checked %>>
+            <input type="hidden" name="habilitado" value="0">
+
+            <button type="submit">Guardar</button>
         </form>        
         
     </body>
 </html>
+
+<script>
+    // Obtener el checkbox, el label y el input
+    var descuentoLeyCheckbox = document.getElementById("descuentoLeyCheckbox");
+    var descuentoLabel = document.getElementById("descuentoLabel");
+    var porcentajeInput = document.getElementById("porcentajeInput");
+
+    // Función para mostrar u ocultar el label y el input según el estado del checkbox
+    function toggleDescuento() {
+        if (descuentoLeyCheckbox.checked) {
+            descuentoLabel.style.display = "inline-block";
+            porcentajeInput.style.display = "inline-block";
+        } else {
+            descuentoLabel.style.display = "none";
+            porcentajeInput.style.display = "none";
+            // Asignar un valor por defecto de 0.0 al input cuando se oculta
+            porcentajeInput.value = "0.0";
+        }
+    }
+
+    // Llamar a la función una vez para establecer el estado inicial
+    toggleDescuento();
+
+    // Agregar un listener para detectar cambios en el checkbox
+    descuentoLeyCheckbox.addEventListener("change", toggleDescuento);
+</script>
+

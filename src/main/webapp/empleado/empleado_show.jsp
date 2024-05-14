@@ -4,6 +4,10 @@
     Author     : frane
 --%>
 
+<%@page import="Models.TipoDocumento"%>
+<%@page import="Controllers.TipoDocumentoController"%>
+<%@page import="Models.Documento"%>
+<%@page import="Controllers.DocumentoController"%>
 <%@page import="Models.Municipio"%>
 <%@page import="Controllers.MunicipioController"%>
 <%@page import="Models.Departamento"%>
@@ -181,11 +185,46 @@
                             </tr>
                             <tr class="border-b border-slate-500">
                                 <td class="pl-4">Tipo de documento</td>
-                                <td class="text-center font-light"><%=municipio.getNombremunicipio() %></td>
+                                <td class="text-center font-light">                                  
+                                    <%
+                                        DocumentoController controllerDoc = new DocumentoController();
+                                        List<Documento> documentos = controllerDoc.mostrarDocumentos(empleado.getId_empleado());
+                                        TipoDocumentoController controllerTipodoc = new TipoDocumentoController();
+                                        List<TipoDocumento> tipoDocs = controllerTipodoc.mostrarTipoDocumento(); 
+                                        for (TipoDocumento tipoDoc : tipoDocs) {
+                                            for (Documento documento : documentos) {
+                                                if (tipoDoc.getId_tipodocumento() == documento.getId_tipodocumento()) {
+                                            %>
+                                                        <%= tipoDoc.getNombretipodocumento() %>
+                                            <% 
+                                                    break; 
+                                                }
+                                            } 
+                                            %>
+                                        <% }                                        
+                                        %>                              
+                                </td>
                             </tr>
                             <tr class="border-b border-slate-500">
                                 <td class="pl-4">N° de documento</td>
-                                <td class="text-center font-light"><%=municipio.getNombremunicipio() %></td>
+                                <td class="text-center font-light">
+                                    <%
+                                        DocumentoController controllerDoc1 = new DocumentoController();
+                                        List<Documento> documentos1 = controllerDoc1.mostrarDocumentos(empleado.getId_empleado());
+                                        TipoDocumentoController controllerTipodoc1 = new TipoDocumentoController();
+                                        List<TipoDocumento> tipoDocs1 = controllerTipodoc1.mostrarTipoDocumento(); // Obtener todos los tipos de documentos
+                                        for (TipoDocumento tipoDoc : tipoDocs1) {
+                                            for (Documento documento : documentos1) {
+                                                if (tipoDoc.getId_tipodocumento() == documento.getId_tipodocumento()) {
+                                        %>
+                                                    <%= documento.getNumerodocumento() %>
+                                        <%
+                                                    break; 
+                                                }
+                                            }
+                                        }
+                                    %>                                 
+                                </td>
                             </tr>
                         </tbody>
                 </table>

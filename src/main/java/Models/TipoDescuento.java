@@ -24,7 +24,13 @@ public class TipoDescuento {
 
     @Column(name = "nombretipodesc")
     private String nombretipodesc;
-
+    
+    @Column(name = "descuentoLey")
+    private String descuentoLey;
+    
+    @Column(name = "porcentaje")
+    private float porcentaje;
+    
     @Column(name = "habilitado")
     private String habilitado;
 
@@ -44,6 +50,22 @@ public class TipoDescuento {
         this.nombretipodesc = nombretipodesc;
     }
 
+    public String getDescuentoLey() {
+        return descuentoLey;
+    }
+
+    public void setDescuentoLey(String descuentoLey) {
+        this.descuentoLey = descuentoLey;
+    }
+
+    public float getPorcentaje() {
+        return porcentaje;
+    }
+
+    public void setPorcentaje(float porcentaje) {
+        this.porcentaje = porcentaje;
+    }
+
     public String getHabilitado() {
         return habilitado;
     }
@@ -55,15 +77,17 @@ public class TipoDescuento {
     public TipoDescuento() {
     }
 
-    public TipoDescuento(int id_tipodescuento, String nombretipodesc, String habilitado) {
+    public TipoDescuento(int id_tipodescuento, String nombretipodesc, String descuentoLey, float porcentaje, String habilitado) {
         this.id_tipodescuento = id_tipodescuento;
         this.nombretipodesc = nombretipodesc;
+        this.descuentoLey = descuentoLey;
+        this.porcentaje = porcentaje;
         this.habilitado = habilitado;
     }
 
     @Override
     public String toString() {
-        return "TipoDescuento{" + "id_tipodescuento=" + id_tipodescuento + ", nombretipodesc=" + nombretipodesc + '}';
+        return "TipoDescuento{" + "id_tipodescuento=" + id_tipodescuento + ", nombretipodesc=" + nombretipodesc + ", descuentoLey=" + descuentoLey + ", porcentaje=" + porcentaje + ", habilitado=" + habilitado + '}';
     }
 
 }
