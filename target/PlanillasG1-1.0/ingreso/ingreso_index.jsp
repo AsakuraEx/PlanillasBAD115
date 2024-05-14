@@ -18,7 +18,7 @@
             <h2>Menu:</h2>
             <nav>
                 <ul>
-                    <li><a href="index.jsp">Inicio</a></li>
+                    <li><a href="index.jsp/../..">Index</a></li>
                 </ul>
             </nav>
             <hr>

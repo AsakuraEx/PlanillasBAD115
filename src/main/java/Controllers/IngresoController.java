@@ -15,7 +15,7 @@ import org.hibernate.query.Query;
 
 public class IngresoController {
         
-    public void create(float ingreso, int id_tipoingreso, int id_empleado, String habilitado){
+    public void create(int id_empleado, int id_tipoingreso, float ingreso,   String habilitado){
         //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
         SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Ingreso.class).buildSessionFactory();
         //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
@@ -64,73 +64,28 @@ public class IngresoController {
             }
             return ingresos;
     }
- /*   
-    public Descuento search(int id){
-    
-        //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
-        SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Descuento.class).buildSessionFactory();
-        //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
-        Session session = sessionFactory.openSession();
-        Descuento unidad = null;
-        //Intenta lo siguiente...
-        try{
-            //Inicia una transaccion el objeto session
-            session.beginTransaction();
-            //Elimina el registro con el parametro id
-            unidad = session.get(Descuento.class, id);
-            //Obtiene la transaccion en memoria y guarda los valores en la base de datos
-            session.getTransaction().commit();
-            //Se cierra la conexion a la base de datos
-            sessionFactory.close();
-            
-        } catch(Exception e){
-            //En caso de error imprime la pila de errores
-            e.printStackTrace();
-        }
-        
-        return unidad;
-    }    
 
-    public void update(Descuento descuento){
-    
-        //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
-        SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Descuento.class).buildSessionFactory();
-        //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
+
+    public List<Ingreso> mostrarIngresosPorEmpleado(int empleado) {
+        SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Ingreso.class).buildSessionFactory();
         Session session = sessionFactory.openSession();
-        
-        try{
-            
+        List<Ingreso> ingresos = null;
+
+        try {
             session.beginTransaction();
-            session.update(descuento);
+            Query<Ingreso> query = session.createQuery("FROM Ingreso WHERE id_empleado = :empleado", Ingreso.class);
+            query.setParameter("empleado", empleado);
+            ingresos = query.getResultList();
             session.getTransaction().commit();
-            sessionFactory.close();
-           
-        }catch(Exception e){
+        } catch(Exception e) {
             e.printStackTrace();
-        }    
-    
+        } finally {
+            session.close();
+            sessionFactory.close();
+        }
+
+        return ingresos;
     }
  
-    public List<Descuento> mostrarDescuentosPorEmpleado(int empleado) {
-    SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Descuento.class).buildSessionFactory();
-    Session session = sessionFactory.openSession();
-    List<Descuento> descuentos = null;
-
-    try {
-        session.beginTransaction();
-        Query<Descuento> query = session.createQuery("FROM Descuento WHERE id_empleado = :empleado", Descuento.class);
-        query.setParameter("empleado", empleado);
-        descuentos = query.getResultList();
-        session.getTransaction().commit();
-    } catch(Exception e) {
-        e.printStackTrace();
-    } finally {
-        session.close();
-        sessionFactory.close();
-    }
-    
-    return descuentos;
-}
-*/  
      
 }
