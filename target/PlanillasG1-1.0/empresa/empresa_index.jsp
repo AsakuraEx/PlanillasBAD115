@@ -50,7 +50,7 @@
                 <div class="overflow-x-auto px-8 pb-8">
                 
                     <table class="table-auto mx-auto md:w-full">
-                        <tr class="border-b-2 border-slate-600 py-3 px-8">
+                        <tr class="border-b-2 border-slate-600 py-3 px-8 text-center">
                             <th class="px-2 py-2">Nombre de la Empresa</th>
                             <th class="px-2 py-2">Correo</th>
                             <th class="px-2 py-2">Direccion</th>
