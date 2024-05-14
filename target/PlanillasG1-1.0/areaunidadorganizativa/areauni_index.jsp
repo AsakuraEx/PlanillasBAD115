@@ -15,70 +15,98 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link rel="stylesheet" href="../css/output.css">
     </head>
     <body>
-        <header>
-            <h1>Sistema de Planillas (SIP)</h1>
-            <h2>Menu:</h2>
-            <nav>
-                <ul>
-                    <li><a href="index.jsp">Inicio</a></li>
-                    <li><a href="../unidadorganizativa//unidadorganizativa_index.jsp">Unidades Organizativas</a></li>
-                </ul>
-            </nav>
-            <hr>
-        </header>        
-        <h1>Areas de Departamentos</h1>
-        <br>
-        <a href="areauni_create.jsp"><button>Crear nueva Area</button></a>
-        <br><br>
-        <table border="1">
-            <thead>
-                <td>Nombre de Departamento de Unidad</td>
-                <td>Departamento Asociado</td>
-                <td>Estado</td>
-                <td>Accion</td>
-            </thead>
-            <%
-                DepUnidadOrganiController controller1 = new DepUnidadOrganiController();
-                DepUnidadOrgani uni = new DepUnidadOrgani();
+        <header class="bg-[#80BF96] shadow-md">
 
-                AreaUnidadOrganiController controller = new AreaUnidadOrganiController();
-                List<AreaUnidadOrgani> unidades = controller.mostrarAreas();   
+            <div class="container text-center text-white">
+        
+                    <h1 class="text-2xl font-bold py-4 md:text-3xl ">
+                        <a href="../index.jsp">Sistema de Planillas</a>
+                    </h1>
 
-                String mensaje;
-            %>
-            <tbody>
-                <%
-                    for(AreaUnidadOrgani unidad : unidades){
-                %>
-                <tr>
-                    <td><%=unidad.getNOMBREAREAUNIDADORG()%></td>
-                    
-                    <% 
-                        uni = controller1.search(unidad.getID_DEPORG());
-                    %>
-                    <td><%= uni.getNombredeporg()%></td>
-                    
-                    <% 
-                        if(Integer.parseInt(unidad.getHabilitado()) == 1){ 
-                            mensaje = "Habilitado";
-                        }else{ 
-                            mensaje = "Deshabilitado";
-                        }; 
-                    %>
-                    <td><%=mensaje %></td>
-                    <td>
-                        <form action="areauni_edit.jsp" method="POST">
-                            <input type="hidden" name="id" value="<%= unidad.getID_AREAUNIDADORG()%>">
-                            <input type="submit" value="Editar">
-                        </form>                    
-                    </td>
-                </tr>
-                <%
-                    }
-                %>
-            </tbody>
-        </table>
+            </div>  
+    
+        </header>
+
+        <main class="bg-slate-100">
+
+            <section class="container bg-white h-screen">
+
+                <div class="container text-center py-8">
+    
+                    <h1 class="font-bold text-2xl md:text-3xl border-b-2 pb-4 border-[#80BF96] text-[#629c76]">Areas de unidades organizativas</h1>
+    
+                </div>
+
+                <div class="flex justify-center items-center md:justify-start mb-8">
+    
+                    <a class="bg-[#80BF96] py-2 px-4 text-center rounded-md font-bold 
+                    text-white md:ml-8 hover:bg-[#5b9670]" 
+                    href="areauni_create.jsp">Crear nueva area</a>
+    
+                </div>
+                
+                <div class="overflow-x-auto px-8 pb-8">
+
+                    <table class="table-auto mx-auto md:w-full">
+                        <thead class="text-center border-b-2 border-slate-600 py-3 px-8">
+                            <td class="px-2 py-2">Nombre de Departamento de Unidad</td>
+                            <td class="px-2 py-2">Departamento Asociado</td>
+                            <td class="px-2 py-2">Estado</td>
+                            <td class="px-2 py-2">Accion</td>
+                        </thead>
+                        <%
+                            DepUnidadOrganiController controller1 = new DepUnidadOrganiController();
+                            DepUnidadOrgani uni = new DepUnidadOrgani();
+    
+                            AreaUnidadOrganiController controller = new AreaUnidadOrganiController();
+                            List<AreaUnidadOrgani> unidades = controller.mostrarAreas();   
+    
+                            String mensaje;
+                        %>
+                        <tbody>
+                            <%
+                                for(AreaUnidadOrgani unidad : unidades){
+                            %>
+                            <tr class="text-center border-b border-slate-400">
+                                <td class="px-8 py-2 md:px-1"><%=unidad.getNOMBREAREAUNIDADORG()%></td>
+                                
+                                <% 
+                                    uni = controller1.search(unidad.getID_DEPORG());
+                                %>
+                                <td class="px-8 py-2 md:px-1"><%= uni.getNombredeporg()%></td>
+                                
+                                <% 
+                                    if(Integer.parseInt(unidad.getHabilitado()) == 1){ 
+                                        mensaje = "Habilitado";
+                                    }else{ 
+                                        mensaje = "Deshabilitado";
+                                    }; 
+                                %>
+                                <td class="px-8 py-2 md:px-1"><%=mensaje %></td>
+                                <td class="inline-flex flex-col md:flex-row gap-2 py-2">
+                                    <form action="areauni_edit.jsp" method="POST"
+                                    class="font-bold bg-[#E1F2D5] px-4 py-2 rounded-md text-[#67814a] hover:bg-[#91aa7f] hover:text-white">
+                                        <input type="hidden" name="id" value="<%= unidad.getID_AREAUNIDADORG()%>">
+                                        <input type="submit" value="Editar">
+                                    </form>                    
+                                </td>
+                            </tr>
+                            <%
+                                }
+                            %>
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
     </body>
+
 </html>
