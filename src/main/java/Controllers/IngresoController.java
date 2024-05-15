@@ -42,6 +42,24 @@ public class IngresoController {
         } 
     }
     
+    public Ingreso search(int id){
+
+        //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
+        SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Ingreso.class).buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        Ingreso ingreso = null;
+        try{
+            session.beginTransaction();
+            ingreso = session.get(Ingreso.class, id);
+            session.getTransaction().commit();
+            sessionFactory.close();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return ingreso;
+    }
+    
     
     public List<Ingreso> mostrarIngreso(){
                     //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
@@ -86,6 +104,24 @@ public class IngresoController {
 
         return ingresos;
     }
- 
+    public void update(Ingreso ingreso){
+
+    //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
+    SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Ingreso.class).buildSessionFactory();
+    //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
+    Session session = sessionFactory.openSession();
+
+    try{
+
+        session.beginTransaction();
+        session.update(ingreso);
+        session.getTransaction().commit();
+        sessionFactory.close();
+
+    }catch(Exception e){
+        e.printStackTrace();
+    }    
+    
+    } 
      
 }

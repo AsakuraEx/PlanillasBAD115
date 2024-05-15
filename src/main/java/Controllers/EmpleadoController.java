@@ -185,7 +185,7 @@ public class EmpleadoController {
 
         try {
             session.beginTransaction();
-            Query query = session.createQuery("select sum(ingreso) from Ingreso where id_empleado = :idEmpleado");
+            Query query = session.createQuery("select sum(ingreso) from Ingreso where id_empleado = :idEmpleado and habilitado = 1");
             query.setParameter("idEmpleado", idEmpleado);
             sumaIngresos = (Double) query.uniqueResult();
             session.getTransaction().commit();

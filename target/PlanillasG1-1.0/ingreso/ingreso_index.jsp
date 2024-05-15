@@ -70,14 +70,14 @@
                     <td>$ <%= empleado.getSalario()%></td>
 
                      <%
-                    EmpleadoController controllerEmp = new EmpleadoController();
-                    double descuentosTotales = controllerEmp.sumarIngresosEmpleado(empleado.getId_empleado());
+                        EmpleadoController controllerEmp = new EmpleadoController();
+                        double totalIng = controllerEmp.sumarIngresosEmpleado(empleado.getId_empleado());
                      %>
                     
-                    <td><%= descuentosTotales%></td>
+                    <td>$ <%= totalIng%></td>
                     
                     <td>
-                        <form action="ingresos_empleado.jsp" method="POST">
+                        <form action="ingreso_empleado.jsp" method="POST">
                             <input type="hidden" name="id" value="<%=empleado.getId_empleado()%>">
                             <input type="submit" value="Detalle">
                         </form>                    

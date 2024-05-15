@@ -21,7 +21,7 @@
             <h2>Menu:</h2>
             <nav>
                 <ul>
-                    <li><a href="ingresos_empleado.jsp">Atrás</a></li>
+                    <li><a href="ingreso_index.jsp">Resumen de total de ingresos</a></li>
                 </ul>
             </nav>
             <hr>
@@ -30,18 +30,13 @@
         <main>
             <h3>Agregar ingreso a empleado</h3>
             <br>
-            <form action="ingreso_store.jsp" method="post">
                 <%
-                    EmpleadoController controllerEmp = new EmpleadoController();
-                    Empleado emp = new Empleado();
-                    Empleado empleado = controllerEmp.search(emp.getId_empleado()); 
+                    int id_empleado = Integer.parseInt(request.getParameter("id_empleado"));
                 %>
-                <label>Nombre:</label>
-                <input type="text" name="nombrepuesto" value="<%=puesto.getNombrepuesto() %>" required>
-                <input type="hidden" name="id" value="<%=puesto.getId_puesto() %>">
-                
+            <form action="ingreso_store.jsp" method="post">
+                <!-- Recibe el id del empleado enviado desde la vista ingreso_empleado, para que lo procese la vista store -->
+                <input type="hidden" name="id_empleado" value="<%= id_empleado %>">
 
-                
                 <label>Tipo de ingreso:</label>
                 <select name="id_tipoingreso" required>
                     <option value="">Selecciona un tipo de ingreso...</option>
@@ -61,7 +56,7 @@
                 
                 <label>Monto($):</label>
                 <input type="text" name="ingreso" oninput="validarMonto(this)" required>
-
+                
                 <label>Habilitado:</label>
                 <input type="checkbox" name="habilitado" value="1">
                 <input type="hidden" name="habilitado" value="0">
