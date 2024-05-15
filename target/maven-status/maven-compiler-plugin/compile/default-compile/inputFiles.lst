@@ -1,49 +1,3 @@
-<<<<<<< HEAD
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Controllers\AreaUnidadOrganiController.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Models\Presupuesto.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Controllers\SeccionesUnidadOrganiController.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Models\Mes.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Models\TipoDescuento.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Controllers\MesController.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Controllers\ProfesionController.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Models\Departamento.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Controllers\PresupuestoController.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Controllers\PuestoController.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Controllers\SubSeccionesUnidadOrganiController.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Models\TipoIngreso.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Models\Empresa.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Controllers\TipoIngresoController.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Models\Municipio.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Models\EstadoCivil.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Models\AreaUnidadOrgani.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Models\Ingreso.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Controllers\DepUnidadOrganiController.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Controllers\DescuentoController.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Models\SubSeccionesUnidadOrgani.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\com\group01\planillasg1\resources\JavaEE8Resource.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Controllers\IngresoController.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Controllers\SexoController.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\com\group01\planillasg1\JAXRSConfiguration.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Controllers\DocumentoController.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Models\Descuento.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Models\Documento.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Models\TipoDocumento.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Controllers\DepartamentoController.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Models\Profesion.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Models\Unidadorganizativa.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Controllers\EstadoCivilController.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Models\Sexo.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Controllers\TipoDescuentoController.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Controllers\UnidadorgController.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Controllers\EmpresaController.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Models\SeccionesUnidadOrgani.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Models\DepUnidadOrgani.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Controllers\MunicipioController.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Models\Empleado.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Controllers\EmpleadoController.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Models\Puesto.java
-C:\Users\HP\Desktop\PROYECTO BAD 115\PlanillasBAD115\src\main\java\Controllers\TipoDocumentoController.java
-=======
 D:\JavaProjects\PlanillasBAD115\PlanillasG1\src\main\java\Controllers\AreaUnidadOrganiController.java
 D:\JavaProjects\PlanillasBAD115\PlanillasG1\src\main\java\Controllers\PresupuestoController.java
 D:\JavaProjects\PlanillasBAD115\PlanillasG1\src\main\java\Models\AreaUnidadOrgani.java
@@ -59,7 +13,9 @@ D:\JavaProjects\PlanillasBAD115\PlanillasG1\src\main\java\Controllers\EstadoCivi
 D:\JavaProjects\PlanillasBAD115\PlanillasG1\src\main\java\Models\Descuento.java
 D:\JavaProjects\PlanillasBAD115\PlanillasG1\src\main\java\Controllers\PuestoController.java
 D:\JavaProjects\PlanillasBAD115\PlanillasG1\src\main\java\Models\DepUnidadOrgani.java
+D:\JavaProjects\PlanillasBAD115\PlanillasG1\src\main\java\Models\Ingreso.java
 D:\JavaProjects\PlanillasBAD115\PlanillasG1\src\main\java\Controllers\EmpresaController.java
+D:\JavaProjects\PlanillasBAD115\PlanillasG1\src\main\java\Controllers\IngresoController.java
 D:\JavaProjects\PlanillasBAD115\PlanillasG1\src\main\java\Controllers\MesController.java
 D:\JavaProjects\PlanillasBAD115\PlanillasG1\src\main\java\Models\SeccionesUnidadOrgani.java
 D:\JavaProjects\PlanillasBAD115\PlanillasG1\src\main\java\com\group01\planillasg1\resources\JavaEE8Resource.java
@@ -86,4 +42,3 @@ D:\JavaProjects\PlanillasBAD115\PlanillasG1\src\main\java\Models\Profesion.java
 D:\JavaProjects\PlanillasBAD115\PlanillasG1\src\main\java\Controllers\DocumentoController.java
 D:\JavaProjects\PlanillasBAD115\PlanillasG1\src\main\java\Models\Puesto.java
 D:\JavaProjects\PlanillasBAD115\PlanillasG1\src\main\java\Controllers\DepUnidadOrganiController.java
->>>>>>> 6fa0f659ac95560719406160fafe0c840a949dcf
