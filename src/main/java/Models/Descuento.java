@@ -22,81 +22,64 @@ import javax.persistence.Table;
 public class Descuento {
     
     @Id
-    @Column(name = "ID_DESCUENTO", nullable = false)
+    @Column(name = "id_descuento", nullable = false)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "autoincremental_gen")
     @SequenceGenerator(name = "autoincremental_gen", sequenceName = "autoincremental", allocationSize = 1)
-    private int ID_DESCUENTO;
+    private int id_descuento;
 
-    @Column(name="FECHADESCUENTO")
-    LocalDate FECHADESCUENTO;
+    @Column(name="fechadescuento")
+    LocalDate fechadescuento;
     
-    @Column(name="DESCUENTO")
-    float DESCUENTO;
+    @Column(name="descuento")
+    float descuento;
     
-    @Column(name="ID_TIPODESCUENTO")
-    int ID_TIPODESCUENTO;
+    @Column(name="id_tipodescuento")
+    int id_tipodescuento;
     
-    @Column(name="ID_EMPLEADO")
-    int ID_EMPLEADO;
+    @Column(name="id_empleado")
+    int id_empleado;
 
     @Column(name = "habilitado")
     private String habilitado;
 
-    public Descuento() {
+    public int getId_descuento() {
+        return id_descuento;
     }
 
-    public Descuento(int ID_DESCUENTO, LocalDate FECHADESCUENTO, float DESCUENTO, int ID_TIPODESCUENTO, int ID_EMPLEADO, String habilitado) {
-        this.ID_DESCUENTO = ID_DESCUENTO;
-        this.FECHADESCUENTO = FECHADESCUENTO;
-        this.DESCUENTO = DESCUENTO;
-        this.ID_TIPODESCUENTO = ID_TIPODESCUENTO;
-        this.ID_EMPLEADO = ID_EMPLEADO;
-        this.habilitado = habilitado;
+    public void setId_descuento(int id_descuento) {
+        this.id_descuento = id_descuento;
     }
 
-    @Override
-    public String toString() {
-        return "Descuento{" + "ID_DESCUENTO=" + ID_DESCUENTO + ", FECHADESCUENTO=" + FECHADESCUENTO + ", DESCUENTO=" + DESCUENTO + ", ID_TIPODESCUENTO=" + ID_TIPODESCUENTO + ", ID_EMPLEADO=" + ID_EMPLEADO + ", habilitado=" + habilitado + '}';
+    public LocalDate getFechadescuento() {
+        return fechadescuento;
     }
 
-    public int getID_DESCUENTO() {
-        return ID_DESCUENTO;
+    public void setFechadescuento(LocalDate fechadescuento) {
+        this.fechadescuento = fechadescuento;
     }
 
-    public void setID_DESCUENTO(int ID_DESCUENTO) {
-        this.ID_DESCUENTO = ID_DESCUENTO;
+    public float getDescuento() {
+        return descuento;
     }
 
-    public LocalDate getFECHADESCUENTO() {
-        return FECHADESCUENTO;
+    public void setDescuento(float descuento) {
+        this.descuento = descuento;
     }
 
-    public void setFECHADESCUENTO(LocalDate FECHADESCUENTO) {
-        this.FECHADESCUENTO = FECHADESCUENTO;
+    public int getId_tipodescuento() {
+        return id_tipodescuento;
     }
 
-    public float getDESCUENTO() {
-        return DESCUENTO;
+    public void setId_tipodescuento(int id_tipodescuento) {
+        this.id_tipodescuento = id_tipodescuento;
     }
 
-    public void setDESCUENTO(float DESCUENTO) {
-        this.DESCUENTO = DESCUENTO;
+    public int getId_empleado() {
+        return id_empleado;
     }
 
-    public int getID_TIPODESCUENTO() {
-        return ID_TIPODESCUENTO;
-    }
-
-    public void setID_TIPODESCUENTO(int ID_TIPODESCUENTO) {
-        this.ID_TIPODESCUENTO = ID_TIPODESCUENTO;
-    }
-
-    public int getID_EMPLEADO() {
-        return ID_EMPLEADO;
-    }
-
-    public void setID_EMPLEADO(int ID_EMPLEADO) {
-        this.ID_EMPLEADO = ID_EMPLEADO;
+    public void setId_empleado(int id_empleado) {
+        this.id_empleado = id_empleado;
     }
 
     public String getHabilitado() {
@@ -107,8 +90,22 @@ public class Descuento {
         this.habilitado = habilitado;
     }
 
+    public Descuento() {
+    }
 
-   
-    
+    public Descuento(int id_descuento, LocalDate fechadescuento, float descuento, int id_tipodescuento, int id_empleado, String habilitado) {
+        this.id_descuento = id_descuento;
+        this.fechadescuento = fechadescuento;
+        this.descuento = descuento;
+        this.id_tipodescuento = id_tipodescuento;
+        this.id_empleado = id_empleado;
+        this.habilitado = habilitado;
+    }
+
+    @Override
+    public String toString() {
+        return "Descuento{" + "id_descuento=" + id_descuento + ", fechadescuento=" + fechadescuento + ", descuento=" + descuento + ", id_tipodescuento=" + id_tipodescuento + ", id_empleado=" + id_empleado + ", habilitado=" + habilitado + '}';
+    }
+
     
 }
