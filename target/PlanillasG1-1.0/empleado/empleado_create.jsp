@@ -88,12 +88,7 @@
                         <label>Fecha de Nacimiento:</label>
                         <input class="border rounded-lg py-1 px-4 w-full" type="date" name="fechanacimiento" min="1965-01-01" max="<%=fechanacimiento%>" required>                
                     </div>
-                
-                    <div class="flex flex-col gap-2 px-4">
-                        <label>Salario:</label>
-                        <input class="border rounded-lg py-1 px-4 w-full" type="number" name="salario" min="360" step="0.01" required>                
-                    </div>
-                
+                               
                     <div class="flex flex-col gap-2 px-4">
                         <label>NIT:</label>
                         <input class="border rounded-lg py-1 px-4 w-full" type="text" name="nit" pattern="\d{4}-\d{6}-\d{3}-\d{1}" placeholder="####-######-###-#" required>                
@@ -173,23 +168,32 @@
                     </div>
                 
                     <div class="flex flex-col gap-2 px-4">
-                        <label>Puesto:</label>
-                        <select class="border rounded-lg py-1 px-4 w-full" name="id_puesto" required>
+                       <label>Puesto:</label>
+                        <select class="border rounded-lg py-1 px-4 w-full" name="id_puesto" id="id_puesto" required>
                             <option value=""> </option>
                             <%
                                 PuestoController controllerPuesto = new PuestoController();
                                 List<Puesto> puestos = controllerPuesto.mostrarPuestos();
-                                
+
                                 for(Puesto puesto : puestos){
-                                    if(Integer.parseInt(puesto.getHabilitado())== 1){
+                                    if(Integer.parseInt(puesto.getHabilitado()) == 1){
                             %>
-                            <option value="<%= puesto.getId_puesto() %>"><%= puesto.getNombrepuesto() %></option>
+                            <option value="<%= puesto.getId_puesto() %>" 
+                                    data-min-salario="<%= puesto.getSalariominimo() %>"
+                                    data-max-salario="<%= puesto.getSalariomaximo() %>">
+                                <%= puesto.getNombrepuesto() %>
+                            </option>
                             <%
                                     }
                                 }
                             %>                    
-                        </select>                
+                        </select>               
                     </div>
+                        
+                     <div class="flex flex-col gap-2 px-4">
+                        <label>Salario:</label>
+                        <input class="border rounded-lg py-1 px-4 w-full" type="number" name="salario" id="salario" min="360" step="0.01" required>
+                    </div>   
                 
                     <div class="flex flex-col gap-2 px-4">
                         <label>Municipio:</label>
@@ -262,7 +266,7 @@
 
     </body>
 </html>
-
+<--<!-- Validar campo numero de documento de acuerdo al tipo de documento seleccionado -->
 <script>
 function handleDocumentoFormat() {
     var select = document.getElementsByName("id_tipodocumento")[0];
@@ -313,4 +317,26 @@ function handleDocumentoFormat() {
             break;
     }
 }
+</script>
+<--<!-- Script para validar el salario de acuerdo al puesto seleccionado -->
+<script>
+    document.getElementById('id_puesto').addEventListener('change', function() {
+        var selectedOption = this.options[this.selectedIndex];
+        var minSalario = parseFloat(selectedOption.getAttribute('data-min-salario'));
+        var maxSalario = parseFloat(selectedOption.getAttribute('data-max-salario'));
+        
+        var salarioInput = document.getElementById('salario');
+        
+        salarioInput.min = minSalario;
+        salarioInput.max = maxSalario;
+        
+        salarioInput.addEventListener('input', function() {
+            var salarioValue = parseFloat(this.value);
+            if (salarioValue < minSalario || salarioValue > maxSalario) {
+                this.setCustomValidity('El salario debe estar entre ' + minSalario + ' y ' + maxSalario);
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+    });
 </script>

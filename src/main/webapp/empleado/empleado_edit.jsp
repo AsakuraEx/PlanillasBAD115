@@ -98,12 +98,7 @@
                         <label>Fecha de Nacimiento:</label>
                         <input class="border rounded-lg py-1 px-4 w-full" type="date" name="fechanacimiento" min="1965-01-01" max="<%=fechanacimiento%>" value="<%=empleado.getFechanacimiento() %>" required>                
                     </div>
-                    
-                    <div class="flex flex-col gap-2 px-4">
-                        <label>Salario:</label>
-                        <input class="border rounded-lg py-1 px-4 w-full" type="number" name="salario" min="360" step="0.01" value="<%=empleado.getSalario() %>" required>                
-                    </div>
-                    
+                                        
                     <div class="flex flex-col gap-2 px-4">
                         <label>NIT:</label>
                         <input class="border rounded-lg py-1 px-4 w-full" type="text" name="nit" pattern="\d{4}-\d{6}-\d{3}-\d{1}" placeholder="####-######-###-#" value="<%=empleado.getNit() %>" required>                
@@ -199,27 +194,37 @@
                     
                     <div class="flex flex-col gap-2 px-4">
                         <label>Puesto:</label>
-                        <select class="border rounded-lg py-1 px-4 w-full" name="id_puesto" required>
+                        <select class="border rounded-lg py-1 px-4 w-full" name="id_puesto" id="id_puesto" required>
                             <option value=""> </option>
                             <%
                                 PuestoController controllerPuesto = new PuestoController();
                                 List<Puesto> puestos = controllerPuesto.mostrarPuestos();
                                 String mensaje4;
                                 for(Puesto puesto : puestos){
-                                    if(Integer.parseInt(puesto.getHabilitado())== 1){
-                                        if(empleado.getId_puesto()==puesto.getId_puesto()){
+                                    if(Integer.parseInt(puesto.getHabilitado()) == 1){
+                                        if(empleado.getId_puesto() == puesto.getId_puesto()){
                                             mensaje4 = "selected";
-                                        }else{
-                                            mensaje4 = " ";
+                                        } else {
+                                            mensaje4 = "";
                                         }
                             %>
-                            <option value="<%= puesto.getId_puesto() %>" <%=mensaje4%>><%= puesto.getNombrepuesto() %></option>
+                            <option value="<%= puesto.getId_puesto() %>" <%= mensaje4 %> 
+                                    data-min-salario="<%= puesto.getSalariominimo() %>"
+                                    data-max-salario="<%= puesto.getSalariomaximo() %>">
+                                <%= puesto.getNombrepuesto() %>
+                            </option>
                             <%
                                     }
                                 }
                             %>                    
-                        </select>                
+                        </select>               
                     </div>
+                        
+                     
+                    <div class="flex flex-col gap-2 px-4">
+                        <label>Salario:</label>
+                        <input class="border rounded-lg py-1 px-4 w-full" type="number" name="salario" id="salario" min="360" step="0.01" value="<%=empleado.getSalario() %>" required>
+                    </div>   
                     
                     <div class="flex flex-col gap-2 px-4">
                         <label>Municipio:</label>
@@ -339,6 +344,7 @@
     </body>
 </html>
 <script>
+<--<!-- Validar campo numero de documento de acuerdo al tipo de documento seleccionado -->
 function handleDocumentoFormat() {
     var select = document.getElementsByName("id_tipodocumento")[0];
     var input = document.getElementById("ndocumento");
@@ -389,3 +395,46 @@ function handleDocumentoFormat() {
     }
 }
 </script>
+<--<!-- Script para validar el salario de acuerdo al puesto seleccionado -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var puestoSelect = document.getElementById('id_puesto');
+        var salarioInput = document.getElementById('salario');
+        
+        function updateSalarioLimits() {
+            var selectedOption = puestoSelect.options[puestoSelect.selectedIndex];
+            var minSalario = parseFloat(selectedOption.getAttribute('data-min-salario'));
+            var maxSalario = parseFloat(selectedOption.getAttribute('data-max-salario'));
+            
+            salarioInput.min = minSalario;
+            salarioInput.max = maxSalario;
+            
+            salarioInput.setCustomValidity(''); 
+            if (salarioInput.value) {
+                var salarioValue = parseFloat(salarioInput.value);
+                if (salarioValue < minSalario || salarioValue > maxSalario) {
+                    salarioInput.setCustomValidity('El salario debe estar entre ' + minSalario + ' y ' + maxSalario);
+                } else {
+                    salarioInput.setCustomValidity('');
+                }
+            }
+        }
+        
+        updateSalarioLimits();
+        
+        puestoSelect.addEventListener('change', updateSalarioLimits);
+        
+        salarioInput.addEventListener('input', function() {
+            var minSalario = parseFloat(salarioInput.min);
+            var maxSalario = parseFloat(salarioInput.max);
+            var salarioValue = parseFloat(salarioInput.value);
+            
+            if (salarioValue < minSalario || salarioValue > maxSalario) {
+                salarioInput.setCustomValidity('El salario debe estar entre ' + minSalario + ' y ' + maxSalario);
+            } else {
+                salarioInput.setCustomValidity('');
+            }
+        });
+    });
+</script>
+
