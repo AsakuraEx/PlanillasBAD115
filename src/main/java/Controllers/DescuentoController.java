@@ -19,20 +19,18 @@ import org.hibernate.query.Query;
  */
 public class DescuentoController {
         
-    public void create(float DESCUENTO, int ID_TIPODESCUENTO, int ID_EMPLEADO, String habilitado, String ley){
+    public void create(int id_empleado, int id_tipodescuento, float descuento,  String habilitado){
         //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
         SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Descuento.class).buildSessionFactory();
         //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
         Session session = sessionFactory.openSession();
                                       
         try{
-            Descuento descuento = new Descuento();
-            LocalDate FECHADESCUENTO = LocalDate.now();
-            descuento.setFECHADESCUENTO(FECHADESCUENTO);
-            descuento.setDESCUENTO(DESCUENTO);
-            descuento.setID_TIPODESCUENTO(ID_TIPODESCUENTO);
-            descuento.setID_EMPLEADO(ID_EMPLEADO);
-            descuento.setHabilitado(habilitado);
+            Descuento desc = new Descuento();
+            desc.setId_empleado(id_empleado);
+            desc.setId_tipodescuento(id_tipodescuento);
+            desc.setDescuento(descuento);
+            desc.setHabilitado(habilitado);
                                 
             session.beginTransaction();
             session.save(descuento);

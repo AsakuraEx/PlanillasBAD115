@@ -24,44 +24,59 @@
             <h2>Menu:</h2>
             <nav>
                 <ul>
-                    <li><a href="index.jsp">Inicio</a></li>
-                    <li><a href="../empresa/empresa_index.jsp">Empresas</a></li>
-                    <li><a href="unidadorganizativa_index.jsp">Unidades Organizativas</a></li>
+                    <li><a href="index.jsp/../..">Index</a></li>
                 </ul>
             </nav>
             <hr>
         </header>        
-        <h1>Unidades Organizativas</h1>
-        <br>
-        <a href="unidadorganizativa_create.jsp"><button>Crear nueva unidad organizativa</button></a>
-        <br><br>
+        <h1>Total de descuentos por empleados</h1>
+
         <table border="1">
             <thead>
-                <td>Nombre</td>
+                <td>Empleado</td>
                 <td>Salario</td>
                 <td>Descuentos totales</td>
                 <td>Accion</td>
             </thead>
             <%
-                //EmpleadoController controllerEmpleado = new EmpleadoController();
-                
-                //Empleado empleado = new Empleado();
-
                 EmpleadoController controllerEmpleado = new EmpleadoController();
-                List<Empleado> empleados = controllerEmpleado.mostrarEmpleados();   
-                
+                List<Empleado> empleados = controllerEmpleado.mostrarEmpleados();       
             %>
             <tbody>
                 <%
                     for(Empleado empleado : empleados){
                 %>
                 <tr>
-                    <td><%= empleado.getPrimernombre() %> <%= empleado.getPrimerapellido() %></td>
+                    <td>
+                        <%=empleado.getPrimernombre() %> 
+                        <%
+                            if(empleado.getSegundonombre() != null){
+                        %>
+                                <%=empleado.getSegundonombre()%>
+                        <%
+                            }
+                        %> 
+                        <%=empleado.getPrimerapellido() %> 
+                        <%
+                            if(empleado.getSegundoapellido() != null){
+                        %>
+                                <%=empleado.getSegundoapellido()%>
+                        <%
+                            }
+                        %> 
+                        <%
+                            if(empleado.getApellidocasada() != null){
+                        %>
+                                <%=empleado.getApellidocasada()%>
+                        <%
+                            }
+                        %>
+                    </td>                    
 
                     <td><%= empleado.getSalario()%></td>
                      <%
-                    EmpleadoController controllerEmpleado1 = new EmpleadoController();
-                    double descuentosTotales = controllerEmpleado1.sumarDescuentosEmpleado(empleado.getId_empleado());  
+                        EmpleadoController controllerEmpleado1 = new EmpleadoController();
+                        double descuentosTotales = controllerEmpleado1.sumarDescuentosEmpleado(empleado.getId_empleado());  
                      %>
                     
                     <td><%= descuentosTotales%></td>

@@ -12,7 +12,12 @@
 <%@page import="Models.TipoDescuento"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+    <%      
+        int id = Integer.parseInt(request.getParameter("id"));
+        Empleado empleado =new Empleado();
+        EmpleadoController empleadoController = new EmpleadoController();
+        empleado = empleadoController.search(id);   
+    %>
 
 <!DOCTYPE html>
 <html>
@@ -26,16 +31,40 @@
             <h2>Menu:</h2>
             <nav>
                 <ul>
-                    <li><a href="index.jsp">Inicio</a></li>
-                    <li><a href="../empresa/empresa_index.jsp">Empresas</a></li>
-                    <li><a href="unidadorganizativa_index.jsp">Unidades Organizativas</a></li>
+                    <li><a href="descuento_index.jsp">Atrás</a></li>
                 </ul>
             </nav>
             <hr>
         </header>        
-        <h1>Unidades Organizativas</h1>
+        <h1>Detalle de descuentos de: </h1>
+        <h2>
+            <%=empleado.getPrimernombre() %> 
+            <%
+                if(empleado.getSegundonombre() != null){
+            %>
+                    <%=empleado.getSegundonombre()%>
+            <%
+                }
+            %> 
+            <%=empleado.getPrimerapellido() %> 
+            <%
+                if(empleado.getSegundoapellido() != null){
+            %>
+                    <%=empleado.getSegundoapellido()%>
+            <%
+                }
+            %> 
+            <%
+                if(empleado.getApellidocasada() != null){
+            %>
+                    <%=empleado.getApellidocasada()%>
+            <%
+                }
+            %>
+        </h2>
         <br>
-        <a href="unidadorganizativa_create.jsp"><button>Crear nueva unidad organizativa</button></a>
+        <!-- Enviar el id del empleado a la vista descuento_create -->
+        <a href="descuento_create.jsp?id_empleado=<%= empleado.getId_empleado() %>"><button>Agregar nuevo descuento</button></a>
         <br><br>
         <table border="1">
             <thead>
@@ -51,21 +80,17 @@
             %>
             <tbody>
                 <%      
-                int id = Integer.parseInt(request.getParameter("id"));
-                Empleado emp =new Empleado();
-                EmpleadoController cont = new EmpleadoController();
-                emp=cont.search(id);
-                DescuentoController descuentosPorEmpleado = new DescuentoController();
-                List<Descuento> Descuentosp = descuentosPorEmpleado.mostrarDescuentosPorEmpleado(emp.getId_empleado());
+                    DescuentoController descuentosPorEmpleado = new DescuentoController();
+                    List<Descuento> Descuentosp = descuentosPorEmpleado.mostrarDescuentosPorEmpleado(empleado.getId_empleado());
 
-                    for(Descuento des : Descuentosp){
+                        for(Descuento des : Descuentosp){
                 %>
                 <tr>                    
                     <% 
-                        tipo1=controllerTipo.search(des.getID_TIPODESCUENTO());
+                        tipo1=controllerTipo.search(des.getId_tipodescuento());
                     %>
                     <td><%= tipo1.getNombretipodesc()%></td>                    
-                    <td><%=des.getDESCUENTO() %></td>
+                    <td><%=des.getDescuento() %></td>
                     <% 
                         if(Integer.parseInt(des.getHabilitado()) == 1){ 
                             mensaje = "Habilitado";
@@ -76,9 +101,9 @@
                     <td><%=mensaje %></td>
                     <td>
                         <form action="descuento_edit.jsp" method="POST">
-                            <input type="hidden" name="id2" value="<%= des.getID_DESCUENTO() %>">
-                            <input type="hidden" name="id" value="<%= des.getID_EMPLEADO() %>">
-                            <input type="submit" value="Detalle">
+                            <input type="hidden" name="id_descuento" value="<%= des.getId_descuento() %>">
+                            <input type="hidden" name="id_empleado" value="<%= des.getId_empleado() %>">
+                            <input type="submit" value="Editar">
                         </form>                    
                     </td>
                 </tr>

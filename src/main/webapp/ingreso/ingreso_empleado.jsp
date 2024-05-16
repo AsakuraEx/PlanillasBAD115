@@ -58,7 +58,8 @@
         </h2>
         
         <br>
-        <a href="ingreso_create.jsp"><button>Agregar nuevo ingreso</button></a>
+        <!-- Enviar el id del empleado a la vista ingreso_create -->
+        <a href="ingreso_create.jsp?id_empleado=<%= empleado.getId_empleado() %>"><button>Agregar nuevo ingreso</button></a>
         <br><br>
         <table border="1">
             <thead>
@@ -84,7 +85,7 @@
                         tipoIng=controllerTipo.search(ing.getId_tipoingreso());
                     %>
                     <td><%= tipoIng.getNombretipoingreso() %></td>                    
-                    <td><%=ing.getIngreso() %></td>
+                    <td>$ <%=ing.getIngreso() %></td>
                     <% 
                         if(Integer.parseInt(ing.getHabilitado()) == 1){ 
                             mensaje = "Habilitado";
@@ -95,8 +96,8 @@
                     <td><%=mensaje %></td>
                     <td>
                         <form action="ingreso_editar.jsp" method="POST">
-                            <input type="hidden" name="idIng" value="<%= ing.getId_ingreso() %>">
-                            <input type="hidden" name="idEmp" value="<%= ing.getId_empleado() %>">
+                            <input type="hidden" name="id_ingreso" value="<%= ing.getId_ingreso() %>">
+                            <input type="hidden" name="id_empleado" value="<%= ing.getId_empleado() %>">
                             <input type="submit" value="Editar">
                         </form>                    
                     </td>
