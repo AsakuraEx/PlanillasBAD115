@@ -11,36 +11,60 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Profesiones</title>
+        <link rel="stylesheet" href="../css/output.css">
     </head>
     <body>
-        <header>
-            <h1>Sistema de Planillas (SIP)</h1>
-            <h2>Menu:</h2>
-            <nav>
-                <ul>
-                    <li><a href="../index.jsp">Inicio</a></li>
-                    <li><a href="../empresa/empresa_index.jsp">Empresas</a></li>
-                    <li><a href="../unidadorganizativa/unidadorganizativa_index.jsp">Unidades Organizativas</a></li>
-                    <li><a href="profesion/profesion_index.jsp">Profesiones</a></li>
-                </ul>
-            </nav>
-            <hr>
+        <header class="bg-[#80BF96] shadow-md">
+
+            <div class="container text-center text-white">
+        
+                    <h1 class="text-2xl font-bold py-4 md:text-3xl ">
+                        <a href="../index.jsp">Sistema de Planillas</a>
+                    </h1>
+
+            </div>  
+    
         </header>
         
-        <main>
-            <h3>Crear Profesion</h3>
-            <br>
-            <form action="profesion_store.jsp" method="post">
-                <label>Profesion:</label>
-                <input type="text" name="nombreprofesion" required>
+        <main class="bg-slate-100">
 
-                <label>Habilitado:</label>
-                <input type="checkbox" name="habilitado" value="1">
-                <input type="hidden" name="habilitado" value="0">
-                
-                <button type="submit">Guardar</button>
-            </form>
-            
+            <section class="container bg-white h-[600vh] min-h-full max-h-screen">
+
+                <div class="container text-center py-8">
+    
+                    <h1 class="font-bold text-2xl md:text-3xl border-b-2 pb-4 border-[#80BF96] text-[#629c76]">Formulario de creacion de profesiones</h1>
+    
+                </div>
+                <form action="profesion_store.jsp" method="post">
+                    
+                    <div class="flex flex-col gap-2 px-4">
+                        <label>Profesion:</label>
+                        <input class="border rounded-lg py-1 px-4 w-full" type="text" name="nombreprofesion" required>
+                    </div>
+
+                    <div class="inline-flex px-4 items-center gap-3">
+                        <label>Habilitado:</label>
+                        <input type="checkbox" name="habilitado" value="1">
+                        <input type="hidden" name="habilitado" value="0">    
+                    </div>
+                    
+                    <div class="flex flex-col gap-2 px-4 md:col-span-2 md:flex-row md:mx-auto md:my-4">
+
+                        <button class="bg-[#80BF96] hover:bg-[#629c76] py-2 px-4 text-center rounded-md font-bold text-white md:w-32" type="submit">Guardar</button>
+                        <button class="font-bold bg-[#f2f2f2] px-4 py-2 rounded-md text-black hover:bg-[#d4d4d4] hover:text-black md:w-32" type="reset">Limpiar</button>
+                    
+                    </div>
+
+                </form>
+
+                <div class="md:mx-auto flex justify-center py-12">
+
+                    <a class="bg-gray-900 text-white hover:bg-gray-500 py-2 px-4 text-center rounded" href="./profesion_index.jsp">Regresar al listado</a>
+
+                </div>
+
+            </section>
+        
         </main>
     </body>
 </html>
