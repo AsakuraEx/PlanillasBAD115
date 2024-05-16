@@ -44,7 +44,7 @@
                 
                 <div class="grid items-center justify-center text-center mx-auto gap-6 md:text-left sm:container">
                     
-                    <h2 class="text-3xl font-bold text-white">Gestion inteligente y sencilla de tu empresa</h2>
+                    <h2 class="text-3xl font-bold text-white">Gestión inteligente y sencilla de tu empresa</h2>
 
                     <p class="text-white font-normal text-center md:text-left md:text-xl md:w-3/4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt voluptatibus veniam facilis, 
                         aliquam amet maxime alias tempora tempore placeat
@@ -179,7 +179,7 @@
     <section class="bg-[#e1f2d5]" id="catalogos">
         
         <div class="container space-y-4 py-4">
-            <h1 class="text-3xl font-bold text-center md:text-4xl md:py-4 text-[#63a77b]">Gestion de Catalogos</h1>
+            <h1 class="text-3xl font-bold text-center md:text-4xl md:py-4 text-[#63a77b]">Gestión de Catálogos</h1>
         
             <p class="font-light text-slate-800 text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum optio maiores dolores, quod sed nam!</p>
     
@@ -324,8 +324,8 @@
             <p class="font-light text-[#6d8a4e] text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum optio maiores dolores, quod sed nam!</p>
 
             <div class="flex flex-col md:flex-row gap-8 flex-wrap text-center justify-center py-8 px-8 border-b-2 border-[#A4BF88]">
-                <a class="text-xl font-bold text-[#A4BF88] hover:text-[#6d8a4e]" href="#">Reporte 1</a>
-                <a class="text-xl font-bold text-[#A4BF88] hover:text-[#6d8a4e]" href="#">Reporte 2</a>
+                <a class="text-xl font-bold text-[#A4BF88] hover:text-[#6d8a4e]" href="#">Aportes patronales</a>
+                <a class="text-xl font-bold text-[#A4BF88] hover:text-[#6d8a4e]" href="#">Planilla</a>
                 <a class="text-xl font-bold text-[#A4BF88] hover:text-[#6d8a4e]" href="#">Reporte 3</a>
                 <a class="text-xl font-bold text-[#A4BF88] hover:text-[#6d8a4e]" href="#">Reporte 4</a>
             </div>
@@ -356,7 +356,7 @@
 
                 <img src="assets/logoBAD.png" alt="" class="w-16 h-16 aspect-square object-cover">
 
-                <h2 class="text-white font-semibold">BAD115 - 2024 - Francisco Escobar / Bella Rodriguez / Juan Montes &copy; </h2>
+                <h2 class="text-white font-semibold">Universidad de El Salvador - 2024  &copy; </h2>
             </div>
 
         </div>

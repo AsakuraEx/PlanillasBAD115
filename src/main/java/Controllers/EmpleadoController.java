@@ -157,16 +157,16 @@ public class EmpleadoController {
              return null; // 
         }       
     }
-       public double sumarDescuentosEmpleado(int idEmpleado) {
+    public double sumarDescuentosEmpleado(int idEmpleado) {
         SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Descuento.class).buildSessionFactory();
         Session session = sessionFactory.openSession();
-        double sumaDescuentos=0.0;
+        double sumaDescuentos = 0.0;
 
         try {
             session.beginTransaction();
             Query query = session.createQuery("select sum(descuento) from Descuento where id_empleado = :idEmpleado and habilitado = 1");
             query.setParameter("idEmpleado", idEmpleado);
-            sumaDescuentos = (Double) query.uniqueResult();
+            sumaDescuentos = (Double)query.uniqueResult();
             session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
