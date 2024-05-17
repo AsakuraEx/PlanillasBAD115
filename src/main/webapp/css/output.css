@@ -1251,6 +1251,10 @@ video {
     flex-direction: row;
   }
 
+  .md\:flex-row-reverse {
+    flex-direction: row-reverse;
+  }
+
   .md\:justify-start {
     justify-content: flex-start;
   }

@@ -32,7 +32,7 @@
 
             <div class="container text-center py-8">
 
-                <h1 class="font-bold text-2xl md:text-3xl border-b-2 pb-4 border-[#80BF96] text-[#629c76]">Formulario de creacion de puestos</h1>
+                <h1 class="font-bold text-2xl md:text-3xl border-b-2 pb-4 border-[#80BF96] text-[#629c76]">Formulario de creacion de tipo de ingreso</h1>
 
             </div>
             <form action="tipoingreso_store.jsp" method="post" class="grid md:grid-cols-2 gap-2">
