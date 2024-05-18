@@ -6,7 +6,10 @@
 
 <%@page import="Controllers.DescuentoController"%>
 <%@page import="Models.Descuento"%>
+<%@page import="Controllers.EmpleadoController"%>
+<%@page import="Models.Empleado"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.time.LocalDate"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,26 +21,33 @@
         
             String habilitado;
 
-            int id2 = Integer.parseInt(request.getParameter("id2"));
+            int ID_DESCUENTO = Integer.parseInt(request.getParameter("ID_DESCUENTO"));
             int id = Integer.parseInt(request.getParameter("id"));
             float DESCUENTO = Float.parseFloat(request.getParameter("DESCUENTO"));         
             habilitado = request.getParameter("habilitado");
+            int id_tipodescuento = Integer.parseInt(request.getParameter("id_tipodescuento"));
+            LocalDate FECHADESCUENTO = LocalDate.parse(request.getParameter("FECHADESCUENTO"));
             
             
             Descuento descu = new Descuento();
-            descu.setID_DESCUENTO(id2);
+            descu.setID_DESCUENTO(ID_DESCUENTO);
             descu.setDESCUENTO(DESCUENTO);
             descu.setID_EMPLEADO(id);
             descu.setHabilitado(habilitado);    
+            descu.setID_TIPODESCUENTO(id_tipodescuento);
+            descu.setFECHADESCUENTO(FECHADESCUENTO);
+            
             DescuentoController controller = new DescuentoController();
             controller.update(descu);
-            //response.sendRedirect("descuento2_index.jsp");
-            // Guardar el objeto descuento en el request
-            request.setAttribute("descuentoActualizado", descu.getID_EMPLEADO());
-        
-            // Redireccionar a la página de destino
+
+            Empleado em =new Empleado();
+            EmpleadoController cont =new EmpleadoController();
+            em=cont.search(id);
+
+            request.setAttribute("id",em.getId_empleado()); // Cambia 123 al número que desees devolver
+
             request.getRequestDispatcher("descuento2_index.jsp").forward(request, response);
-            
+
         %>
 
     </body>

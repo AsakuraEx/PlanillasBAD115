@@ -42,26 +42,54 @@ public class TipoDescuentoController {
     }
 
     public List<TipoDescuento> mostrarTipoDescuento() {
+    SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(TipoDescuento.class).buildSessionFactory();
+    Session session = sessionFactory.openSession();
+    List<TipoDescuento> tiposDescuentos = null;
 
-        //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
-        SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(TipoDescuento.class).buildSessionFactory();
-        //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
-        Session session = sessionFactory.openSession();
-        List<TipoDescuento> tiposdescuentos = null;
+    try {
+        session.beginTransaction();
 
-        try {
-            session.beginTransaction();
-            Query<TipoDescuento> query = session.createQuery("FROM TipoDescuento", TipoDescuento.class);
-            tiposdescuentos = query.getResultList();
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            sessionFactory.close();
+        // Modificamos la consulta para que ya no tenga la restricción WHERE
+        Query<TipoDescuento> query = session.createQuery("FROM TipoDescuento", TipoDescuento.class);
 
-        }
-        return tiposdescuentos;
+        tiposDescuentos = query.getResultList();
+
+        session.getTransaction().commit();
+    } catch (Exception e) {
+        if (session.getTransaction() != null) session.getTransaction().rollback();
+        e.printStackTrace();
+    } finally {
+        if (session != null) session.close();
+        if (sessionFactory != null) sessionFactory.close();
     }
+
+    return tiposDescuentos;
+}
+public List<TipoDescuento> mostrarTipoDescuentonoley() {
+    SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(TipoDescuento.class).buildSessionFactory();
+    Session session = sessionFactory.openSession();
+    List<TipoDescuento> tiposDescuentos = null;
+
+    try {
+        session.beginTransaction();
+
+        Query<TipoDescuento> query = session.createQuery("FROM TipoDescuento WHERE descuentoLey = :descuentoLey", TipoDescuento.class);
+        query.setParameter("descuentoLey", "0");  // Se pasa como una cadena de un solo carácter.
+
+        tiposDescuentos = query.getResultList();
+
+        session.getTransaction().commit();
+    } catch (Exception e) {
+        if (session.getTransaction() != null) session.getTransaction().rollback();
+        e.printStackTrace();
+    } finally {
+        if (session != null) session.close();
+        if (sessionFactory != null) sessionFactory.close();
+    }
+
+    return tiposDescuentos;
+}
+
 
     public TipoDescuento search(int id) {
 
@@ -126,4 +154,30 @@ public class TipoDescuentoController {
             e.printStackTrace();
         }
     }
+    
+   public List<TipoDescuento> mostrarTipoDescuentoley() {
+    SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(TipoDescuento.class).buildSessionFactory();
+    Session session = sessionFactory.openSession();
+    List<TipoDescuento> tiposDescuentos = null;
+
+    try {
+        session.beginTransaction();
+
+        Query<TipoDescuento> query = session.createQuery("FROM TipoDescuento WHERE DESCUENTOLEY = :descuentoLey", TipoDescuento.class);
+        query.setParameter("descuentoLey", "1");  // Se pasa como una cadena de un solo carácter.
+
+        tiposDescuentos = query.getResultList();
+
+        session.getTransaction().commit();
+    } catch (Exception e) {
+        if (session.getTransaction() != null) session.getTransaction().rollback();
+        e.printStackTrace();
+    } finally {
+        if (session != null) session.close();
+        if (sessionFactory != null) sessionFactory.close();
+    }
+
+    return tiposDescuentos;
+}
+
 }

@@ -38,7 +38,7 @@
         </header>        
         <h1>Detalle de descuentos de: </h1>
         <h2>
-            <%=empleado.getPrimernombre() %> 
+            <%=empleado.getPrimernombre()%> 
             <%
                 if(empleado.getSegundonombre() != null){
             %>
@@ -64,7 +64,10 @@
         </h2>
         <br>
         <!-- Enviar el id del empleado a la vista descuento_create -->
-        <a href="descuento_create.jsp?id_empleado=<%= empleado.getId_empleado() %>"><button>Agregar nuevo descuento</button></a>
+        <form action="descuento_create.jsp" method="POST">
+            <input type="hidden" name="id" value="<%= id%>">
+            <input type="submit" value="Agregar nuevo descuento">
+        </form> 
         <br><br>
         <table border="1">
             <thead>
@@ -87,10 +90,10 @@
                 %>
                 <tr>                    
                     <% 
-                        tipo1=controllerTipo.search(des.getId_tipodescuento());
+                        tipo1=controllerTipo.search(des.getID_TIPODESCUENTO());
                     %>
                     <td><%= tipo1.getNombretipodesc()%></td>                    
-                    <td><%=des.getDescuento() %></td>
+                    <td><%=des.getDESCUENTO()%></td>
                     <% 
                         if(Integer.parseInt(des.getHabilitado()) == 1){ 
                             mensaje = "Habilitado";
@@ -100,11 +103,22 @@
                     %>
                     <td><%=mensaje %></td>
                     <td>
+                        <% TipoDescuentoController tipo2=new TipoDescuentoController(); 
+                        TipoDescuento descuento3 =new TipoDescuento();
+                        descuento3=tipo2.search(des.getID_TIPODESCUENTO());
+                        int w=Character.getNumericValue(descuento3.getDescuentoLey().charAt(0));
+                        
+                        %>
+                        
+                        <% if (w == 0) { %>
                         <form action="descuento_edit.jsp" method="POST">
-                            <input type="hidden" name="id_descuento" value="<%= des.getId_descuento() %>">
-                            <input type="hidden" name="id_empleado" value="<%= des.getId_empleado() %>">
+                            <input type="hidden" name="id_descuento" value="<%= des.getID_DESCUENTO()%>">
+                            <input type="hidden" name="id" value="<%= des.getID_EMPLEADO()%>">
                             <input type="submit" value="Editar">
-                        </form>                    
+                        </form>  <% }  else{ %>
+                        <!-- Mostrar un botón deshabilitado para indicar que no es editable -->
+                         <button disabled>Editar</button>
+                        <% }%>
                     </td>
                 </tr>
                 <%
