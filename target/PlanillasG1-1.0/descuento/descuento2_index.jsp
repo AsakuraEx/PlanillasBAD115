@@ -93,7 +93,7 @@
                         tipo1=controllerTipo.search(des.getID_TIPODESCUENTO());
                     %>
                     <td><%= tipo1.getNombretipodesc()%></td>                    
-                    <td><%=des.getDESCUENTO()%></td>
+                    <td><%=String.format("%.2f", des.getDESCUENTO())%></td>
                     <% 
                         if(Integer.parseInt(des.getHabilitado()) == 1){ 
                             mensaje = "Habilitado";

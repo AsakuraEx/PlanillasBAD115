@@ -146,11 +146,18 @@ public List<Descuento> mostrarDescuentosPorEmpleado(int empleado) {
     Empleado emp1 = emple.search(empleado);
     
 
-    for (int i = 0; i <= j-1; i++) {
+                for (int i = 0; i <= j-1; i++) {
+                float descuento;
+    
+                if (descuentos1.get(i).getNombretipodesc().equals("ISSS")) {
+                    descuento = 30;
+                } else {
+                    descuento = (float) emp1.getSalario() * descuentos1.get(i).getPorcentaje() / 100;
+                }
             Descuento tempDescuento = new Descuento(
                 i+1000,                      // id_descuento (solo para identificar temporalmente)
                 LocalDate.now(),        // fechadescuento
-                (float)emp1.getSalario() * descuentos1.get(i).getPorcentaje()/100,              // descuento
+                descuento,              // descuento
                 descuentos1.get(i).getId_tipodescuento(),                      // id_tipodescuento
                 empleado,               // id_empleado
                 "1"                     // habilitado

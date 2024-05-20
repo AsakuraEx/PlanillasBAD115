@@ -186,10 +186,17 @@ public class EmpleadoController {
     
 
             for (int y = 0; y <= h-1; y++) {
+                float descuento;
+    
+                if (descuentos1.get(y).getNombretipodesc().equals("ISSS")) {
+                    descuento = 30;
+                } else {
+                    descuento = (float) emp2.getSalario() * descuentos1.get(y).getPorcentaje() / 100;
+                }
             Descuento tempDescuento = new Descuento(
                 y+1000,                      // id_descuento (solo para identificar temporalmente)
                 LocalDate.now(),        // fechadescuento
-                (float)emp2.getSalario() * descuentos1.get(y).getPorcentaje()/100,              // descuento
+                descuento,              // descuento
                 descuentos1.get(y).getId_tipodescuento(),                      // id_tipodescuento
                 idEmpleado,               // id_empleado
                 "1"                     // habilitado

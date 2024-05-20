@@ -79,7 +79,7 @@
                         double descuentosTotales = controllerEmpleado1.sumarDescuentosEmpleado(empleado.getId_empleado());  
                      %>
                     
-                    <td><%= descuentosTotales%></td>
+                    <td><%= String.format("%.2f", descuentosTotales)%></td>
                     <td>
                         <form action="descuento2_index.jsp" method="POST">
                             <input type="hidden" name="id" value="<%=empleado.getId_empleado()%>">
