@@ -54,7 +54,7 @@
                         List<TipoDescuento> tipos = controller.mostrarTipoDescuentonoley();
                         
                         for(TipoDescuento tipo : tipos){
-                            if(Integer.parseInt(tipo.getHabilitado()) == 1){
+                            if((Integer.parseInt(tipo.getHabilitado()) == 1 ) && (Integer.parseInt(tipo.getDescuentoLey()) == 0 )) {
                     %>
                     <option value="<%= tipo.getId_tipodescuento() %>"><%= tipo.getNombretipodesc() %></option>
                     <% 

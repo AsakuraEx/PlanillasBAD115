@@ -58,11 +58,26 @@
                     </div>
                     
                     <div class="container text-center py-4 md:col-span-2">
-                        <label id="descuentoLabel">Monto de descuento:</label>
-                        <input class="border rounded-lg py-1 px-4 w-full text-center" type="text" id="porcentajeInput" name="porcentaje" value="<%= tipodescuento.getPorcentaje() %> ">
+                        <label id="descuentoLabel">Porcentaje de descuento:</label>
+                        <input class="border rounded-lg py-1 px-4 w-full text-center" type="text" id="porcentajeInput" name="porcentaje" value="<%= tipodescuento.getPorcentaje() %> " pattern="^(0(\.[0-9]{1,2})?|[1-9]\d?(\.\d{1,2})?|100(\.0{1,2})?)$" placeholder="0.01 - 100">
             
                     </div>
-                    
+                        
+                    <% 
+                        String checked2;
+                        if(Integer.parseInt(tipodescuento.getDescuentoPatronal()) == 1){
+                            checked2 = "checked";
+                        }else{
+                            checked2 = " ";
+                        } 
+                    %>
+
+                    <div class="inline-flex px-4 items-center gap-3 mx-auto md:col-span-2">
+                        <label id="descuentoPatronalLabel">¿Es descuento Patronal?:</label>
+                        <input type="checkbox" id="descuentoPatronalCheckbox" name="descuentoPatronal" value="1" <%=checked2 %>>
+                        <input type="hidden" id="descuentoPatronalCheckbox" name="descuentoPatronal" value="0">
+                    </div>
+                        
                     <% 
                         String checked;
                         if(Integer.parseInt(tipodescuento.getHabilitado()) == 1){
@@ -77,6 +92,7 @@
                         <input type="checkbox" name="habilitado" value="1" <%=checked %>>
                         <input type="hidden" name="habilitado" value="0">
                     </div>
+                        
 
                     <div class="flex flex-col gap-2 px-4 md:col-span-2 md:flex-row md:mx-auto md:my-4">
 
@@ -103,7 +119,9 @@
 <script>
     // Obtener el checkbox, el label y el input
     var descuentoLeyCheckbox = document.getElementById("descuentoLeyCheckbox");
+    var descuentoPatronalCheckbox = document.getElementById("descuentoPatronalCheckbox");
     var descuentoLabel = document.getElementById("descuentoLabel");
+    var descuentoPatronalLabel = document.getElementById("descuentoPatronalLabel");
     var porcentajeInput = document.getElementById("porcentajeInput");
 
     // Función para mostrar u ocultar el label y el input según el estado del checkbox
@@ -111,9 +129,13 @@
         if (descuentoLeyCheckbox.checked) {
             descuentoLabel.style.display = "inline-block";
             porcentajeInput.style.display = "inline-block";
+            descuentoPatronalCheckbox.style.display = "inline-block";
+            descuentoPatronalLabel.style.display = "inline-block";
         } else {
             descuentoLabel.style.display = "none";
             porcentajeInput.style.display = "none";
+            descuentoPatronalCheckbox.style.display = "none";
+            descuentoPatronalLabel.style.display = "none";
             // Asignar un valor por defecto de 0.0 al input cuando se oculta
             porcentajeInput.value = "0.0";
         }

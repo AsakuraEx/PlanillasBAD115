@@ -72,7 +72,7 @@
                             <td class="px-8 py-2 md:px-1"><%=m1%></td>
                             
                                                         <%
-                                if (Integer.parseInt(tipodescuento.getDescuentoLey() ) == 1 ) {
+                                if (Integer.parseInt(tipodescuento.getDescuentoPatronal() ) == 1 ) {
                                     m2 = "Sí";
                                 } else {
                                     m2 = "No";

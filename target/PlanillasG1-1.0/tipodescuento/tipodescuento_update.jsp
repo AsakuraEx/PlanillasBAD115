@@ -15,6 +15,7 @@
             int id = Integer.parseInt(request.getParameter("id"));           
             nombre = request.getParameter("nombretipodesc");
             String descuentoLey = request.getParameter("descuentoLey"); 
+            String descuentoPatronal = request.getParameter("descuentoPatronal");
             String porcentajeStr = request.getParameter("porcentaje");
             float porcentaje = 0.0f; // Valor predeterminado en caso de que no se pueda convertir a float
 
@@ -28,6 +29,7 @@
             tipodescuento.setId_tipodescuento(id);
             tipodescuento.setNombretipodesc(nombre);
             tipodescuento.setDescuentoLey(descuentoLey);
+            tipodescuento.setDescuentoPatronal(descuentoPatronal);
             tipodescuento.setPorcentaje(porcentaje);
             tipodescuento.setHabilitado(habilitado);
             
