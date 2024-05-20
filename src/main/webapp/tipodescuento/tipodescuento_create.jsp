@@ -39,17 +39,22 @@
                     </div>
 
                     <div class="container text-center py-4 md:col-span-2">
-                        <label for="porcentaje" id="labelPorcentaje" style="display: none;">Monto de descuento:</label>
-                        <input class="border rounded-lg py-1 px-4 w-full text-center" type="text" id="porcentaje" name="porcentaje" required disabled value="0.0" style="display: none;">    
+                        <label for="porcentaje" id="labelPorcentaje" style="display: none;">Porcentaje de descuento:</label>
+                        <input class="border rounded-lg py-1 px-4 w-full text-center" type="text" id="porcentaje" name="porcentaje" required disabled value="0.0" pattern="^(0\.[0-9]{1,2}[1-9]|[1-9]\d?(\.\d{1,2})?|100(\.0{1,2})?)$" placeholder="0.01 - 100" style="display: none;">    
                     </div>
+                    
+                    <div class="container text-center py-4 md:col-span-2">
+                        <label for="descuentoPatronal" id="labelPatronal" style="display: none;">¿Es descuento Patronal?</label>
+                        <input type="checkbox" id="descuentoPatronalCheckbox" name="descuentoPatronal" value="1" style="display: none;">
+                        <input type="hidden" name="descuentoPatronal" value="0">
+                    </div>                    
                     
                     <div class="inline-flex px-4 items-center gap-3 mx-auto md:col-span-2">
                         <label>Habilitado:</label>
                         <input type="checkbox" name="habilitado" value="1">
                         <input type="hidden" name="habilitado" value="0">
                     </div>
-
-                                
+           
                     <div class="flex flex-col gap-2 px-4 md:col-span-2 md:flex-row md:mx-auto md:my-4">
 
                             <button class="bg-[#80BF96] hover:bg-[#629c76] py-2 px-4 text-center rounded-md font-bold text-white md:w-32" type="submit">Guardar</button>
@@ -76,11 +81,15 @@ function habilitarDescuento() {
     var checkbox = document.getElementById("descuentoLeyCheckbox");
     var montoInput = document.getElementById("porcentaje");
     var labelPorcentaje = document.getElementById("labelPorcentaje");
+    var labelPatronal = document.getElementById("labelPatronal");
+    var checkbox1 = document.getElementById("descuentoPatronalCheckbox");
 
     if (checkbox.checked) {
         montoInput.disabled = false;
         montoInput.style.display = "inline-block"; // Mostrar el input
         labelPorcentaje.style.display = "inline-block"; // Mostrar el label
+        labelPatronal.style.display = "inline-block";
+        checkbox1.style.display = "inline-block";
         montoInput.value = ""; // Limpiar el valor por defecto si se habilita el campo
     } else {
         montoInput.disabled = true;

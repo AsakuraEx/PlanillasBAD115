@@ -28,6 +28,9 @@ public class TipoDescuento {
     @Column(name = "descuentoLey")
     private String descuentoLey;
     
+    @Column(name = "descuentoPatronal")
+    private String descuentoPatronal;
+    
     @Column(name = "porcentaje")
     private float porcentaje;
     
@@ -58,6 +61,14 @@ public class TipoDescuento {
         this.descuentoLey = descuentoLey;
     }
 
+    public String getDescuentoPatronal() {
+        return descuentoPatronal;
+    }
+
+    public void setDescuentoPatronal(String descuentoPatronal) {
+        this.descuentoPatronal = descuentoPatronal;
+    }
+
     public float getPorcentaje() {
         return porcentaje;
     }
@@ -77,17 +88,18 @@ public class TipoDescuento {
     public TipoDescuento() {
     }
 
-    public TipoDescuento(int id_tipodescuento, String nombretipodesc, String descuentoLey, float porcentaje, String habilitado) {
+    public TipoDescuento(int id_tipodescuento, String nombretipodesc, String descuentoLey, String descuentoPatronal, float porcentaje, String habilitado) {
         this.id_tipodescuento = id_tipodescuento;
         this.nombretipodesc = nombretipodesc;
         this.descuentoLey = descuentoLey;
+        this.descuentoPatronal = descuentoPatronal;
         this.porcentaje = porcentaje;
         this.habilitado = habilitado;
     }
 
     @Override
     public String toString() {
-        return "TipoDescuento{" + "id_tipodescuento=" + id_tipodescuento + ", nombretipodesc=" + nombretipodesc + ", descuentoLey=" + descuentoLey + ", porcentaje=" + porcentaje + ", habilitado=" + habilitado + '}';
+        return "TipoDescuento{" + "id_tipodescuento=" + id_tipodescuento + ", nombretipodesc=" + nombretipodesc + ", descuentoLey=" + descuentoLey + ", descuentoPatronal=" + descuentoPatronal + ", porcentaje=" + porcentaje + ", habilitado=" + habilitado + '}';
     }
 
 }

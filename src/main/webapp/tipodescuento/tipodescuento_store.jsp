@@ -11,7 +11,8 @@
        <% 
             //Obtener informacion del formulario
            String nombre = request.getParameter("nombretipodesc");
-           String descuentoLey = request.getParameter("descuentoLey");       
+           String descuentoLey = request.getParameter("descuentoLey");  
+           String descuentoPatronal = request.getParameter("descuentoPatronal"); 
            String porcentajeStr = request.getParameter("porcentaje");
            float porcentaje = 0.0f; // Valor predeterminado en caso de que no se pueda convertir a float
 
@@ -23,7 +24,7 @@
 
            //Crear instancia del controlador y llamar al metodo create para guardar la informacion
            TipoDescuentoController controller = new TipoDescuentoController();
-           controller.create(nombre, descuentoLey, porcentaje, habilitado);
+           controller.create(nombre, descuentoLey, descuentoPatronal, porcentaje, habilitado);
            
             response.sendRedirect("tipodescuento_index.jsp");
 

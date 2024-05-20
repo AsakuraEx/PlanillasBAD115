@@ -46,6 +46,7 @@
                         <tr class="text-center border-b-2 border-slate-600 py-3 px-8">
                             <th class="px-2 py-2">Nombre del tipo de descuento</th>
                             <th class="px-2 py-2">Descuento de Ley</th>
+                            <th class="px-2 py-2">Descuento Patronal</th>
                             <th class="px-2 py-2">Porcentaje</th>
                             <th class="px-2 py-2">Estado</th>
                             <th class="px-2 py-2">Accion</th>
@@ -54,7 +55,7 @@
             
                             TipoDescuentoController controller = new TipoDescuentoController();
                             List<TipoDescuento> tiposdescuentos = controller.mostrarTipoDescuento();
-                            String m1, m2;
+                            String m1, m2, m3;
                             for (TipoDescuento tipodescuento : tiposdescuentos) {
                         %>
                         <tr class="text-center border-b border-slate-400">
@@ -70,16 +71,25 @@
                             %>
                             <td class="px-8 py-2 md:px-1"><%=m1%></td>
                             
+                                                        <%
+                                if (Integer.parseInt(tipodescuento.getDescuentoLey() ) == 1 ) {
+                                    m2 = "Sí";
+                                } else {
+                                    m2 = "No";
+                                };
+                            %>
+                            <td class="px-8 py-2 md:px-1"><%=m2%></td>
+                            
                             <td class="px-8 py-2 md:px-1"><%= tipodescuento.getPorcentaje() %></td>
             
                             <%
                                 if (Integer.parseInt(tipodescuento.getHabilitado()) == 1) {
-                                    m2 = "Habilitado";
+                                    m3 = "Habilitado";
                                 } else {
-                                    m2 = "Deshabilitado";
+                                    m3 = "Deshabilitado";
                                 };
                             %>
-                            <td class="px-8 py-2 md:px-1"><%=m2%></td>
+                            <td class="px-8 py-2 md:px-1"><%=m3%></td>
             
                             <td class="inline-flex flex-col md:flex-row gap-2 py-2">
                                 <form action="tipodescuento_edit.jsp" method="POST"

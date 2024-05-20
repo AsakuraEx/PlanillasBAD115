@@ -58,8 +58,8 @@
                     </div>
                     
                     <div class="container text-center py-4 md:col-span-2">
-                        <label id="descuentoLabel">Monto de descuento:</label>
-                        <input class="border rounded-lg py-1 px-4 w-full text-center" type="text" id="porcentajeInput" name="porcentaje" value="<%= tipodescuento.getPorcentaje() %> ">
+                        <label id="descuentoLabel">Porcentaje de descuento:</label>
+                        <input class="border rounded-lg py-1 px-4 w-full text-center" type="text" id="porcentajeInput" name="porcentaje" value="<%= tipodescuento.getPorcentaje() %> " pattern="^(0\.[0-9]{1,2}[1-9]|[1-9]\d?(\.\d{1,2})?|100(\.0{1,2})?)$" placeholder="0.01 - 100">
             
                     </div>
                     
