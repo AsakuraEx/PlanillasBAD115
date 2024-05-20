@@ -7,6 +7,7 @@ package Controllers;
 import Models.Descuento;
 import Models.Empleado;
 import Models.Ingreso;
+import Models.TipoDescuento;
 import java.time.LocalDate;
 import java.util.List;
 import org.hibernate.Session;
@@ -158,24 +159,55 @@ public class EmpleadoController {
         }       
     }
     public double sumarDescuentosEmpleado(int idEmpleado) {
-        SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Descuento.class).buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        double sumaDescuentos = 0.0;
+            double sumaDescuentos1 = 0.0;
+            SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Descuento.class).buildSessionFactory();
+            Session session = sessionFactory.openSession();
+            List<Descuento> descuentos = null;
 
-        try {
-            session.beginTransaction();
-            Query query = session.createQuery("select sum(descuento) from Descuento where id_empleado = :idEmpleado and habilitado = 1");
-            query.setParameter("idEmpleado", idEmpleado);
-            sumaDescuentos = (Double)query.uniqueResult();
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            session.close();
-            sessionFactory.close();
+            try {
+                session.beginTransaction();
+                Query query = session.createQuery("from Descuento where ID_EMPLEADO = :idEmpleado and habilitado = 1");
+                query.setParameter("idEmpleado", idEmpleado);
+                descuentos = query.list(); // Obtener la lista de descuentos
+                session.getTransaction().commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                session.close();
+                sessionFactory.close();
+            }
+            TipoDescuentoController p =new TipoDescuentoController();
+            List<TipoDescuento> descuentos1 = null;
+            descuentos1=p.mostrarTipoDescuentoley();
+            int h = descuentos1.size();
+    
+            EmpleadoController emple2 =new EmpleadoController();
+            Empleado emp2 = emple2.search(idEmpleado);
+    
+
+            for (int y = 0; y <= h-1; y++) {
+                float descuento;
+    
+                if (descuentos1.get(y).getNombretipodesc().equals("ISSS")) {
+                    descuento = 30;
+                } else {
+                    descuento = (float) emp2.getSalario() * descuentos1.get(y).getPorcentaje() / 100;
+                }
+            Descuento tempDescuento = new Descuento(
+                y+1000,                      // id_descuento (solo para identificar temporalmente)
+                LocalDate.now(),        // fechadescuento
+                descuento,              // descuento
+                descuentos1.get(y).getId_tipodescuento(),                      // id_tipodescuento
+                idEmpleado,               // id_empleado
+                "1"                     // habilitado
+            );
+                descuentos.add(tempDescuento);
         }
+        for (Descuento descuento : descuentos) {
+            sumaDescuentos1 += descuento.getDESCUENTO();
 
-        return sumaDescuentos;
+        }
+        return sumaDescuentos1;
     }
        
     public double sumarIngresosEmpleado(int idEmpleado) {

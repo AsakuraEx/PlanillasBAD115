@@ -6,12 +6,17 @@ package Controllers;
 
 
 import Models.Descuento;
+import Models.TipoDescuento;
+import Controllers.TipoDescuentoController;
+import Models.Empleado;
+import Controllers.EmpleadoController;
 import java.time.LocalDate;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
+import java.util.Date;
 
 /**
  *
@@ -27,13 +32,14 @@ public class DescuentoController {
                                       
         try{
             Descuento desc = new Descuento();
-            desc.setId_empleado(id_empleado);
-            desc.setId_tipodescuento(id_tipodescuento);
-            desc.setDescuento(descuento);
+            desc.setID_EMPLEADO(id_empleado);
+            desc.setID_TIPODESCUENTO(id_tipodescuento);
+            desc.setDESCUENTO(descuento);
             desc.setHabilitado(habilitado);
+            desc.setFECHADESCUENTO(LocalDate.now());
                                 
             session.beginTransaction();
-            session.save(descuento);
+            session.save(desc);
             session.getTransaction().commit();
             sessionFactory.close();
 
@@ -130,6 +136,34 @@ public List<Descuento> mostrarDescuentosPorEmpleado(int empleado) {
         sessionFactory.close();
     }
     
+    
+    TipoDescuentoController p =new TipoDescuentoController();
+    List<TipoDescuento> descuentos1 = null;
+    descuentos1=p.mostrarTipoDescuentoley();
+    int j = descuentos1.size();
+    
+    EmpleadoController emple =new EmpleadoController();
+    Empleado emp1 = emple.search(empleado);
+    
+
+                for (int i = 0; i <= j-1; i++) {
+                float descuento;
+    
+                if (descuentos1.get(i).getNombretipodesc().equals("ISSS")) {
+                    descuento = 30;
+                } else {
+                    descuento = (float) emp1.getSalario() * descuentos1.get(i).getPorcentaje() / 100;
+                }
+            Descuento tempDescuento = new Descuento(
+                i+1000,                      // id_descuento (solo para identificar temporalmente)
+                LocalDate.now(),        // fechadescuento
+                descuento,              // descuento
+                descuentos1.get(i).getId_tipodescuento(),                      // id_tipodescuento
+                empleado,               // id_empleado
+                "1"                     // habilitado
+            );
+            descuentos.add(tempDescuento);
+        }
     return descuentos;
 }
    

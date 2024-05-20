@@ -21,8 +21,18 @@
             <h1>Sistema de Planillas (SIP)</h1>
             <h2>Menu:</h2>
             <nav>
+                <%
+                    int id_empleado = Integer.parseInt(request.getParameter("id"));
+                %>
                 <ul>
-                    <li><a href="descuneto_index.jsp">Resumen de total de descuentos</a></li>
+                     <div class="md:mx-auto flex justify-center py-12">
+                        <form action="./descuento2_index.jsp" method="POST">
+                            <input type="hidden" name="id" value="<%= id_empleado %>">
+                            <button type="submit" class="bg-gray-900 text-white hover:bg-gray-500 py-2 px-4 text-center rounded">
+                                Listado de descuentos
+                            </button>
+                        </form>
+                    </div>
                 </ul>
             </nav>
             <hr>
@@ -31,19 +41,17 @@
         <main>
             <h3>Agregar descuento a empleado</h3>
             <br>
-                <%
-                    int id_empleado = Integer.parseInt(request.getParameter("id_empleado"));
-                %>
+
             <form action="descuento_store.jsp" method="post">
                 <!-- Recibe el id del empleado enviado desde la vista descuento2_index, para que lo procese la vista store -->
-                <input type="hidden" name="id_empleado" value="<%= id_empleado %>">
+                <input type="hidden" name="id" value="<%= id_empleado %>">
 
                 <label>Tipo de descuento:</label>
-                <select name="id_tipodescuento" required>
+                <select name="ID_TIPODESCUENTO" required>
                     <option value="">Selecciona un tipo de descuento...</option>
                     <% 
                         TipoDescuentoController controller = new TipoDescuentoController();
-                        List<TipoDescuento> tipos = controller.mostrarTipoDescuento();
+                        List<TipoDescuento> tipos = controller.mostrarTipoDescuentonoley();
                         
                         for(TipoDescuento tipo : tipos){
                             if((Integer.parseInt(tipo.getHabilitado()) == 1 ) && (Integer.parseInt(tipo.getDescuentoLey()) == 0 )) {
@@ -51,12 +59,12 @@
                     <option value="<%= tipo.getId_tipodescuento() %>"><%= tipo.getNombretipodesc() %></option>
                     <% 
                             }
-                        }
+                        }//oninput="validarMonto(this)" required
                     %>
                 </select>
                 
                 <label>Monto($):</label>
-                <input type="text" name="descuento" oninput="validarMonto(this)" required>
+                <input type="text" name="DESCUENTO" required>
 
                 <label>Habilitado:</label>
                 <input type="checkbox" name="habilitado" value="1">
