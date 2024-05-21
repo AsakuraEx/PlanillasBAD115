@@ -37,7 +37,7 @@
     
                     <a class="bg-[#80BF96] py-2 px-4 text-center rounded-md font-bold 
                     text-white md:ml-8 hover:bg-[#5b9670]" 
-                    href="tipodescuento_create.jsp">Crear nuevo tipo de ingreso</a>
+                    href="tipodescuento_create.jsp">Crear nuevo tipo de descuento</a>
     
                 </div>
 

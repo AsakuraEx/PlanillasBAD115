@@ -112,7 +112,7 @@
                                         }
                                     %>
                                 </td>                    
-                                <td class="inline-flex flex-col md:flex-row gap-2 py-2 md:w-52">
+                                <td class="inline-flex flex-col gap-2 py-2 md:w-52">
                                     <form action="empleado_edit.jsp" method="POST"
                                     class="font-bold bg-[#E1F2D5] px-4 py-2 rounded-md text-[#67814a] hover:bg-[#91aa7f] hover:text-white">
                                         <input type="hidden" name="id" value="<%= empleado.getId_empleado() %>">
