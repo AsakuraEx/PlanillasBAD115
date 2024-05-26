@@ -234,6 +234,53 @@ public List<TipoDescuento> mostrarTipoDescuentonoley() {
 
     return tipoDescuento;
 }
+public TipoDescuento mostrarTipoDescuentoAFP() {
+    SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(TipoDescuento.class).buildSessionFactory();
+    Session session = sessionFactory.openSession();
+    TipoDescuento tipoDescuento = null;
+
+    try {
+        session.beginTransaction();
+
+        Query<TipoDescuento> query = session.createQuery("FROM TipoDescuento WHERE NOMBRETIPODESC = :NOMBRETIPODESC", TipoDescuento.class);
+        query.setParameter("NOMBRETIPODESC", "AFP");
+        tipoDescuento = query.setMaxResults(1).uniqueResult(); // Limitar la consulta a un solo resultado y obtener el resultado único
+
+        session.getTransaction().commit();
+    } catch (Exception e) {
+        if (session.getTransaction() != null) session.getTransaction().rollback();
+        e.printStackTrace();
+    } finally {
+        if (session != null) session.close();
+        if (sessionFactory != null) sessionFactory.close();
+    }
+
+    return tipoDescuento;
+}
+public TipoDescuento mostrarTipoDescuentoISSS() {
+    SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(TipoDescuento.class).buildSessionFactory();
+    Session session = sessionFactory.openSession();
+    TipoDescuento tipoDescuento = null;
+
+    try {
+        session.beginTransaction();
+
+        Query<TipoDescuento> query = session.createQuery("FROM TipoDescuento WHERE NOMBRETIPODESC = :NOMBRETIPODESC", TipoDescuento.class);
+        query.setParameter("NOMBRETIPODESC", "ISSS");
+        tipoDescuento = query.setMaxResults(1).uniqueResult(); // Limitar la consulta a un solo resultado y obtener el resultado único
+
+        session.getTransaction().commit();
+    } catch (Exception e) {
+        if (session.getTransaction() != null) session.getTransaction().rollback();
+        e.printStackTrace();
+    } finally {
+        if (session != null) session.close();
+        if (sessionFactory != null) sessionFactory.close();
+    }
+
+    return tipoDescuento;
+}
+
 public int mostrarTipoDescuentoRentaint(int idTipoDescuento) {
     SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(TipoDescuento.class).buildSessionFactory();
     Session session = sessionFactory.openSession();

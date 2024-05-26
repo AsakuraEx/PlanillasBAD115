@@ -158,7 +158,7 @@ public class EmpleadoController {
              return null; // 
         }       
     }
-    public double sumarDescuentosEmpleado(int idEmpleado) {
+    public double sumarDescuentosEmpleado(int idEmpleado,int mes,int año) {
             double sumaDescuentos1 = 0.0;
             SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Descuento.class).buildSessionFactory();
             Session session = sessionFactory.openSession();
@@ -166,8 +166,10 @@ public class EmpleadoController {
 
             try {
                 session.beginTransaction();
-                Query query = session.createQuery("from Descuento where ID_EMPLEADO = :idEmpleado and habilitado = 1");
+                Query query = session.createQuery("from Descuento where ID_EMPLEADO = :idEmpleado and habilitado = 1 AND MONTH(fechadescuento) = :mes AND YEAR(fechadescuento) = :año");
                 query.setParameter("idEmpleado", idEmpleado);
+                query.setParameter("mes", mes);
+                query.setParameter("año", año);
                 descuentos = query.list(); // Obtener la lista de descuentos
                 session.getTransaction().commit();
             } catch (Exception e) {
@@ -176,51 +178,100 @@ public class EmpleadoController {
                 session.close();
                 sessionFactory.close();
             }
+            if(descuentos!=null){
+             for (Descuento descuento : descuentos) {
+            sumaDescuentos1 += descuento.getDESCUENTO();
+            }}else{
+            sumaDescuentos1=0;
+            }
+           
+        return sumaDescuentos1;
+    }
+        public double AFPEmpleado(int idEmpleado) {
+            double sumaDescuentos1 = 0.0;
+            
             TipoDescuentoController p =new TipoDescuentoController();
-            List<TipoDescuento> descuentos1 = null;
-            descuentos1=p.mostrarTipoDescuentoley();
-            int h = descuentos1.size();
-    
+            TipoDescuento descuentos1 = null;
+            descuentos1=p.mostrarTipoDescuentoAFP();
             EmpleadoController emple2 =new EmpleadoController();
             Empleado emp2 = emple2.search(idEmpleado);
     
 
-            for (int y = 0; y <= h-1; y++) {
-                float descuento;
-    
-                if (descuentos1.get(y).getNombretipodesc().equals("ISSS")) {
-                    descuento = 30;
-                } else {
-                    descuento = (float) emp2.getSalario() * descuentos1.get(y).getPorcentaje() / 100;
-                }
-            Descuento tempDescuento = new Descuento(
-                y+1000,                      // id_descuento (solo para identificar temporalmente)
+            float descuento;
+            descuento = (float) emp2.getSalario() * descuentos1.getPorcentaje() / 100;
+            Descuento DescuentoAFP = new Descuento(
+                1000,                      // id_descuento (solo para identificar temporalmente)
                 LocalDate.now(),        // fechadescuento
+                LocalDate.now(),
                 descuento,              // descuento
-                descuentos1.get(y).getId_tipodescuento(),                      // id_tipodescuento
+                descuentos1.getId_tipodescuento(),                      // id_tipodescuento
                 idEmpleado,               // id_empleado
                 "1"                     // habilitado
             );
-                descuentos.add(tempDescuento);
-        }
-         TipoDescuento descuentos2 = null;
-        descuentos2=p.mostrarTipoDescuentoRenta();        
-        Descuento tempDescuento = new Descuento(
-                1000000,                      // id_descuento (solo para identificar temporalmente)
-                LocalDate.now(),        // fechadescuento
-                (float)calcularRenta(emp2.getSalario()),              // descuento
-                descuentos2.getId_tipodescuento(),                      // id_tipodescuento
-                idEmpleado,               // id_empleado
-                "1"                     // habilitado
-            );
-            descuentos.add(tempDescuento);   
-        for (Descuento descuento : descuentos) {
-            sumaDescuentos1 += descuento.getDESCUENTO();
-
-        }
+            sumaDescuentos1=DescuentoAFP.getDESCUENTO();
         return sumaDescuentos1;
     }
+        public double ISSSEmpleado(int idEmpleado) {
+            double sumaDescuentos1 = 0.0;
+            
+            TipoDescuentoController p =new TipoDescuentoController();
+            TipoDescuento descuentos1 = null;
+            descuentos1=p.mostrarTipoDescuentoISSS();
+            EmpleadoController emple2 =new EmpleadoController();
+            Empleado emp2 = emple2.search(idEmpleado);
+    
+
+            float descuento;
+            if (emp2.getSalario()>1000) {
+                    descuento = 30;
+                } else {
+                    descuento = (float) emp2.getSalario() * descuentos1.getPorcentaje() / 100;
+                }
+            Descuento DescuentoISSS = new Descuento(
+                1000,                      // id_descuento (solo para identificar temporalmente)
+                LocalDate.now(),        // fechadescuento
+                LocalDate.now(),
+                descuento,              // descuento
+                descuentos1.getId_tipodescuento(),                      // id_tipodescuento
+                idEmpleado,               // id_empleado
+                "1"                     // habilitado
+            );
+            sumaDescuentos1=DescuentoISSS.getDESCUENTO();
+        return sumaDescuentos1;
+    }
+        public double RENTAEmpleado(int idEmpleado) {
+            double sumaDescuentos1 = 0.0;
+            
+            TipoDescuentoController p =new TipoDescuentoController();
+            TipoDescuento descuentos1 = null;
+            descuentos1=p.mostrarTipoDescuentoRenta();
+            EmpleadoController emple2 =new EmpleadoController();
+            Empleado emp2 = emple2.search(idEmpleado);
        
+            Descuento DescuentoRENTA = new Descuento(
+                1000000,                      // id_descuento (solo para identificar temporalmente)
+                LocalDate.now(),        // fechadescuento
+                LocalDate.now(),
+                (float)calcularRenta(emp2.getSalario()),              // descuento
+                descuentos1.getId_tipodescuento(),                      // id_tipodescuento
+                idEmpleado,               // id_empleado
+                "1"                     // habilitado
+            );
+            sumaDescuentos1=DescuentoRENTA.getDESCUENTO();
+        return sumaDescuentos1;
+    }
+
+        public double salarioNetoEmpleado(int idEmpleado,int mes,int año) {
+            double sumaDescuentos1 = 0.0;
+            
+            TipoDescuentoController p =new TipoDescuentoController();
+            TipoDescuento descuentos1 = null;
+            descuentos1=p.mostrarTipoDescuentoRenta();
+            EmpleadoController emple2 =new EmpleadoController();
+            Empleado emp2 = emple2.search(idEmpleado);
+            sumaDescuentos1=emp2.getSalario()-emple2.RENTAEmpleado(idEmpleado)-emple2.ISSSEmpleado(idEmpleado)-emple2.AFPEmpleado(idEmpleado)-emple2.sumarDescuentosEmpleado(idEmpleado, mes, año);
+        return sumaDescuentos1;
+    }
     public double sumarIngresosEmpleado(int idEmpleado) {
         SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Ingreso.class).buildSessionFactory();
         Session session = sessionFactory.openSession();

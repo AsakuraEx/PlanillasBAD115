@@ -30,6 +30,9 @@ public class Descuento {
     @Column(name="FECHADESCUENTO")
     LocalDate FECHADESCUENTO;
     
+    @Column(name="FECHADESCUENTOFIN")
+    LocalDate FECHADESCUENTOFIN;
+    
     @Column(name="DESCUENTO")
     float DESCUENTO;
     
@@ -45,9 +48,10 @@ public class Descuento {
     public Descuento() {
     }
 
-    public Descuento(int ID_DESCUENTO, LocalDate FECHADESCUENTO, float DESCUENTO, int ID_TIPODESCUENTO, int ID_EMPLEADO, String habilitado) {
+    public Descuento(int ID_DESCUENTO, LocalDate FECHADESCUENTO,LocalDate FECHADESCUENTOFIN, float DESCUENTO, int ID_TIPODESCUENTO, int ID_EMPLEADO, String habilitado) {
         this.ID_DESCUENTO = ID_DESCUENTO;
         this.FECHADESCUENTO = FECHADESCUENTO;
+        this.FECHADESCUENTOFIN=FECHADESCUENTOFIN;
         this.DESCUENTO = DESCUENTO;
         this.ID_TIPODESCUENTO = ID_TIPODESCUENTO;
         this.ID_EMPLEADO = ID_EMPLEADO;
@@ -56,7 +60,7 @@ public class Descuento {
 
     @Override
     public String toString() {
-        return "Descuento{" + "ID_DESCUENTO=" + ID_DESCUENTO + ", FECHADESCUENTO=" + FECHADESCUENTO + ", DESCUENTO=" + DESCUENTO + ", ID_TIPODESCUENTO=" + ID_TIPODESCUENTO + ", ID_EMPLEADO=" + ID_EMPLEADO + ", habilitado=" + habilitado + '}';
+        return "Descuento{" + "ID_DESCUENTO=" + ID_DESCUENTO + ", FECHADESCUENTO=" + FECHADESCUENTO +",FECHADESCUENTOFIN="+FECHADESCUENTOFIN+ ", DESCUENTO=" + DESCUENTO + ", ID_TIPODESCUENTO=" + ID_TIPODESCUENTO + ", ID_EMPLEADO=" + ID_EMPLEADO + ", habilitado=" + habilitado + '}';
     }
 
     public int getID_DESCUENTO() {
@@ -105,6 +109,14 @@ public class Descuento {
 
     public void setHabilitado(String habilitado) {
         this.habilitado = habilitado;
+    }
+
+    public LocalDate getFECHADESCUENTOFIN() {
+        return FECHADESCUENTOFIN;
+    }
+
+    public void setFECHADESCUENTOFIN(LocalDate FECHADESCUENTOFIN) {
+        this.FECHADESCUENTOFIN = FECHADESCUENTOFIN;
     }
 
     

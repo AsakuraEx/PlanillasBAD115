@@ -23,7 +23,10 @@
             int id_tipodescuento = Integer.parseInt(request.getParameter("ID_TIPODESCUENTO"));   
             float descuento = Float.parseFloat(request.getParameter("DESCUENTO"));
             String habilitado = request.getParameter("habilitado");
-            
+            String fechaDescuento = request.getParameter("FECHADESCUENTO");
+            String fechaDescuentoFin = request.getParameter("FECHADESCUENTOFIN");
+
+
             
             Empleado em =new Empleado();
             EmpleadoController cont =new EmpleadoController();
@@ -32,7 +35,7 @@
             
             //Crear el registro en la base de datos
             DescuentoController controller = new DescuentoController();
-            controller.create(id_empleado, id_tipodescuento, descuento, habilitado);
+            controller.create(id_empleado, id_tipodescuento, descuento, habilitado,fechaDescuento,fechaDescuentoFin);
             //response.sendRedirect("descuento2_index.jsp"+id_empleado);
             request.setAttribute("id",em.getId_empleado()); // Cambia 123 al número que desees devolver
     

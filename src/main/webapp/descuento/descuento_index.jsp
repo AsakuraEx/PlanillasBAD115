@@ -12,6 +12,8 @@
 <%@page import="Models.TipoDescuento"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -37,27 +39,40 @@
             <section class="container bg-white h-screen">
     
                 <div class="container text-center py-8">
-    
-                    <h1 class="font-bold text-2xl md:text-3xl border-b-2 pb-4 border-[#80BF96] text-[#629c76]">Total de descuentos por empleado</h1>
+                    <% LocalDate now = LocalDate.now(); %>
+                    <% DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy"); %>
+                    <h1 class="font-bold text-2xl md:text-3xl border-b-2 pb-4 border-[#80BF96] text-[#629c76]">Reporte por empleado- <%= now.format(formatter) %></h1>
     
                 </div>
-
                 <div class="overflow-x-auto px-8 pb-8">
 
                     <table class="table-auto mx-auto md:w-full">
                         <thead class="text-center border-b-2 border-slate-600 py-3 px-8">
                             <td class="px-2 py-2">Empleado</td>
                             <td class="px-2 py-2">Salario</td>
-                            <td class="px-2 py-2">Descuentos totales</td>
+                            <td class="px-2 py-2">AFP</td>
+                            <td class="px-2 py-2">ISSS</td>
+                            <td class="px-2 py-2">RENTA</td>
+                            <td class="px-2 py-2">Ingresos</td>
+                            <td class="px-2 py-2">Otros descuentos</td>
+                            <td class="px-2 py-2">Salario neto</td>
                             <td class="px-2 py-2">Accion</td>
                         </thead>
-                        <%
+                        <%                      
+                            int currentYear = now.getYear();
+                            int currentMonth = now.getMonthValue();
                             EmpleadoController controllerEmpleado = new EmpleadoController();
-                            List<Empleado> empleados = controllerEmpleado.mostrarEmpleados();       
+                            List<Empleado> empleados = controllerEmpleado.mostrarEmpleados();        
                         %>
                         <tbody>
                             <%
                                 for(Empleado empleado : empleados){
+                                                            //double descuentosTotales = controllerEmpleado1.sumarDescuentosEmpleado(empleado.getId_empleado());  
+                                    double otrosDescuentos = controllerEmpleado.sumarDescuentosEmpleado(empleado.getId_empleado(), currentMonth, currentYear); 
+                                    double afp = controllerEmpleado.AFPEmpleado(empleado.getId_empleado());
+                                    double isss = controllerEmpleado.ISSSEmpleado(empleado.getId_empleado());
+                                    double renta = controllerEmpleado.RENTAEmpleado(empleado.getId_empleado());
+                                    double salarioNeto = controllerEmpleado.salarioNetoEmpleado(empleado.getId_empleado(), currentMonth, currentYear);
                             %>
                             <tr class="text-center border-b border-slate-400">
                                 <td class="px-8 py-2 md:px-1">
@@ -87,12 +102,12 @@
                                 </td>                    
 
                                 <td class="px-8 py-2 md:px-1"><%= empleado.getSalario()%></td>
-                                <%
-                                    EmpleadoController controllerEmpleado1 = new EmpleadoController();
-                                    double descuentosTotales = controllerEmpleado1.sumarDescuentosEmpleado(empleado.getId_empleado());  
-                                %>
-                                
-                                <td class="px-8 py-2 md:px-1"><%= String.format("%.2f", descuentosTotales)%></td>
+                                <td class="px-8 py-2 md:px-1"><%= String.format("%.2f", afp)%></td>
+                                <td class="px-8 py-2 md:px-1"><%= String.format("%.2f", isss)%></td>
+                                <td class="px-8 py-2 md:px-1"><%= String.format("%.2f", renta)%></td>
+                                <td class="px-8 py-2 md:px-1">Ingresos</td>
+                                <td class="px-8 py-2 md:px-1"><%= String.format("%.2f", otrosDescuentos)%></td>
+                                <td class="px-8 py-2 md:px-1"><%= String.format("%.2f", salarioNeto)%></td>
                                 <td class="inline-flex flex-col md:flex-row gap-2 py-2">
                                     <form action="descuento2_index.jsp" method="POST"
                                     class="font-bold bg-[#E1F2D5] px-4 py-2 rounded-md text-[#67814a] hover:bg-[#91aa7f] hover:text-white">

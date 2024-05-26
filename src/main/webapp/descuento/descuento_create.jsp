@@ -67,7 +67,14 @@
                         </select>
 
                     </div>
-
+                    <div class="flex flex-col gap-2 px-4">
+                        <label>Fecha de inicio del Descuento:</label>
+                        <input class="border rounded-lg py-1 px-4 w-full" type="date" name="FECHADESCUENTO" required>
+                    </div>
+                    <div class="flex flex-col gap-2 px-4">
+                        <label>Fecha de Fin del Descuento:</label>
+                        <input class="border rounded-lg py-1 px-4 w-full" type="date" name="FECHADESCUENTOFIN" required>
+                    </div>
                     <div class="flex flex-col gap-2 px-4">
                         <label>Monto($):</label>
                         <input class="border rounded-lg py-1 px-4 w-full" type="text" name="DESCUENTO" required>

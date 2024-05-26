@@ -17,6 +17,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import java.util.Date;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 
 /**
  *
@@ -24,19 +27,28 @@ import java.util.Date;
  */
 public class DescuentoController {
         
-    public void create(int id_empleado, int id_tipodescuento, float descuento,  String habilitado){
+    public void create(int id_empleado, int id_tipodescuento, float descuento,  String habilitado, String fechaDescuento, String fechaDescuentoFin){
         //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
         SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Descuento.class).buildSessionFactory();
         //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
         Session session = sessionFactory.openSession();
-                                      
+          // Convertir la fecha de String a Date
+    LocalDate fechaDescuento1 = null;
+    LocalDate fechaDescuento2 = null;
+    try {
+        fechaDescuento1 = LocalDate.parse(fechaDescuento, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        fechaDescuento2 = LocalDate.parse(fechaDescuentoFin, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    } catch (DateTimeParseException e) {
+        e.printStackTrace();
+    }                           
         try{
             Descuento desc = new Descuento();
             desc.setID_EMPLEADO(id_empleado);
             desc.setID_TIPODESCUENTO(id_tipodescuento);
             desc.setDESCUENTO(descuento);
             desc.setHabilitado(habilitado);
-            desc.setFECHADESCUENTO(LocalDate.now());
+            desc.setFECHADESCUENTO(fechaDescuento1);
+            desc.setFECHADESCUENTOFIN(fechaDescuento2);
                                 
             session.beginTransaction();
             session.save(desc);
@@ -99,7 +111,6 @@ public class DescuentoController {
     }    
 
     public void update(Descuento descuento){
-    
         //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
         SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Descuento.class).buildSessionFactory();
         //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
@@ -119,18 +130,22 @@ public class DescuentoController {
     }
     
 public List<Descuento> mostrarDescuentosPorEmpleado(int empleado) {
+    LocalDate fecha = LocalDate.now();
+    //LocalDate fechaMesAnterior = fecha.minusMonths(1);
     SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Descuento.class).buildSessionFactory();
     Session session = sessionFactory.openSession();
     List<Descuento> descuentos = null;
 
     try {
         session.beginTransaction();
-        Query<Descuento> query = session.createQuery("FROM Descuento WHERE ID_EMPLEADO = :empleado", Descuento.class);
+        Query<Descuento> query = session.createQuery("FROM Descuento WHERE ID_EMPLEADO = :empleado AND FECHADESCUENTO <= :fecha AND FECHADESCUENTOFIN >= :fecha", Descuento.class);
         query.setParameter("empleado", empleado);
+        query.setParameter("fecha", fecha);
         descuentos = query.getResultList();
         session.getTransaction().commit();
     } catch(Exception e) {
         e.printStackTrace();
+        
     } finally {
         session.close();
         sessionFactory.close();
@@ -157,6 +172,7 @@ public List<Descuento> mostrarDescuentosPorEmpleado(int empleado) {
             Descuento tempDescuento = new Descuento(
                 i+1000,                      // id_descuento (solo para identificar temporalmente)
                 LocalDate.now(),        // fechadescuento
+                LocalDate.now(),
                 descuento,              // descuento
                 descuentos1.get(i).getId_tipodescuento(),                      // id_tipodescuento
                 empleado,               // id_empleado
@@ -169,6 +185,7 @@ public List<Descuento> mostrarDescuentosPorEmpleado(int empleado) {
         Descuento tempDescuento = new Descuento(
                 1000000,                      // id_descuento (solo para identificar temporalmente)
                 LocalDate.now(),        // fechadescuento
+                LocalDate.now(),
                 (float)calcularRenta(emp1.getSalario()),              // descuento
                 descuentos2.getId_tipodescuento(),                      // id_tipodescuento
                 empleado,               // id_empleado
