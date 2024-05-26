@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDate"%>
 <%@page import="Models.Empleado"%>
 <%@page import="Controllers.EmpleadoController"%>
 <%@page import="Models.Ingreso"%>
@@ -36,6 +37,9 @@
                 </div>  
         
             </header>
+            <%
+                LocalDate fechaingreso = LocalDate.now();
+            %>
             
             <main class="bg-slate-100">
         
@@ -53,8 +57,6 @@
                         <!-- Enviar el id del ingreso y del empleado a editar, para que lo procese la vista update -->
                         <input type="hidden" name="id_empleado" value="<%= id_empleado %>">
                         <input type="hidden" name="id_ingreso" value="<%= id_ingreso %>">
-                        <input type="hidden" name="fechaingreso" value="<%=ing.getFechaingreso() %>">
-
 
                         <div class="flex flex-col gap-2 px-4">
                             <label>Tipo de ingreso:</label>
@@ -74,6 +76,11 @@
                                     }
                                 %>
                             </select>
+                        </div>
+                            
+                        <div class="flex flex-col gap-2 px-4">
+                            <label>Fecha:</label>
+                            <input class="border rounded-lg py-1 px-4 w-full" type="date" name="fechaingreso" max="<%=fechaingreso%>" value="<%=ing.getFechaingreso() %>" required>                
                         </div>
                         
                         <div class="flex flex-col gap-2 px-4">
@@ -105,9 +112,12 @@
                     </form>
         
                     <div class="md:mx-auto flex justify-center py-12">
-        
-                        <a class="bg-gray-900 text-white hover:bg-gray-500 py-2 px-4 text-center rounded" href="./ingreso_index.jsp">Listado de ingresos</a>
-        
+                        <form action="./ingreso_empleado.jsp" method="POST">
+                            <input type="hidden" name="id" value="<%= id_empleado %>">
+                            <button type="submit" class="bg-gray-900 text-white hover:bg-gray-500 py-2 px-4 text-center rounded">
+                                Listado de descuentos
+                            </button>
+                        </form>
                     </div>
         
                 </section>

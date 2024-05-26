@@ -81,6 +81,7 @@
                         <thead class="text-center border-b-2 border-slate-600 py-3 px-8">
                             <td class="px-2 py-2">Tipo de ingreso</td>
                             <td class="px-2 py-2">Monto</td>
+                            <td class="px-2 py-2">Fecha de registro</td>
                             <td class="px-2 py-2">Estado</td>
                             <td class="px-2 py-2">Acciones</td>
                         </thead>
@@ -102,6 +103,7 @@
                                 %>
                                 <td class="px-8 py-2 md:px-1"><%= tipoIng.getNombretipoingreso() %></td>                    
                                 <td class="px-8 py-2 md:px-1">$ <%=ing.getIngreso() %></td>
+                                <td class="px-8 py-2 md:px-1"><%=ing.getFechaingreso() %></td>
                                 <% 
                                     if(Integer.parseInt(ing.getHabilitado()) == 1){ 
                                         mensaje = "Habilitado";

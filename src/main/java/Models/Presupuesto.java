@@ -4,6 +4,7 @@
  */
 package Models;
 
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,8 +25,8 @@ public class Presupuesto {
     @Column(name="id_deporg")
     private int id_deporg;
     
-    @Column(name="id_mes")
-    private int id_mes;
+    @Column(name="fecha")
+    LocalDate fecha;
     
     @Column(name="monto")
     private float monto;
@@ -49,15 +50,13 @@ public class Presupuesto {
         this.id_deporg = id_deporg;
     }
 
-    public int getId_mes() {
-        return id_mes;
+    public LocalDate getFecha() {
+        return fecha;
     }
 
-    public void setId_mes(int id_mes) {
-        this.id_mes = id_mes;
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
-
-    
 
     public float getMonto() {
         return monto;
@@ -78,18 +77,16 @@ public class Presupuesto {
     public Presupuesto() {
     }
 
-    public Presupuesto(int id_presupuesto, int id_deporg, int id_mes, float monto, String habilitado) {
+    public Presupuesto(int id_presupuesto, int id_deporg, LocalDate fecha, float monto, String habilitado) {
         this.id_presupuesto = id_presupuesto;
         this.id_deporg = id_deporg;
-        this.id_mes = id_mes;
+        this.fecha = fecha;
         this.monto = monto;
         this.habilitado = habilitado;
     }
 
     @Override
     public String toString() {
-        return "Presupuesto{" + "id_presupuesto=" + id_presupuesto + ", id_deporg=" + id_deporg + ", id_mes=" + id_mes + ", monto=" + monto + ", habilitado=" + habilitado + '}';
+        return "Presupuesto{" + "id_presupuesto=" + id_presupuesto + ", id_deporg=" + id_deporg + ", fecha=" + fecha + ", monto=" + monto + ", habilitado=" + habilitado + '}';
     }
-    
-    
 }

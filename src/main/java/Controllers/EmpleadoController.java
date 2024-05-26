@@ -67,6 +67,29 @@ public class EmpleadoController {
         
     }
     
+    
+    public List<Empleado> mostrarTodosEmpleados(){
+       
+        //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
+        SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Empleado.class).buildSessionFactory();
+        //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
+        Session session = sessionFactory.openSession();
+        List<Empleado> empleados = null;
+        
+        try{
+            session.beginTransaction();
+            Query<Empleado> query = session.createQuery("FROM Empleado", Empleado.class);
+            empleados = query.getResultList();
+            session.getTransaction().commit();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            sessionFactory.close();
+
+        }
+        return empleados;
+    }
     public List<Empleado> mostrarEmpleados(){
        
         //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
