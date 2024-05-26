@@ -43,6 +43,8 @@
                         <tr>
                             <td class="px-2 py-2">Empleado</td>
                             <td class="px-2 py-2">Salario</td>
+                            <td class="px-2 py-2">Otros ingresos</td>
+                             <td class="px-2 py-2">Monto cotizable</td>
                             <td class="px-2 py-2">ISSS Patronal</td>
                             <td class="px-2 py-2">AFP Patronal</td>
                             <td class="px-2 py-2">Total de aportes</td>
@@ -62,9 +64,14 @@
                                 
                                 double afpPatronal = 0.0;
                                 
+                                //Para mostrar los ingresos totales de cada empleado
+                                EmpleadoController controllerEmp = new EmpleadoController();
+                                double totalIng = controllerEmp.sumarIngresosEmpleado(empleado.getId_empleado());   
+                                //Suma el salario para otros ingresos
+                                double sumaTotalIng = empleado.getSalario() + totalIng;
 
                                 for (TipoDescuento t : tipos) {
-                                    double aporte = empleado.getSalario() * (t.getPorcentaje() / 100.0);
+                                    double aporte = sumaTotalIng * (t.getPorcentaje() / 100.0);
                                     double valorPorcentaje = t.getPorcentaje();
                                     String nombreTipoDesc = t.getNombretipodesc().trim();
 
@@ -83,8 +90,10 @@
                         <tr class="text-center border-b-2 border-slate-600">
                             <td class="px-8 py-2 md:px-1 font-bold"></td>
                             <td class="px-8 py-2 md:px-1 font-bold"></td>
-                            <td class="px-8 py-2 md:px-1 font-bold"><%= String.format("%.2f", isssP) %></td>
-                            <td class="px-8 py-2 md:px-1 font-bold"><%= String.format("%.2f", afpPl) %></td>
+                            <td class="px-8 py-2 md:px-1 font-bold"></td>
+                            <td class="px-8 py-2 md:px-1 font-bold"></td>
+                            <td class="px-8 py-2 md:px-1 font-bold"><%= String.format("%.2f", isssP) %>%</td>
+                            <td class="px-8 py-2 md:px-1 font-bold"><%= String.format("%.2f", afpPl) %>%</td>
                             <td class="px-8 py-2 md:px-1 font-bold">$ <%= String.format("%.2f", sumaTotalAportes) %></td>
                         </tr>
                     </thead>
@@ -93,9 +102,15 @@
                             for (Empleado empleado : empleados) {
                                 double isssPatronal = 0.0;
                                 double afpPatronal = 0.0;
-
+                                
+                                //Para mostrar los ingresos totales de cada empleado
+                                EmpleadoController controllerEmp = new EmpleadoController();
+                                double totalIng = controllerEmp.sumarIngresosEmpleado(empleado.getId_empleado());   
+                                //Suma el salario para otros ingresos
+                                double sumaTotalIng = empleado.getSalario() + totalIng;
+ 
                                 for (TipoDescuento t : tipos) {
-                                    double aporte = empleado.getSalario() * (t.getPorcentaje() / 100.0);
+                                    double aporte = sumaTotalIng * (t.getPorcentaje() / 100.0);
                                     String nombreTipoDesc = t.getNombretipodesc().trim();
 
                                     if ("ISSS Patronal".equalsIgnoreCase(nombreTipoDesc)) {
@@ -105,6 +120,8 @@
                                     }
                                 }
                                 double totalAportes = isssPatronal + afpPatronal;
+                                
+
                         %>
                         <tr class="text-center border-b border-slate-400">
                             <td class="px-8 py-2 md:px-1">
@@ -134,6 +151,8 @@
                             </td>                    
 
                             <td class="px-8 py-2 md:px-1">$ <%= empleado.getSalario() %></td>
+                            <td class="px-8 py-2 md:px-1">$ <%= totalIng%></td>
+                            <td class="px-8 py-2 md:px-1">$ <%= sumaTotalIng %></td>
                             <td class="px-8 py-2 md:px-1">$ <%= String.format("%.2f", isssPatronal) %> </td>
                             <td class="px-8 py-2 md:px-1">$ <%= String.format("%.2f", afpPatronal) %> </td>
                             <td class="px-8 py-2 md:px-1">$ <%= String.format("%.2f", totalAportes) %></td>

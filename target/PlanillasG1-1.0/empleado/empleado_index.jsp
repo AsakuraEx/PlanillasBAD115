@@ -61,7 +61,7 @@
                         </thead>
                         <%
                             EmpleadoController controllerEmpleado = new EmpleadoController();
-                            List<Empleado> empleados = controllerEmpleado.mostrarEmpleados();   
+                            List<Empleado> empleados = controllerEmpleado.mostrarTodosEmpleados();
             
                         %>
                         <tbody>
@@ -117,15 +117,7 @@
                                     class="font-bold bg-[#E1F2D5] px-4 py-2 rounded-md text-[#67814a] hover:bg-[#91aa7f] hover:text-white">
                                         <input type="hidden" name="id" value="<%= empleado.getId_empleado() %>">
                                         <input type="submit" value="Editar">
-                                    </form>
-                                    <form action="empleado_delete.jsp" method="POST"
-                                    class="font-bold bg-[#f2f2f2] px-4 py-2 rounded-md text-black hover:bg-[#d4d4d4] hover:text-black">
-                                        <input type="hidden" name="id" value="<%= empleado.getId_empleado() %>">
-                                        <input type="hidden" name="habilitado" value="0">
-                                        <input type="submit" value="Borrar">
-                                    </form>  
-                                        
-                                        
+                                    </form> 
                                     <form action="empleado_show.jsp" method="POST"
                                     class="font-bold bg-[#B8D9BA] px-4 py-2 rounded-md text-black hover:bg-[#92bb95] hover:text-black">
                                         <input type="hidden" name="id" value="<%= empleado.getId_empleado() %>">
