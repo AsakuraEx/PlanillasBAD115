@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDate"%>
 <%@page import="Controllers.PresupuestoController"%>
 <%@page import="Models.Presupuesto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,14 +13,14 @@
             
             int id = Integer.parseInt(request.getParameter("id"));
             int id_deporg = Integer.parseInt(request.getParameter("id_deporg"));
-            int id_mes = Integer.parseInt(request.getParameter("id_mes"));
+            LocalDate fecha= LocalDate.parse(request.getParameter("fecha"));
             float monto = Float.parseFloat(request.getParameter("monto"));
             String habilitado = request.getParameter("habilitado");
             
             Presupuesto presupuesto = new Presupuesto();
             presupuesto.setId_presupuesto(id);
             presupuesto.setId_deporg(id_deporg);
-            presupuesto.setId_mes(id_mes);
+            presupuesto.setFecha(fecha);
             presupuesto.setMonto(monto);
             presupuesto.setHabilitado(habilitado);
             

@@ -2,6 +2,7 @@
 package Controllers;
 
 import Models.Presupuesto;
+import java.time.LocalDate;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,7 +11,7 @@ import org.hibernate.query.Query;
 
 public class PresupuestoController {
 //    
-    public void create(int deporg, int mes, float monto, String habilitado){
+    public void create(int deporg, LocalDate fecha, float monto, String habilitado){
         //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
         SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Presupuesto.class).buildSessionFactory();
         //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
@@ -19,7 +20,7 @@ public class PresupuestoController {
         try{
             Presupuesto presupuestos = new Presupuesto();
             presupuestos.setId_deporg(deporg);
-            presupuestos.setId_mes(mes);
+            presupuestos.setFecha(fecha);
             presupuestos.setMonto(monto);
             presupuestos.setHabilitado(habilitado);
                                 

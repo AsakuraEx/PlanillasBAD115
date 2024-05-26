@@ -49,7 +49,7 @@
                     <table class="table-auto mx-auto md:w-full">
                         <thead class="text-center border-b-2 border-slate-600 py-3 px-8">
                             <td class="px-2 py-2">Departamento de unidad organizativa</td>
-                            <td class="px-2 py-2">Mes</td>
+                            <td class="px-2 py-2">Fecha</td>
                             <td class="px-2 py-2">Monto asignado</td>
                             <td class="px-2 py-2">Estado</td>
                             <td class="px-2 py-2">Accion</td>
@@ -57,9 +57,6 @@
                         <%
                             DepUnidadOrganiController controllerdep = new DepUnidadOrganiController();
                             DepUnidadOrgani depunidad = new DepUnidadOrgani();
-                            
-                            MesController controllermes = new MesController();
-                            Mes mes = new Mes();
 
                             PresupuestoController controller = new PresupuestoController();
                             List<Presupuesto> presupuestos = controller.mostrarPresupuestos();
@@ -75,11 +72,8 @@
                                     depunidad = controllerdep.search(presupuesto.getId_deporg());
                                 %>
                                 <td class="px-8 py-2 md:px-1"><%= depunidad.getNombredeporg() %></td>
-                                
-                                <% 
-                                    mes = controllermes.search(presupuesto.getId_mes());
-                                %>
-                                <td class="px-8 py-2 md:px-1"><%= mes.getMes() %></td>
+
+                                <td class="px-8 py-2 md:px-1"><%= presupuesto.getFecha() %></td>
                                 
                                 <td class="px-8 py-2 md:px-1"> $ <%=presupuesto.getMonto() %></td>
                                 

@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDate"%>
 <%@page import="java.util.List"%>
 <%@page import="Controllers.MesController"%>
 <%@page import="Models.Mes"%>
@@ -23,6 +24,9 @@
             </div>  
     
         </header>
+         <%
+            LocalDate fecha = LocalDate.now();           
+        %>
         
         <main class="bg-slate-100">
     
@@ -54,22 +58,10 @@
                     </select>
                 </div>
 
-                <div class="flex flex-col gap-2 px-4">
-                    <label>Mes del presupuesto</label>
-                    <select class="border rounded-lg py-1 px-4 w-full" name="id_mes" required>
-                        <option value="">Selecciona el mes correspondiente para el presupuesto...</option>
-                        <% 
-                            MesController controllermes = new MesController();
-                            List<Mes> meses = controllermes.mostrarMes();
-                            
-                            for(Mes mes : meses){    
-                        %>
-                        <option value="<%= mes.getId_mes() %>"><%= mes.getMes() %></option>
-                        <%  
-                            }
-                        %>
-                    </select>
-                </div>
+                    <div class="flex flex-col gap-2 px-4">
+                        <label>Fecha:</label>
+                        <input class="border rounded-lg py-1 px-4 w-full" type="date" name="fecha" max="<%=fecha%>" required>                
+                    </div>
 
                 <div class="flex flex-col gap-2 px-4">
                     <label>Presupuesto a asignar al mes seleccionado</label>
