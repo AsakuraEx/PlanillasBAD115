@@ -165,8 +165,10 @@ public List<TipoDescuento> mostrarTipoDescuentonoley() {
     try {
         session.beginTransaction();
 
-        Query<TipoDescuento> query = session.createQuery("FROM TipoDescuento WHERE DESCUENTOLEY = :descuentoLey", TipoDescuento.class);
+        Query<TipoDescuento> query = session.createQuery("FROM TipoDescuento WHERE DESCUENTOLEY = :descuentoLey and DESCUENTOPATRONAL=:DESCUENTOPATRONAL and habilitado=:habilitado", TipoDescuento.class);
         query.setParameter("descuentoLey", "1");  // Se pasa como una cadena de un solo carácter.
+        query.setParameter("DESCUENTOPATRONAL", "0");
+        query.setParameter("habilitado", "1");
 
         tiposDescuentos = query.getResultList();
 
@@ -208,4 +210,57 @@ public List<TipoDescuento> mostrarTipoDescuentonoley() {
 
         return tiposDescuentos;
     }
+   
+   public TipoDescuento mostrarTipoDescuentoRenta() {
+    SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(TipoDescuento.class).buildSessionFactory();
+    Session session = sessionFactory.openSession();
+    TipoDescuento tipoDescuento = null;
+
+    try {
+        session.beginTransaction();
+
+        Query<TipoDescuento> query = session.createQuery("FROM TipoDescuento WHERE NOMBRETIPODESC = :NOMBRETIPODESC", TipoDescuento.class);
+        query.setParameter("NOMBRETIPODESC", "RENTA");
+        tipoDescuento = query.setMaxResults(1).uniqueResult(); // Limitar la consulta a un solo resultado y obtener el resultado único
+
+        session.getTransaction().commit();
+    } catch (Exception e) {
+        if (session.getTransaction() != null) session.getTransaction().rollback();
+        e.printStackTrace();
+    } finally {
+        if (session != null) session.close();
+        if (sessionFactory != null) sessionFactory.close();
+    }
+
+    return tipoDescuento;
+}
+public int mostrarTipoDescuentoRentaint(int idTipoDescuento) {
+    SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(TipoDescuento.class).buildSessionFactory();
+    Session session = sessionFactory.openSession();
+    int resultado = 0;  // Inicializar resultado a 0
+
+    try {
+        session.beginTransaction();
+
+        // Buscar el TipoDescuento por ID
+        TipoDescuento tipoDescuento = session.get(TipoDescuento.class, idTipoDescuento);
+
+        // Comprobar si el tipoDescuento recuperado tiene el nombre 'RENTA'
+        if (tipoDescuento != null && "RENTA".equals(tipoDescuento.getNombretipodesc())) {
+            resultado = 1;
+        }
+
+        session.getTransaction().commit();
+    } catch (Exception e) {
+        if (session.getTransaction() != null) session.getTransaction().rollback();
+        e.printStackTrace();
+    } finally {
+        if (session != null) session.close();
+        if (sessionFactory != null) sessionFactory.close();
+    }
+
+    return resultado; // Devolver el resultado
+}
+
+
 }

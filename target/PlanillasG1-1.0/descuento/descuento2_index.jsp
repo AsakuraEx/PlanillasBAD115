@@ -122,10 +122,10 @@
                                     TipoDescuento descuento3 =new TipoDescuento();
                                     descuento3=tipo2.search(des.getID_TIPODESCUENTO());
                                     int w=Character.getNumericValue(descuento3.getDescuentoLey().charAt(0));
-                                    
+                                    int s=tipo2.mostrarTipoDescuentoRentaint(descuento3.getId_tipodescuento());
                                     %>
                                     
-                                    <% if (w == 0) { %>
+                                    <% if (w == 0&&s!=1) { %>
                                     <form action="descuento_edit.jsp" method="POST">
                                         <input type="hidden" name="id_descuento" value="<%= des.getID_DESCUENTO()%>">
                                         <input type="hidden" name="id" value="<%= des.getID_EMPLEADO()%>">

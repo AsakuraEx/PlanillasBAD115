@@ -203,6 +203,17 @@ public class EmpleadoController {
             );
                 descuentos.add(tempDescuento);
         }
+         TipoDescuento descuentos2 = null;
+        descuentos2=p.mostrarTipoDescuentoRenta();        
+        Descuento tempDescuento = new Descuento(
+                1000000,                      // id_descuento (solo para identificar temporalmente)
+                LocalDate.now(),        // fechadescuento
+                (float)calcularRenta(emp2.getSalario()),              // descuento
+                descuentos2.getId_tipodescuento(),                      // id_tipodescuento
+                idEmpleado,               // id_empleado
+                "1"                     // habilitado
+            );
+            descuentos.add(tempDescuento);   
         for (Descuento descuento : descuentos) {
             sumaDescuentos1 += descuento.getDESCUENTO();
 
@@ -230,6 +241,16 @@ public class EmpleadoController {
 
         return sumaIngresos;
     }
-       
+       private double calcularRenta(double salario) {
+        if (salario <= 472.00) {
+            return 0.0;
+        } else if (salario <= 895.24) {
+            return (salario - 472.00) * 0.10+17.67;
+        } else if (salario <= 2038.10) {
+            return (salario - 895.24) * 0.20+60.00;
+        } else {
+            return 288.57 + (salario - 2038.10) * 0.30;
+        }
+    }
 
 }
