@@ -15,7 +15,7 @@ import org.hibernate.query.Query;
 
 public class IngresoController {
         
-    public void create(int id_empleado, int id_tipoingreso, float ingreso,   String habilitado){
+    public void create(int id_empleado, int id_tipoingreso, LocalDate fechaingreso,  float ingreso,   String habilitado){
         //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
         SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Ingreso.class).buildSessionFactory();
         //Se abre la sesion con la base de datos (en cualquier operacion CRUD)
@@ -23,7 +23,6 @@ public class IngresoController {
                                       
         try{
             Ingreso ing = new Ingreso();
-            LocalDate fechaingreso = LocalDate.now();
             ing.setFechaingreso(fechaingreso);
             ing.setIngreso(ingreso);
             ing.setId_tipoingreso(id_tipoingreso);

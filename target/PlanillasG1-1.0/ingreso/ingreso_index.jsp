@@ -47,7 +47,7 @@
                         </thead>
                         <%
                             EmpleadoController controllerEmpleado = new EmpleadoController();
-                            List<Empleado> empleados = controllerEmpleado.mostrarEmpleados();            
+                            List<Empleado> empleados = controllerEmpleado.mostrarEmpleados();                            
                         %>
                         <tbody>
                             <%
@@ -86,7 +86,7 @@
                                     EmpleadoController controllerEmp = new EmpleadoController();
                                     double totalIng = controllerEmp.sumarIngresosEmpleado(empleado.getId_empleado());
                                 %>
-                                
+                                                             
                                 <td class="px-8 py-2 md:px-1">$ <%= totalIng%></td>
                                 
                                 <td class="inline-flex flex-col md:flex-row gap-2 py-2">
