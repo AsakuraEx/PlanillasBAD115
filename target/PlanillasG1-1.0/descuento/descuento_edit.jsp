@@ -82,7 +82,14 @@
                             <label>Monto($):</label>
                             <input class="border rounded-lg py-1 px-4 w-full" type="text" name="DESCUENTO" value="<%=desc.getDESCUENTO() %>" pattern="^\d+(\.\d{1,2})?$" required>
                         </div>
-
+                        <div class="flex flex-col gap-2 px-4">
+                       <label>Fecha de inicio del Descuento:</label>
+                       <input class="border rounded-lg py-1 px-4 w-full" type="date" name="FECHADESCUENTO" required value="<%= desc.getFECHADESCUENTO()%>">
+                       </div>
+                       <div class="flex flex-col gap-2 px-4">
+                       <label>Fecha de Fin del Descuento:</label>
+                       <input class="border rounded-lg py-1 px-4 w-full" type="date" name="FECHADESCUENTOFIN" required value="<%= desc.getFECHADESCUENTOFIN() %>">
+                       </div>
                         <div class="inline-flex px-4 items-center gap-3">
                             <% 
                                 String checked;

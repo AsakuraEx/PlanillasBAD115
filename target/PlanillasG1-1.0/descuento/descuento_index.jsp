@@ -73,6 +73,7 @@
                                     double isss = controllerEmpleado.ISSSEmpleado(empleado.getId_empleado());
                                     double renta = controllerEmpleado.RENTAEmpleado(empleado.getId_empleado());
                                     double salarioNeto = controllerEmpleado.salarioNetoEmpleado(empleado.getId_empleado(), currentMonth, currentYear);
+                                    double ingresos = controllerEmpleado.sumarIngresosEmpleado2(empleado.getId_empleado(), currentMonth, currentYear);
                             %>
                             <tr class="text-center border-b border-slate-400">
                                 <td class="px-8 py-2 md:px-1">
@@ -105,7 +106,7 @@
                                 <td class="px-8 py-2 md:px-1"><%= String.format("%.2f", afp)%></td>
                                 <td class="px-8 py-2 md:px-1"><%= String.format("%.2f", isss)%></td>
                                 <td class="px-8 py-2 md:px-1"><%= String.format("%.2f", renta)%></td>
-                                <td class="px-8 py-2 md:px-1">Ingresos</td>
+                                <td class="px-8 py-2 md:px-1"><%= String.format("%.2f", ingresos)%></td>
                                 <td class="px-8 py-2 md:px-1"><%= String.format("%.2f", otrosDescuentos)%></td>
                                 <td class="px-8 py-2 md:px-1"><%= String.format("%.2f", salarioNeto)%></td>
                                 <td class="inline-flex flex-col md:flex-row gap-2 py-2">

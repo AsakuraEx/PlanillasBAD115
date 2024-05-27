@@ -75,8 +75,10 @@ public List<TipoDescuento> mostrarTipoDescuentonoley() {
     try {
         session.beginTransaction();
 
-        Query<TipoDescuento> query = session.createQuery("FROM TipoDescuento WHERE descuentoLey = :descuentoLey", TipoDescuento.class);
+        Query<TipoDescuento> query = session.createQuery("FROM TipoDescuento WHERE descuentoLey = :descuentoLey AND NOMBRETIPODESC != :nombredescuento", TipoDescuento.class);
         query.setParameter("descuentoLey", "0");  // Se pasa como una cadena de un solo carácter.
+        query.setParameter("nombredescuento", "RENTA");
+
 
         tiposDescuentos = query.getResultList();
 

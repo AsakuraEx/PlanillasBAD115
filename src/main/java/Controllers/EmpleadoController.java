@@ -292,7 +292,7 @@ public class EmpleadoController {
             descuentos1=p.mostrarTipoDescuentoRenta();
             EmpleadoController emple2 =new EmpleadoController();
             Empleado emp2 = emple2.search(idEmpleado);
-            sumaDescuentos1=emp2.getSalario()-emple2.RENTAEmpleado(idEmpleado)-emple2.ISSSEmpleado(idEmpleado)-emple2.AFPEmpleado(idEmpleado)-emple2.sumarDescuentosEmpleado(idEmpleado, mes, año);
+            sumaDescuentos1=emp2.getSalario()-emple2.RENTAEmpleado(idEmpleado)-emple2.ISSSEmpleado(idEmpleado)-emple2.AFPEmpleado(idEmpleado)-emple2.sumarDescuentosEmpleado(idEmpleado, mes, año)+emple2.sumarIngresosEmpleado2(idEmpleado, mes, año);
         return sumaDescuentos1;
     }
     public double sumarIngresosEmpleado(int idEmpleado) {
@@ -313,6 +313,27 @@ public class EmpleadoController {
             sessionFactory.close();
         }
 
+        return sumaIngresos;
+    }
+    public double sumarIngresosEmpleado2(int idEmpleado, int mes,int año) {
+        SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Ingreso.class).buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        double sumaIngresos = 0.0;
+
+        try {
+            session.beginTransaction();
+            Query query = session.createQuery("select sum(ingreso) from Ingreso where id_empleado = :idEmpleado and habilitado = 1 AND MONTH(FECHAINGRESO) = :mes AND YEAR(FECHAINGRESO) = :año");
+            query.setParameter("idEmpleado", idEmpleado);
+            query.setParameter("mes", mes);
+            query.setParameter("año", año);
+            sumaIngresos = (Double) query.uniqueResult();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+            sessionFactory.close();
+        }
         return sumaIngresos;
     }
        private double calcularRenta(double salario) {

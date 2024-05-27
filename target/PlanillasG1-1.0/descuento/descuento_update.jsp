@@ -27,6 +27,7 @@
             habilitado = request.getParameter("habilitado");
             int id_tipodescuento = Integer.parseInt(request.getParameter("id_tipodescuento"));
             LocalDate FECHADESCUENTO = LocalDate.parse(request.getParameter("FECHADESCUENTO"));
+            LocalDate FECHADESCUENTOFIN = LocalDate.parse(request.getParameter("FECHADESCUENTOFIN"));
             
             
             Descuento descu = new Descuento();
@@ -36,6 +37,7 @@
             descu.setHabilitado(habilitado);    
             descu.setID_TIPODESCUENTO(id_tipodescuento);
             descu.setFECHADESCUENTO(FECHADESCUENTO);
+            descu.setFECHADESCUENTOFIN(FECHADESCUENTOFIN);
             
             DescuentoController controller = new DescuentoController();
             controller.update(descu);
