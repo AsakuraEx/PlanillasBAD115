@@ -68,7 +68,7 @@ public class EmpleadoController {
     }
     
     
-    public List<Empleado> mostrarTodosEmpleados(){
+    public List<Empleado> todosEmpleados(){
        
         //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml
         SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Empleado.class).buildSessionFactory();
@@ -78,7 +78,7 @@ public class EmpleadoController {
         
         try{
             session.beginTransaction();
-            Query<Empleado> query = session.createQuery("FROM Empleado", Empleado.class);
+            Query<Empleado> query = session.createQuery("FROM Empleado'", Empleado.class);
             empleados = query.getResultList();
             session.getTransaction().commit();
         }
@@ -90,6 +90,7 @@ public class EmpleadoController {
         }
         return empleados;
     }
+    
     public List<Empleado> mostrarEmpleados(){
        
         //Se genera un objeto SessionFactory para cargar la configuracion hibernate.cfg.xml

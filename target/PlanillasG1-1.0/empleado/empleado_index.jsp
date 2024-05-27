@@ -61,7 +61,7 @@
                         </thead>
                         <%
                             EmpleadoController controllerEmpleado = new EmpleadoController();
-                            List<Empleado> empleados = controllerEmpleado.mostrarTodosEmpleados();
+                            List<Empleado> empleados = controllerEmpleado.mostrarEmpleados();
             
                         %>
                         <tbody>
