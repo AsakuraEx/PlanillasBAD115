@@ -222,7 +222,7 @@ public class EmpleadoController {
     
 
             float descuento;
-            descuento = (float) emp2.getSalario() * descuentos1.getPorcentaje() / 100;
+            descuento = (float) (emp2.getSalario()+sumarIngresosEmpleado(idEmpleado)) * descuentos1.getPorcentaje() / 100;
             Descuento DescuentoAFP = new Descuento(
                 1000,                      // id_descuento (solo para identificar temporalmente)
                 LocalDate.now(),        // fechadescuento
@@ -246,10 +246,10 @@ public class EmpleadoController {
     
 
             float descuento;
-            if (emp2.getSalario()>1000) {
+            if ((emp2.getSalario()+sumarIngresosEmpleado(idEmpleado))>1000) {
                     descuento = 30;
                 } else {
-                    descuento = (float) emp2.getSalario() * descuentos1.getPorcentaje() / 100;
+                    descuento = (float) (emp2.getSalario()+sumarIngresosEmpleado(idEmpleado)) * descuentos1.getPorcentaje() / 100;
                 }
             Descuento DescuentoISSS = new Descuento(
                 1000,                      // id_descuento (solo para identificar temporalmente)
@@ -276,7 +276,7 @@ public class EmpleadoController {
                 1000000,                      // id_descuento (solo para identificar temporalmente)
                 LocalDate.now(),        // fechadescuento
                 LocalDate.now(),
-                (float)calcularRenta(emp2.getSalario()),              // descuento
+                (float)calcularRenta(emp2.getSalario()+sumarIngresosEmpleado(idEmpleado)),              // descuento
                 descuentos1.getId_tipodescuento(),                      // id_tipodescuento
                 idEmpleado,               // id_empleado
                 "1"                     // habilitado
@@ -338,7 +338,7 @@ public class EmpleadoController {
         return sumaIngresos;
     }
        private double calcularRenta(double salario) {
-        if (salario <= 472.00) {
+        if ((salario) <= 472.00) {
             return 0.0;
         } else if (salario <= 895.24) {
             return (salario - 472.00) * 0.10+17.67;

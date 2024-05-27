@@ -163,11 +163,14 @@ public List<Descuento> mostrarDescuentosPorEmpleado(int empleado) {
 
                 for (int i = 0; i <= j-1; i++) {
                 float descuento;
-    
+                
                 if (descuentos1.get(i).getNombretipodesc().equals("ISSS")) {
-                    descuento = 30;
+                    if((emp1.getSalario()+emple.sumarIngresosEmpleado(empleado))>1000){
+                        descuento = 30;
+                    }else{descuento = (float) (emp1.getSalario()+emple.sumarIngresosEmpleado(empleado)) * descuentos1.get(i).getPorcentaje() / 100;}
+                    
                 } else {
-                    descuento = (float) emp1.getSalario() * descuentos1.get(i).getPorcentaje() / 100;
+                    descuento = (float) (emp1.getSalario()+emple.sumarIngresosEmpleado(empleado)) * descuentos1.get(i).getPorcentaje() / 100;
                 }
             Descuento tempDescuento = new Descuento(
                 i+1000,                      // id_descuento (solo para identificar temporalmente)
@@ -186,7 +189,7 @@ public List<Descuento> mostrarDescuentosPorEmpleado(int empleado) {
                 1000000,                      // id_descuento (solo para identificar temporalmente)
                 LocalDate.now(),        // fechadescuento
                 LocalDate.now(),
-                (float)calcularRenta(emp1.getSalario()),              // descuento
+                (float)calcularRenta(emp1.getSalario()+emple.sumarIngresosEmpleado(empleado)),              // descuento
                 descuentos2.getId_tipodescuento(),                      // id_tipodescuento
                 empleado,               // id_empleado
                 "1"                     // habilitado
