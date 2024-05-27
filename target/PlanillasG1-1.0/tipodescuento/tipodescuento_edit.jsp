@@ -1,7 +1,13 @@
 <%@page import="Models.TipoDescuento"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Controllers.TipoDescuentoController"  %>
-
+<%
+    // Verificar si el usuario está autenticado
+    if (session.getAttribute("usuario") == null) {
+        response.sendRedirect("../login.jsp");
+        return;
+    }
+%>
 <%
 
     int id = Integer.parseInt(request.getParameter("id"));
@@ -9,6 +15,12 @@
     TipoDescuento tipodescuento = controller.search(id);
 
 %>
+    <% 
+        String rol = (String) session.getAttribute("rol");
+        if("r".equals(rol)){
+            response.sendRedirect("../index.jsp");
+        }
+    %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -59,7 +71,7 @@
                     
                     <div class="container text-center py-4 md:col-span-2">
                         <label id="descuentoLabel">Porcentaje de descuento:</label>
-                        <input class="border rounded-lg py-1 px-4 w-full text-center" type="text" id="porcentajeInput" name="porcentaje" value="<%= tipodescuento.getPorcentaje() %> " pattern="^(0(\.[0-9]{1,2})?|[1-9]\d?(\.\d{1,2})?|100(\.0{1,2})?)$" placeholder="0.01 - 100">
+                        <input class="border rounded-lg py-1 px-4 w-full text-center" type="text" id="porcentajeInput" name="porcentaje" value="<%= tipodescuento.getPorcentaje() %>" pattern="^(0(\.[0-9]{1,2})?|[1-9]\d?(\.\d{1,2})?|100(\.0{1,2})?)$" placeholder="0.01 - 100">
             
                     </div>
                         

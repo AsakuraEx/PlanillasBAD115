@@ -6,6 +6,13 @@
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.Locale" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    // Verificar si el usuario está autenticado
+    if (session.getAttribute("usuario") == null) {
+        response.sendRedirect("../login.jsp");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>

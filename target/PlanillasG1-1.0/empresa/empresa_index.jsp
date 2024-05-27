@@ -8,6 +8,19 @@
 <%@page import="Models.Empresa"%>
 <%@page import="Controllers.EmpresaController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    // Verificar si el usuario está autenticado
+    if (session.getAttribute("usuario") == null) {
+        response.sendRedirect("../login.jsp");
+        return;
+    }
+%>
+    <% 
+        String rol = (String) session.getAttribute("rol");
+        if("r".equals(rol)){
+            response.sendRedirect("../index.jsp");
+        }
+    %>
 <!DOCTYPE html>
 <html>
     <head>

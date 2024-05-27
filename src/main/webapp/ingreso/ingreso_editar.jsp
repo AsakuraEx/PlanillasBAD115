@@ -7,7 +7,13 @@
 <%@page import="Models.TipoIngreso"%>
 <%@page import="Controllers.TipoIngresoController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%
+    // Verificar si el usuario está autenticado
+    if (session.getAttribute("usuario") == null) {
+        response.sendRedirect("../login.jsp");
+        return;
+    }
+%>
 <%
     int id_empleado = Integer.parseInt(request.getParameter("id_empleado"));
     int id_ingreso = Integer.parseInt(request.getParameter("id_ingreso"));

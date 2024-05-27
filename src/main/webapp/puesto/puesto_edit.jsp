@@ -4,7 +4,13 @@
 <%@page import="Models.Unidadorganizativa"%>
 <%@page import="Controllers.UnidadorgController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%
+    // Verificar si el usuario está autenticado
+    if (session.getAttribute("usuario") == null) {
+        response.sendRedirect("../login.jsp");
+        return;
+    }
+%>
 <%
     int id = Integer.parseInt(request.getParameter("id"));
     PuestoController controller = new PuestoController();

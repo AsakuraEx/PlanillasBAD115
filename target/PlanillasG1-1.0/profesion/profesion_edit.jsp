@@ -8,13 +8,24 @@
 <%@page import="Controllers.ProfesionController"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%
+    // Verificar si el usuario está autenticado
+    if (session.getAttribute("usuario") == null) {
+        response.sendRedirect("../login.jsp");
+        return;
+    }
+%>
 <%
     int id = Integer.parseInt(request.getParameter("id"));
     ProfesionController controller = new ProfesionController();
     Profesion profesion = controller.search(id);
 %>
-
+    <% 
+        String rol = (String) session.getAttribute("rol");
+        if("r".equals(rol)){
+            response.sendRedirect("../index.jsp");
+        }
+    %>
 <!DOCTYPE html>
 <html>
     <head>

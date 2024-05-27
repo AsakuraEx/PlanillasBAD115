@@ -6,6 +6,13 @@
 
 <%@page import="Controllers.SexoController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    // Verificar si el usuario está autenticado
+    if (session.getAttribute("usuario") == null) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
@@ -15,8 +22,10 @@
     <link rel="stylesheet" href="./css/output.css">
 </head>
 <body>
+    <% 
+        String rol = (String) session.getAttribute("rol");
+    %>
     <header class="bg-[#80BF96] shadow-md">
-
 
         <div class="relative top-0 left-0 z-10 container grid justify-center items-center text-center text-white
             md:grid-flow-col md:justify-between py-2">
@@ -25,13 +34,27 @@
                     Sistema de Planillas
                 </h1>
         
-                <div class="grid grid-flow-col gap-4 md:gap-8">
+                <div class="grid grid-flow-row gap-4 md:gap-8 md:grid-flow-col">
         
                     <a class="hover:text-slate-200 font-bold" href="index.jsp">Inicio</a>
-                    <a class="hover:text-slate-200 font-bold" href="#admin">Administración</a>
-                    <a class="hover:text-slate-200 font-bold" href="#catalogos">Catalogos</a>
+                    <%
+                        if("a".equals(rol)){
+                    %>
+                        <a class="hover:text-slate-200 font-bold" href="#admin">Administración</a>
+                        <a class="hover:text-slate-200 font-bold" href="#catalogos">Catalogos</a>                    
+                    <%
+                        }
+                    %>
+
                     <a class="hover:text-slate-200 font-bold" href="#registros">Registros</a>
+                    <%
+                        if("a".equals(rol)){
+                    %>
                     <a class="hover:text-slate-200 font-bold" href="#reportes">Reportes</a>
+                    <%
+                        }
+                    %>
+                    <a class="hover:text-slate-200 font-bold" href="./logout.jsp">Cerrar Sesion</a>
         
                 </div>
         </div>
@@ -51,21 +74,28 @@
                     </p>
 
                 </div>
-                
+                    <%
+                        if("a".equals(rol)){
+                    %>
                 <div class="grid justify-center md:justify-start">
 
                     <a class="py-2 px-4 bg-[#80BF96] text-white font-bold text-center rounded-md mx-auto w-full md:max-w-[200px] md:left-10
                     hover:scale-110" href="empresa/empresa_index.jsp">Agregar mi empresa</a>
 
                 </div>
-
+                
+                    <%
+                        }
+                    %>
                 
             </div>
             
         </div>
 
     </header>
-
+<%
+    if("a".equals(rol)){
+%>
     <section class="bg-[#f2f2f2]" id="admin">
         
         <div class="container space-y-4 py-4">
@@ -253,7 +283,9 @@
         </div>
 
     </section>
-
+<%
+    }
+%>
     <section class="bg-[#A4BF88]" id="registros">
         
         <div class="container space-y-4 py-4">
@@ -261,8 +293,10 @@
         
             <p class="font-light text-white text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum optio maiores dolores, quod sed nam!</p>
     
-            <div class="grid grid-cols-1 md:auto-cols-fr sm:grid-cols-3 gap-4">
-    
+            <div class="grid grid-flow-col gap-4">
+<%
+    if("a".equals(rol)){
+%>    
                 <article class="flex flex-col justify-center items-center text-center py-8 space-y-4">
 
                     <img class="h-40 w-40 aspect-square object-cover rounded-full" src="assets/presupuesos.jpg" alt="Imagen prrona">
@@ -278,7 +312,9 @@
                     </a>
 
                 </article>
-    
+<%
+    }
+%>    
                 <article class="flex flex-col justify-center items-center text-center py-8 space-y-4">
 
                     <img class="h-40 w-40 aspect-square object-cover rounded-full" src="assets/ganancias.jpg" alt="Imagen prrona">
@@ -315,7 +351,9 @@
         </div>
 
     </section>
-
+<%
+    if("a".equals(rol)){
+%>
     <section class="bg-[#ffffff]" id="reportes">
         
         <div class="container space-y-4 py-8">
@@ -333,7 +371,9 @@
         </div>
 
     </section>
-
+<%
+    }
+%>
     <footer class="bg-[#80BF96]">
         
         <div class="container space-y-4 py-4">

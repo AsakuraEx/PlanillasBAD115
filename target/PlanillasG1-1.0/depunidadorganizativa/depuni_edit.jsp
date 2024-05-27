@@ -10,13 +10,24 @@
 <%@page import="Models.DepUnidadOrgani"%>
 <%@page import="Controllers.DepUnidadOrganiController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%
+    // Verificar si el usuario está autenticado
+    if (session.getAttribute("usuario") == null) {
+        response.sendRedirect("../login.jsp");
+        return;
+    }
+%>
 <%
     int id = Integer.parseInt(request.getParameter("id"));
     DepUnidadOrganiController controller = new DepUnidadOrganiController();
     DepUnidadOrgani unidad = controller.search(id);
 %>
-
+    <% 
+        String rol = (String) session.getAttribute("rol");
+        if("r".equals(rol)){
+            response.sendRedirect("../index.jsp");
+        }
+    %>
 <!DOCTYPE html>
 <html>
     <head>
