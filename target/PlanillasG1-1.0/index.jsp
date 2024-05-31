@@ -4,9 +4,12 @@
     Author     : frane
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page import="Controllers.SexoController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+
     // Verificar si el usuario está autenticado
     if (session.getAttribute("usuario") == null) {
         response.sendRedirect("login.jsp");
@@ -21,9 +24,10 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="./css/output.css">
 </head>
-<body>
+<body onload="comenzarTiempo()">
     <% 
         String rol = (String) session.getAttribute("rol");
+        String usuario = (String) session.getAttribute("usuario");
     %>
     <header class="bg-[#80BF96] shadow-md">
 
@@ -58,7 +62,12 @@
         
                 </div>
         </div>
-            
+        
+        <div class="px-12 py-4 text-black text-xl flex justify-between bg-white">
+            <p>Bienvenido:  <%=usuario %> </p>
+            <p id="fecha"></p>
+        </div>
+                    
         <div class="relative py-6 grid md:grid-flow-col md:justify-center space-y-4 overflow-hidden">
 
             <img class="absolute top-0 left-0 z-0 w-full h-full aspect-square object-cover md:max-h-full" src="assets/header-img.jpg" alt="">  
@@ -402,5 +411,28 @@
         </div>
 
     </footer>
+    <script>
+       
+        function comenzarTiempo(){
+            
+            setInterval(actualizarTiempo, 1000);
+        }
+    
+        function actualizarTiempo(){
+            let fecha = new Date();
+            let texto = document.getElementById("fecha");
+
+            let dia = String(fecha.getDate()).padStart(2, '0');
+            let mes = String(fecha.getMonth() + 1).padStart(2, '0');
+            let anio = String(fecha.getFullYear());
+            let hora = String(fecha.getHours()).padStart(2, '0');
+            let minuto = String(fecha.getMinutes()).padStart(2, '0');
+            let segundo = String(fecha.getSeconds()).padStart(2, '0');    
+            texto.textContent = dia + '/' + mes + '/' + anio + ' ' + hora + ':' + minuto + ':' + segundo;
+        }
+        
+
+        
+    </script>
     </body>
 </html>
