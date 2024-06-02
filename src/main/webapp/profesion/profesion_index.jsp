@@ -28,19 +28,25 @@
         <title>Profesion</title>
         <link rel="stylesheet" href="../css/output.css">
     </head>
-    <body>
-        <body>
-            <header class="bg-[#80BF96] shadow-md">
-    
-                <div class="container text-center text-white">
-            
-                        <h1 class="text-2xl font-bold py-4 md:text-3xl ">
-                            <a href="../index.jsp">Sistema de Planillas</a>
-                        </h1>
-    
-                </div>  
+    <body onload="comenzarTiempo()">
+            <% 
+                String usuario = (String) session.getAttribute("usuario");
+            %>
+        <header class="bg-[#80BF96] shadow-md">
+
+            <div class="container text-center text-white">
         
-            </header>
+                    <h1 class="text-2xl font-bold py-4 md:text-3xl ">
+                        <a href="../index.jsp">Sistema de Planillas</a>
+                    </h1>
+
+            </div>  
+            <div class="px-12 py-4 text-2xl text-xl flex justify-between bg-black text-white" > 
+                <p>Bienvenido:  <%=usuario %> </p>
+                <p id="fecha"></p>
+            </div>            
+    
+        </header>
     
             <main class="bg-slate-100">
     
@@ -48,7 +54,7 @@
     
                     <div class="container text-center py-8">
         
-                        <h1 class="font-bold text-2xl md:text-3xl border-b-2 pb-4 border-[#80BF96] text-[#629c76]">Puestos</h1>
+                        <h1 class="font-bold text-2xl md:text-3xl border-b-2 pb-4 border-[#80BF96] text-[#629c76]">Profesiones</h1>
         
                     </div>
     
@@ -63,7 +69,7 @@
                         <table class="table-auto mx-auto md:w-full">
                             <thead class="text-center border-b-2 border-slate-600 py-3 px-8">
                                 <td class="px-2 py-2">Profesion</td>
-                                <td class="px-2 py-2">Habilitado</td>
+                                <td class="px-2 py-2">Estado</td>
                                 <td class="px-2 py-2">Accion</td>
                             </thead>
                             <%
@@ -103,3 +109,23 @@
 
     </body>
 </html>
+<script>
+       
+    function comenzarTiempo(){
+
+        setInterval(actualizarTiempo, 1000);
+    }
+
+    function actualizarTiempo(){
+        let fecha = new Date();
+        let texto = document.getElementById("fecha");
+
+        let dia = String(fecha.getDate()).padStart(2, '0');
+        let mes = String(fecha.getMonth() + 1).padStart(2, '0');
+        let anio = String(fecha.getFullYear());
+        let hora = String(fecha.getHours()).padStart(2, '0');
+        let minuto = String(fecha.getMinutes()).padStart(2, '0');
+        let segundo = String(fecha.getSeconds()).padStart(2, '0');    
+        texto.textContent = dia + '/' + mes + '/' + anio + ' ' + hora + ':' + minuto + ':' + segundo;
+    }
+</script>

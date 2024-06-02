@@ -78,9 +78,9 @@
                     
                     <h2 class="text-3xl font-bold text-white">Gestión inteligente y sencilla de tu empresa</h2>
 
-                    <p class="text-white font-normal text-center md:text-left md:text-xl md:w-3/4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt voluptatibus veniam facilis, 
+                    <!--<p class="text-white font-normal text-center md:text-left md:text-xl md:w-3/4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt voluptatibus veniam facilis, 
                         aliquam amet maxime alias tempora tempore placeat
-                    </p>
+                    </p>-->
 
                 </div>
                     <%
@@ -110,7 +110,7 @@
         <div class="container space-y-4 py-4">
             <h1 class="text-3xl font-bold text-center md:text-4xl md:py-4">Administración de la Empresa</h1>
         
-            <p class="font-light text-slate-500 text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum optio maiores dolores, quod sed nam!</p>
+            <!--<p class="font-light text-slate-500 text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum optio maiores dolores, quod sed nam!</p>-->
     
             <div class="grid grid-cols-1 md:auto-cols-fr sm:grid-cols-3 gap-4">
     
@@ -220,7 +220,7 @@
         <div class="container space-y-4 py-4">
             <h1 class="text-3xl font-bold text-center md:text-4xl md:py-4 text-[#63a77b]">Gestión de Catálogos</h1>
         
-            <p class="font-light text-slate-800 text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum optio maiores dolores, quod sed nam!</p>
+            <!--<p class="font-light text-slate-500 text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum optio maiores dolores, quod sed nam!</p>-->
     
             <div class="grid grid-cols-1 md:auto-cols-fr sm:grid-cols-4 gap-4">
     
@@ -300,7 +300,7 @@
         <div class="container space-y-4 py-4">
             <h1 class="text-3xl font-bold text-center md:text-4xl md:py-4 text-[#f2f2f2]">Registro de movimientos salariales</h1>
         
-            <p class="font-light text-white text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum optio maiores dolores, quod sed nam!</p>
+            <!--<p class="font-light text-slate-500 text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum optio maiores dolores, quod sed nam!</p>-->
     
             <div class="grid grid-flow-col gap-4">
 <%
@@ -368,13 +368,13 @@
         <div class="container space-y-4 py-8">
             <h1 class="text-3xl font-bold text-center md:text-4xl md:py-4 text-[#6d8a4e]">Reportes Disponibles</h1>
         
-            <p class="font-light text-[#6d8a4e] text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum optio maiores dolores, quod sed nam!</p>
+            <!--<p class="font-light text-slate-500 text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum optio maiores dolores, quod sed nam!</p>-->
 
             <div class="flex flex-col md:flex-row gap-8 flex-wrap text-center justify-center py-8 px-8 border-b-2 border-[#A4BF88]">
                 <a class="text-xl font-bold text-[#A4BF88] hover:text-[#6d8a4e]" href="reportespatronales/reporte_patronal.jsp">Aportes patronales</a>
-                <a class="text-xl font-bold text-[#A4BF88] hover:text-[#6d8a4e]" href="#">Planilla</a>
+                <!--<a class="text-xl font-bold text-[#A4BF88] hover:text-[#6d8a4e]" href="#">Planilla</a>
                 <a class="text-xl font-bold text-[#A4BF88] hover:text-[#6d8a4e]" href="#">Reporte 3</a>
-                <a class="text-xl font-bold text-[#A4BF88] hover:text-[#6d8a4e]" href="#">Reporte 4</a>
+                <a class="text-xl font-bold text-[#A4BF88] hover:text-[#6d8a4e]" href="#">Reporte 4</a>-->
             </div>
 
         </div>

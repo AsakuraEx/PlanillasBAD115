@@ -28,19 +28,25 @@
     <title>Listado de Tipos de Ingreso</title>
     <link rel="stylesheet" href="../css/output.css">
 </head>
-<body>
+    <body onload="comenzarTiempo()">
+            <% 
+                String usuario = (String) session.getAttribute("usuario");
+            %>
+        <header class="bg-[#80BF96] shadow-md">
+
+            <div class="container text-center text-white">
+        
+                    <h1 class="text-2xl font-bold py-4 md:text-3xl ">
+                        <a href="../index.jsp">Sistema de Planillas</a>
+                    </h1>
+
+            </div>  
+            <div class="px-12 py-4 text-2xl text-xl flex justify-between bg-black text-white" > 
+                <p>Bienvenido:  <%=usuario %> </p>
+                <p id="fecha"></p>
+            </div>            
     
-    <header class="bg-[#80BF96] shadow-md">
-
-        <div class="container text-center text-white">
-    
-                <h1 class="text-2xl font-bold py-4 md:text-3xl ">
-                    <a href="../index.jsp">Sistema de Planillas</a>
-                </h1>
-
-        </div>  
-
-    </header>
+        </header>
 
     <main class="bg-slate-100">
 
@@ -90,12 +96,14 @@
                                 <input type="hidden" name="id" value="<%=ingreso.getId_tipoingreso() %>">
                                 <input type="submit" value="Editar">
                             </form>
+                            <!-- 
                             <form action="tipoingreso_delete.jsp" method="POST"
                             class="font-bold bg-[#f2f2f2] px-4 py-2 rounded-md text-black hover:bg-[#d4d4d4] hover:text-black">
                                 <input type="hidden" name="id" value="<%=ingreso.getId_tipoingreso() %>">
                                 <input type="hidden" name="habilitado" value="0">
                                 <input type="submit" value="Eliminar">
                             </form>
+                            -->
                         </td>
                     </tr>
                         <%
@@ -107,4 +115,24 @@
 </body>
 </html>
 
+<script>
+       
+    function comenzarTiempo(){
+
+        setInterval(actualizarTiempo, 1000);
+    }
+
+    function actualizarTiempo(){
+        let fecha = new Date();
+        let texto = document.getElementById("fecha");
+
+        let dia = String(fecha.getDate()).padStart(2, '0');
+        let mes = String(fecha.getMonth() + 1).padStart(2, '0');
+        let anio = String(fecha.getFullYear());
+        let hora = String(fecha.getHours()).padStart(2, '0');
+        let minuto = String(fecha.getMinutes()).padStart(2, '0');
+        let segundo = String(fecha.getSeconds()).padStart(2, '0');    
+        texto.textContent = dia + '/' + mes + '/' + anio + ' ' + hora + ':' + minuto + ':' + segundo;
+    }
+</script>
 
