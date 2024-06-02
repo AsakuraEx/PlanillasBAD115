@@ -27,6 +27,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Listado de Tipos de Ingreso</title>
     <link rel="stylesheet" href="../css/output.css">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+        
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        
+    <!-- DataTables JS -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 </head>
     <body onload="comenzarTiempo()">
             <% 
@@ -67,7 +75,7 @@
             </div>
 
             <div class="overflow-x-auto px-8 pb-8">
-                <table class="table-auto mx-auto md:w-full">
+                <table id="example" class="table-auto mx-auto md:w-full">
                     <tr class="text-center border-b-2 border-slate-600 py-3 px-8">
                         <th class="px-2 py-2">Nombre</th>
                         <th class="px-2 py-2">Estado</th>
@@ -134,5 +142,10 @@
         let segundo = String(fecha.getSeconds()).padStart(2, '0');    
         texto.textContent = dia + '/' + mes + '/' + anio + ' ' + hora + ':' + minuto + ':' + segundo;
     }
+</script>
+<script>
+    $(document).ready( function () {
+       $('#example').DataTable();
+   });   
 </script>
 
