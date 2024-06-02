@@ -71,14 +71,14 @@
 
                 <div class="overflow-x-auto px-8 pb-8">
                      <table id="example" class="table-auto mx-auto md:w-full">
-                        <tr class="text-center border-b-2 border-slate-600 py-3 px-8">
-                            <th class="px-2 py-2">Nombre del tipo de descuento</th>
-                            <th class="px-2 py-2">Descuento de Ley</th>
-                            <th class="px-2 py-2">Descuento Patronal</th>
-                            <th class="px-2 py-2">Porcentaje</th>
-                            <th class="px-2 py-2">Estado</th>
-                            <th class="px-2 py-2">Accion</th>
-                        </tr>
+                        <thead class="border-b-2 border-slate-600 py-3 px-8">
+                            <td class="px-2 py-2">Nombre del tipo de descuento</td>
+                            <td class="px-2 py-2">Descuento de Ley</td>
+                            <td class="px-2 py-2">Descuento Patronal</td>
+                            <td class="px-2 py-2">Porcentaje</td>
+                            <td class="px-2 py-2">Estado</td>
+                            <td class="px-2 py-2">Accion</td>
+                        </thead>
                         <%
             
                             TipoDescuentoController controller = new TipoDescuentoController();

@@ -76,11 +76,12 @@
 
             <div class="overflow-x-auto px-8 pb-8">
                 <table id="example" class="table-auto mx-auto md:w-full">
-                    <tr class="text-center border-b-2 border-slate-600 py-3 px-8">
-                        <th class="px-2 py-2">Nombre</th>
-                        <th class="px-2 py-2">Estado</th>
-                        <th class="px-2 py-2">Acción</th>
-                    </tr>
+                    <thead class="border-b-2 border-slate-600 py-3 px-8">
+                        <td class="px-2 py-2">Nombre</td>
+                        <td class="px-2 py-2">Estado</td>
+                        <td class="px-2 py-2">Acción</td>
+                    </thead>
+                    <tbody>
                         <%
                 
                             TipoIngresoController controller = new TipoIngresoController();
@@ -117,6 +118,7 @@
                         <%
                             }
                         %>
+                    </tbody>
                 </table>                
             </div>
 

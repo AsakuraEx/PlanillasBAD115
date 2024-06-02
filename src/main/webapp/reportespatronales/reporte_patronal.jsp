@@ -27,6 +27,14 @@
         <link rel="stylesheet" href="../css/output.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+        <!-- DataTables CSS -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+        
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        
+        <!-- DataTables JS -->
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
         <script>
            function generatePDF() {
             const { jsPDF } = window.jspdf;
@@ -75,7 +83,7 @@
                     <button onclick="generatePDF()" class="font-bold bg-[#f2f2f2] px-4 py-2 rounded-md text-black hover:bg-[#d4d4d4] md:ml-8 hover:text-black">Descargar PDF</button>
                 </div>
                 <div id="report" class="overflow-x-auto px-8 pb-8">
-                    <table class="table-auto mx-auto md:w-full">
+                     <table id="example" class="table-auto mx-auto md:w-full">
                         <thead class="text-center border-b-2 border-slate-600 py-3 px-8">
                             <tr>
                                 <td class="px-2 py-2">Empleado</td>
@@ -208,4 +216,9 @@
         let segundo = String(fecha.getSeconds()).padStart(2, '0');    
         texto.textContent = dia + '/' + mes + '/' + anio + ' ' + hora + ':' + minuto + ':' + segundo;
     }
+</script>
+<script>
+    $(document).ready( function () {
+       $('#example').DataTable();
+   });   
 </script>
