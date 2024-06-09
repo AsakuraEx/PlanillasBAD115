@@ -80,7 +80,7 @@
                     <h1 class="font-bold text-2xl md:text-3xl border-b-2 pb-4 border-[#80BF96] text-[#629c76]">Reporte de Aportes Patronales</h1>
                 </div>
                 <div class="flex justify-center items-center md:justify-start mb-8">
-                    <button onclick="generatePDF()" class="font-bold bg-[#f2f2f2] px-4 py-2 rounded-md text-black hover:bg-[#d4d4d4] md:ml-8 hover:text-black">Descargar PDF</button>
+                    <button type="button" class="font-bold bg-[#f2f2f2] px-4 py-2 rounded-md text-black hover:bg-[#d4d4d4] md:ml-8 hover:text-black" onclick="window.location.href='generarPDF.jsp'">Descargar PDF</button>
                 </div>
                 <div id="report" class="overflow-x-auto px-8 pb-8">
                      <table id="example" class="table-auto mx-auto md:w-full">
