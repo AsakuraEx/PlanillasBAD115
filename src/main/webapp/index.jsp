@@ -372,9 +372,8 @@
 
             <div class="flex flex-col md:flex-row gap-8 flex-wrap text-center justify-center py-8 px-8 border-b-2 border-[#A4BF88]">
                 <a class="text-xl font-bold text-[#A4BF88] hover:text-[#6d8a4e]" href="reportespatronales/reporte_patronal.jsp">Aportes patronales</a>
-                <!--<a class="text-xl font-bold text-[#A4BF88] hover:text-[#6d8a4e]" href="#">Planilla</a>
-                <a class="text-xl font-bold text-[#A4BF88] hover:text-[#6d8a4e]" href="#">Reporte 3</a>
-                <a class="text-xl font-bold text-[#A4BF88] hover:text-[#6d8a4e]" href="#">Reporte 4</a>-->
+                <a class="text-xl font-bold text-[#A4BF88] hover:text-[#6d8a4e]" href="descuento/descuento_index_1.jsp">Planilla</a>
+
             </div>
 
         </div>
