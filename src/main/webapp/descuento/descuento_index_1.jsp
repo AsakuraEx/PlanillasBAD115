@@ -48,7 +48,7 @@
                 <div class="container text-center py-8">
                     <% LocalDate now = LocalDate.now(); %>
                     <% DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy"); %>
-                    <h1 class="font-bold text-2xl md:text-3xl border-b-2 pb-4 border-[#80BF96] text-[#629c76]">Reporte por empleado- <%= now.format(formatter) %></h1>
+                    <h1 class="font-bold text-2xl md:text-3xl border-b-2 pb-4 border-[#80BF96] text-[#629c76]">Reporte de Planilla - Fecha: <%= now.format(formatter) %></h1>
     
                 </div>
                 <div class="overflow-x-auto px-8 pb-8">
