@@ -344,7 +344,7 @@
 
                     <img class="h-40 w-40 aspect-square object-cover rounded-full" src="assets/descuentos.jpg" alt="Imagen prrona">
 
-                    <h2 class="text-center font-bold text-xl text-white">Descuentos</h2>
+                    <h2 class="text-center font-bold text-xl text-white">Gestion Financiera</h2>
                     
                     <a class="bg-[#80BF96] py-4 px-6 font-bold text-white rounded-md flex items-center gap-2 hover:scale-110" 
                     href="descuento/descuento_index.jsp">

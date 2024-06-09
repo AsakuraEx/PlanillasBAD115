@@ -81,6 +81,8 @@
                                     double renta = controllerEmpleado.RENTAEmpleado(empleado.getId_empleado());
                                     double salarioNeto = controllerEmpleado.salarioNetoEmpleado(empleado.getId_empleado(), currentMonth, currentYear);
                                     double ingresos = controllerEmpleado.sumarIngresosEmpleado2(empleado.getId_empleado(), currentMonth, currentYear);
+                                    double presupuesto = controllerEmpleado.presupuestoNeto(currentMonth, currentYear);
+                                    double patron = controllerEmpleado.sumarDescuentosPatronales();
                             %>
                             <tr class="text-center border-b border-slate-400">
                                 <td class="px-8 py-2 md:px-1">
@@ -120,8 +122,13 @@
                                     <form action="descuento2_index.jsp" method="POST"
                                     class="font-bold bg-[#E1F2D5] px-4 py-2 rounded-md text-[#67814a] hover:bg-[#91aa7f] hover:text-white">
                                         <input type="hidden" name="id" value="<%=empleado.getId_empleado()%>">
-                                        <input type="submit" value="Detalle">
-                                    </form>                    
+                                        <input type="submit" value="Ver Descuentos">
+                                    </form>
+                                        <form action="/PlanillasG1/ingreso/ingreso_empleado_1.jsp" method="POST"
+                                    class="font-bold bg-[#E1F2D5] px-4 py-2 rounded-md text-[#67814a] hover:bg-[#91aa7f] hover:text-white">
+                                        <input type="hidden" name="id" value="<%=empleado.getId_empleado()%>">
+                                        <input type="submit" value="Ver Ingresos">
+                                    </form>
                                 </td>
                             </tr>
                             <%

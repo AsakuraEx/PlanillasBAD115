@@ -61,7 +61,7 @@
                         <!-- Enviar el id del ingreso y del empleado a editar, para que lo procese la vista update -->
                         <input type="hidden" name="id" value="<%= id_empleado %>">
                         <input type="hidden" name="ID_DESCUENTO" value="<%= id_descuento %>">
-                        <input type="hidden" name="FECHADESCUENTO" value="<%=desc.getFECHADESCUENTO() %>">
+                        <!--<input type="hidden" name="FECHADESCUENTO" value="<%=desc.getFECHADESCUENTO() %>">-->
 
 
                         <div class="flex flex-col gap-2 px-4">

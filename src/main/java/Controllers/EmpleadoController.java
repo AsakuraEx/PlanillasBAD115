@@ -8,13 +8,14 @@ import Models.Descuento;
 import Models.Empleado;
 import Models.Ingreso;
 import Models.TipoDescuento;
+import Models.Presupuesto;
 import java.time.LocalDate;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
-
+import java.sql.Date;
 /**
  *
  * @author frane
@@ -190,10 +191,21 @@ public class EmpleadoController {
 
             try {
                 session.beginTransaction();
-                Query query = session.createQuery("from Descuento where ID_EMPLEADO = :idEmpleado and habilitado = 1 AND MONTH(fechadescuento) = :mes AND YEAR(fechadescuento) = :año");
-                query.setParameter("idEmpleado", idEmpleado);
-                query.setParameter("mes", mes);
-                query.setParameter("año", año);
+                //Query query = session.createQuery("from Descuento where ID_EMPLEADO = :idEmpleado and habilitado = 1 AND MONTH(fechadescuento) = :mes AND YEAR(fechadescuento) = :año");
+                //query.setParameter("idEmpleado", idEmpleado);
+                //query.setParameter("mes", mes);
+                //query.setParameter("año", año);
+                // Crear la fecha al inicio del mes
+                LocalDate finMes = LocalDate.of(año, mes, 1).withDayOfMonth(LocalDate.of(año, mes, 1).lengthOfMonth());
+                Date fechaFinMes = Date.valueOf(finMes);
+
+            // Crear la consulta HQL
+            String hql = "from Descuento where ID_EMPLEADO = :idEmpleado and habilitado = 1 " +
+                         "and :fechaFinMes between fechaDescuento and fechaDescuentoFin";
+            Query query = session.createQuery(hql);
+                        // Configurar los parámetros de la consulta
+            query.setParameter("idEmpleado", idEmpleado);
+            query.setParameter("fechaFinMes", fechaFinMes);
                 descuentos = query.list(); // Obtener la lista de descuentos
                 session.getTransaction().commit();
             } catch (Exception e) {
@@ -337,6 +349,30 @@ public class EmpleadoController {
         }
         return sumaIngresos;
     }
+    
+    public double presupuestoNeto(int mes, int año) {
+    double PresupuestoRestante = 0.0;
+    EmpleadoController controllerEmpleado = new EmpleadoController();
+    List<Empleado> empleados = controllerEmpleado.mostrarEmpleados();
+    
+    PresupuestoController controller = new PresupuestoController();
+    Presupuesto presupuesto = controller.search(182);
+    
+    // Inicializar PresupuestoRestante con el monto del presupuesto
+    PresupuestoRestante = presupuesto.getMonto();
+    
+    // Restar los salarios y bonos de los empleados del presupuesto
+    for (Empleado empleado : empleados) {
+        double salario = empleado.getSalario();
+        double ingresos = sumarIngresosEmpleado2(empleado.getId_empleado(),mes,año);
+
+        PresupuestoRestante -= (salario + ingresos);
+    }
+    double patronales = sumarDescuentosPatronales();
+    PresupuestoRestante =PresupuestoRestante -patronales;
+    return PresupuestoRestante;
+}
+
        private double calcularRenta(double salario) {
         if ((salario) <= 472.00) {
             return 0.0;
@@ -349,4 +385,41 @@ public class EmpleadoController {
         }
     }
 
+    public double sumarDescuentosPatronales() {
+            EmpleadoController controllerEmpleado = new EmpleadoController();
+            List<Empleado> empleados = controllerEmpleado.mostrarEmpleados();       
+            TipoDescuentoController tipoController = new TipoDescuentoController();
+            List<TipoDescuento> tipos = tipoController.descFiltrados();
+            double isssP = 0.0;
+            double afpPl = 0.0;
+            double sumaTotalAportes = 0.0;
+                                
+            for (Empleado empleado : empleados) {
+                double isssPatronal = 0.0;
+                double afpPatronal = 0.0;
+                EmpleadoController controllerEmp = new EmpleadoController();
+                double totalIng = controllerEmp.sumarIngresosEmpleado(empleado.getId_empleado());   
+                double sumaTotalIng = empleado.getSalario() + totalIng;
+                for (TipoDescuento t : tipos) {
+                    double aporte = sumaTotalIng * (t.getPorcentaje() / 100.0);
+                    double valorPorcentaje = t.getPorcentaje();
+                    String nombreTipoDesc = t.getNombretipodesc().trim();
+                    if ("ISSS Patronal".equalsIgnoreCase(nombreTipoDesc)) {
+                        isssPatronal = aporte;
+                        isssP = valorPorcentaje;
+                    } else if ("AFP Patronal".equalsIgnoreCase(nombreTipoDesc)) {
+                        afpPatronal = aporte;
+                        afpPl = valorPorcentaje;
+                    }
+                }
+                double totalAportes = isssPatronal + afpPatronal;
+                sumaTotalAportes += totalAportes;
+            }
+        return sumaTotalAportes;
+    }
+
 }
+
+
+
+ 

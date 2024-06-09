@@ -310,6 +310,30 @@ public int mostrarTipoDescuentoRentaint(int idTipoDescuento) {
 
     return resultado; // Devolver el resultado
 }
+public List<TipoDescuento> patronales() {
+        List<TipoDescuento> tiposDescuentos = new ArrayList<>();
+        SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(TipoDescuento.class).buildSessionFactory();
+        Session session = sessionFactory.openSession();
 
+        try {
+            session.beginTransaction();
+            Query<TipoDescuento> query = session.createQuery(
+                "FROM TipoDescuento WHERE descuentoLey = :descuentoLey AND descuentoPatronal = :descuentoPatronal AND habilitado = :habilitado", 
+                TipoDescuento.class
+            );
+            query.setParameter("descuentoLey", "1");
+            query.setParameter("descuentoPatronal", "1");
+            query.setParameter("habilitado", "1");
+            tiposDescuentos = query.getResultList();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            if (session.getTransaction() != null) session.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+            sessionFactory.close();
+        }
 
+        return tiposDescuentos;
+    }
 }

@@ -1,10 +1,13 @@
 <%@page import="Controllers.MesController"%>
+<%@page import="Controllers.EmpleadoController"%>
 <%@page import="Models.Mes"%>
 <%@page import="Controllers.DepUnidadOrganiController"%>
 <%@page import="Models.DepUnidadOrgani"%>
 <%@page import="Controllers.PresupuestoController"%>
 <%@page import="Models.Presupuesto"%>
 <%@page import="java.util.List"%>
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.Locale" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -38,7 +41,11 @@
     </head>
     <body onload="comenzarTiempo()">
             <% 
+                LocalDate now = LocalDate.now(); 
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
                 String usuario = (String) session.getAttribute("usuario");
+                int currentYear = now.getYear();
+                int currentMonth = now.getMonthValue();
             %>
         <header class="bg-[#80BF96] shadow-md">
 
@@ -79,21 +86,25 @@
                             <td class="px-2 py-2">Departamento asociado</td>
                             <td class="px-2 py-2">Fecha</td>
                             <td class="px-2 py-2">Monto asignado</td>
+                            <td class="px-2 py-2">Presupuesto restante</td>
                             <td class="px-2 py-2">Estado</td>
                             <td class="px-2 py-2">Accion</td>
                         </thead>
                         <%
+                            
                             DepUnidadOrganiController controllerdep = new DepUnidadOrganiController();
                             DepUnidadOrgani depunidad = new DepUnidadOrgani();
 
                             PresupuestoController controller = new PresupuestoController();
                             List<Presupuesto> presupuestos = controller.mostrarPresupuestos();
-
+                            EmpleadoController controllerEmpleado = new EmpleadoController();
+                            
                             String mensaje;
                         %>
                         <tbody>
                             <%
                                 for(Presupuesto presupuesto : presupuestos){
+                                double presupuesto1 = controllerEmpleado.presupuestoNeto(currentMonth, currentYear);
                             %>
                             <tr class="text-center border-b border-slate-400">
                                 <% 
@@ -104,6 +115,7 @@
                                 <td class="px-8 py-2 md:px-1"><%= presupuesto.getFecha() %></td>
                                 
                                 <td class="px-8 py-2 md:px-1"> $ <%=presupuesto.getMonto() %></td>
+                                <td class="px-8 py-2 md:px-1"><%=presupuesto1 %></td>
                                 
                                 <% 
                                     if(Integer.parseInt(presupuesto.getHabilitado()) == 1){ 
